@@ -1,0 +1,17 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/gallop-analytics-openapi.json, openapi/gallop-data-openapi.json, openapi/gallop-insights-openapi.json
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: api_key
+  type: apiKey
+  in: header
+  parameter: x-api-key
+  sources:
+  - openapi/gallop-analytics-openapi.json
+  - openapi/gallop-data-openapi.json
+  - openapi/gallop-insights-openapi.json
