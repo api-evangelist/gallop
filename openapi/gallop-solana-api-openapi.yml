@@ -1,0 +1,2003 @@
+openapi: 3.0.2
+info:
+  title: Analytics Ethereum Solana API
+  description: Sales, pricing, performance, and marketplace data, all in one place with low latency.
+  termsOfService: https://higallop.com/terms/
+  contact:
+    email: support@higallop.com
+  license:
+    name: UNLICENSED
+  version: 1.0.0
+servers:
+- url: https://api.prod.gallop.run/v1
+tags:
+- name: Solana
+paths:
+  /analytics/sol/getCollectionPriceDiff:
+    post:
+      security:
+      - api_key: []
+      summary: Price Differentiation by Trait
+      description: Returns how trait differentiates price for a given collection
+      operationId: getSolCollectionPriceDiff
+      tags:
+      - Solana
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                collection_tag:
+                  type: string
+                  description: The Gallop tag to identify the collection.
+                  example: shadowysupercoder
+                start_date:
+                  type: string
+                  description: The start timestamp in ISO 8601 format to pull data for calculations
+                  example: '2023-01-01T00:00:00.000Z'
+                end_date:
+                  type: string
+                  description: The end timestamp in ISO 8601 format to pull data for calculations
+                  example: '2023-01-01T00:00:00.000Z'
+                exclude_wash:
+                  type: boolean
+                  description: Exclude suspected wash transactions?
+                  example: 'true'
+              required:
+              - collection_tag
+      responses:
+        '200':
+          description: An object containing the collection's price differentiation
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                - Background: 9
+                  Base Model: 5
+                  Desk: 0
+                  Favorite Programming Language: 10
+                  Hoodie: 10
+                  Monitor 1: 100
+                  Monitor 2: 55
+                  Monitor 3: 65
+                  Mouth: 1
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /analytics/sol/getCollectionSalesOHLC:
+    post:
+      security:
+      - api_key: []
+      summary: Collection Sales Price Candlesticks
+      description: Returns collection sales price open, high, low, close and volume at a selected time interval
+      operationId: getSolCollectionSalesOHLC
+      tags:
+      - Solana
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                collection_tag:
+                  type: string
+                  description: The Gallop tag to identify the collection.
+                  example: shadowysupercoder
+                frequency:
+                  type: string
+                  description: The interval at which to return OHLC, e.g. `1D` for daily, `1M` for monthly etc.
+                  example: 1D
+                group_by:
+                  type: string
+                  description: An attribute of the NFT to group results by.
+                  example: Favorite Programming Language
+                volume:
+                  type: boolean
+                  description: If 'true', response dicts contain OHLCV
+                  example: false
+                rept_curr:
+                  type: string
+                  enum:
+                  - sol
+                  - usd
+                  description: The currency to report results in
+                  example: sol
+                start_date:
+                  type: string
+                  description: The start timestamp in ISO 8601 format to pull data for calculations
+                  example: '2023-01-01T00:00:00.000Z'
+                end_date:
+                  type: string
+                  description: The end timestamp in ISO 8601 format to pull data for calculations
+                  example: '2023-01-01T00:00:00.000Z'
+                exclude_wash:
+                  type: boolean
+                  description: Exclude suspected wash transactions?
+                  example: 'true'
+              required:
+              - collection_tag
+      responses:
+        '200':
+          description: An object containing the collection sales OHLC prices
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                  collection_tag: portals
+                  ohlc:
+                  - Unit Type: Ivory
+                    block_timestamp: '2022-06-30 00:00:00'
+                    open: 50.0063
+                    high: 50.0063
+                    low: 27.0063
+                    close: 29.5063
+                  - Unit Type: Ivory
+                    block_timestamp: '2022-07-31 00:00:00'
+                    open: 29.7063
+                    high: 36.4863
+                    low: 24.4963
+                    close: 30.0063
+                  - Unit Type: Onyx
+                    block_timestamp: '2022-06-30 00:00:00'
+                    open: 199.0063
+                    high: 200.0063
+                    low: 125.0063
+                    close: 164.0063
+                  - Unit Type: Onyx
+                    block_timestamp: '2022-07-31 00:00:00'
+                    open: 169.0063
+                    high: 177.6963
+                    low: 150.0063
+                    close: 173.0063
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /analytics/sol/getCollectionSummary:
+    post:
+      security:
+      - api_key: []
+      summary: Summary Statistics by Collection
+      description: Returns summary analytics for a given collection
+      operationId: getSolCollectionSummary
+      tags:
+      - Solana
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                collection_tag:
+                  type: string
+                  description: The Gallop tag to identify the collection.
+                  example: shadowysupercoder
+                group_by:
+                  type: string
+                  description: An attribute of the NFT.
+                  example: Favorite Programming Language
+                start_date:
+                  type: string
+                  description: The start timestamp in ISO 8601 format to pull data for calculations
+                  example: '2023-01-01T00:00:00.000Z'
+                end_date:
+                  type: string
+                  description: The end timestamp in ISO 8601 format to pull data for calculations
+                  example: '2023-01-01T00:00:00.000Z'
+                rept_curr:
+                  type: string
+                  enum:
+                  - sol
+                  - usd
+                  description: The currency to report results in
+                  example: sol
+                exclude_wash:
+                  type: boolean
+                  description: Exclude suspected wash transactions?
+                  example: 'true'
+              required:
+              - collection_tag
+      responses:
+        '200':
+          description: An object containing the collection's analytical summary.
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                - avg_daily_floor_price_transacted: 47.539330105503666
+                  avg_daily_transaction_count: 31.700534759358288
+                  avg_daily_volume: 1320.835757783679
+                  gain_since_last_trough: 1.2819901699432368
+                  latest_floor_price: 79.00631272
+                  latest_peak_date: '2022-03-01'
+                  latest_rolling_median: 81.00144768
+                  latest_rolling_quantile: 63.00627988
+                  latest_trough_date: '2022-03-02'
+                  loss_since_last_peak: -3.5406306348007233
+                  max_daily_floor_price: 134.50144768
+                  min_daily_floor_price: 0.02631272
+                  total_transaction_count: 5928
+                  total_transaction_volume: 246996.28670554797
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /analytics/sol/getRarity:
+    post:
+      security:
+      - api_key: []
+      summary: Token Rarity by Collection
+      description: Returns rarity by token for a given collection
+      operationId: getSolRarity
+      tags:
+      - Solana
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                collection_tag:
+                  type: string
+                  description: The Gallop tag for the Solana collection. Please see sol/getCollections endpoint.
+                  example: portals
+                mint_address:
+                  type: array
+                  description: A list of token addresses.
+                  items:
+                    type: string
+                    example: 9quKRGQ73y25CfVCeZ5u9VpaXZ27JzYQM374QDzGAXK2
+                weights:
+                  type: object
+                  description: Dict containing trait keys and weight values.
+                  properties: {}
+                  example:
+                    Unit Type: 1.2
+                    Unit Number: 0.4
+                    Trait Count: 0.5
+              required:
+              - collection_tag
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                - mint_address: 8mNbJHv1MHngP64NqH8MTCCYj4Ht5q6TuaWadEAmwhcK
+                  token_name: 'Portals | Ivory #1000'
+                  rarity_score: 3.0013
+                  trait_rarity_score:
+                    Overall: 3.0013
+                    Trait Count: 0.0006
+                    Unit Number: 3
+                    Unit Type: 0.0007
+                - mint_address: 9quKRGQ73y25CfVCeZ5u9VpaXZ27JzYQM374QDzGAXK2
+                  token_name: 'Portals | Ivory #4613'
+                  rarity_score: 3.0013
+                  trait_rarity_score:
+                    Overall: 3.0013
+                    Trait Count: 0.0006
+                    Unit Number: 3
+                    Unit Type: 0.0007
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /analytics/sol/getTokenSummary:
+    post:
+      security:
+      - api_key: []
+      summary: Summary Statistics by Token
+      description: Returns summary analytics for a given token
+      operationId: getSolTokenSummary
+      tags:
+      - Solana
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mint_address:
+                  type: array
+                  description: A token mint address or list of token addresses.
+                  items:
+                    type: string
+                    example: DcFTUfcU4WRr4ybkgqpy26Y4g5g4YaCz42dryV6AiHp8
+                token_id:
+                  type: string
+                  description: The numerical id for the token. Provide either id or mint address.
+                start_date:
+                  type: string
+                  description: The start timestamp in ISO 8601 format to pull data for calculations
+                  example: '2023-01-01T00:00:00.000Z'
+                end_date:
+                  type: string
+                  description: The end timestamp in ISO 8601 format to pull data for calculations
+                  example: '2023-01-01T00:00:00.000Z'
+                rept_curr:
+                  type: string
+                  enum:
+                  - sol
+                  - usd
+                  description: The currency to report results in
+                  example: sol
+                exclude_wash:
+                  type: boolean
+                  description: Exclude suspected wash transactions?
+                  example: 'true'
+              required:
+              - mint_address
+      responses:
+        '200':
+          description: An object containing the token's analytical summary.
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                - collection_percentile: '47'
+                  currency_symbol: SOL
+                  latest_gross_median_spread_price: -0.0722
+                  latest_sale: '2022-01-25'
+                  max_date: '2022-01-15 04:07:28'
+                  max_price: 0.95144768
+                  min_date: '2021-12-31 07:39:03'
+                  min_price: 0.06144768
+                  mint_address: 5uarH96GLf4APmipQRrsD3SsW4K77zRPtWGwETcyz5GE
+                  price: 0.29427344
+                  rolling_coll_median_price: 0.2853
+                  rolling_coll_median_returns: 0.029
+                  rolling_collection_percentile_price: 0.2563
+                  rolling_collection_percentile_returns: 0
+                  times_traded: 16
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /analytics/sol/getWashTrade:
+    post:
+      security:
+      - api_key: []
+      summary: Wash Trades by Transaction
+      description: Returns suspected wash trades for a given transaction hash
+      operationId: getSolWashTrade
+      tags:
+      - Solana
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_signature:
+                  type: string
+                  description: The first signature to valildate.
+                  example: jAV6y8eKCACX9bwNaiVgh6mqoxiCHrovWSYVXWmZfj5EhHDmXHeu23DwgnvnPQHjudKj9DK5ed73zq2yAkaJtqg
+              required:
+              - first_signature
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                - mint_address: FbmJY3X35YRfVceUmXre1et97f6rcPUWCnFmCCkta3Rk
+                  token_name: 'DeGod #196'
+                  susp_wash: true
+                  update_authority: AxFuniPo7RaDgPH6Gizf4GZmLQFc4M5ipckeeZfkrPNn
+                  collection_name: DeGods
+                  collection_tag: degods
+                  first_signature: 4dPURkZDfatuCqbTugSXLMXirTCdzRpoZMFRDT2Mxfrm82oj8u8dvXc91jdJkoJ4cdkcDoeNKSqXaYW1ow9o2LSb
+                  sol_value: 9.9958
+                  usd_value: 908.34
+                  exchange: Alpha Art
+                  block_number: 118627973
+                  block_timestamp: '2022-01-31T02:56:18.000Z'
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /analytics/sol/getWashTransactions:
+    post:
+      security:
+      - api_key: []
+      summary: Wash Trades by Collection
+      description: Returns suspected wash trades by token for a given collection
+      operationId: getSolWashTransactions
+      tags:
+      - Solana
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                collection_tag:
+                  type: string
+                  description: The Gallop slug for the collection. Please see sol/getCollections endpoint.
+                  example: degods
+                mint_address:
+                  type: array
+                  description: An optional list of token addresses.
+                  items:
+                    type: string
+                    example: G4Tbp5zWZRt1thiuv7ywkotcXZvf24DrUEMoM2j6Vj63
+                page:
+                  type: integer
+                  description: The pagination cursor.
+                  example: 1
+                page_size:
+                  type: integer
+                  enum:
+                  - 50
+                  - 100
+                  - 500
+                  - 1000
+                  description: The number of records returned per page.
+                  example: 100
+              required:
+              - collection_tag
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                  total_items: 3
+                  total_pages: 1
+                  page: 1
+                  transactions:
+                  - mint_address: 7cjxfkXPTLMFiaMg4NCSrqRAUqovmyfqbt2HWVCZCAoq
+                    token_name: 'Stoned Ape #3419'
+                    susp_wash: true
+                    update_authority: PUFFgnKKhQ23vp8uSPwdzrUhEr7WpLmjM85NB1FQgpb
+                    collection_name: Stoned Ape Crew
+                    collection_tag: stonedapecrew
+                    first_signature: 3jqC3sBxc3QZrkBUfbse1UTkFKf3zXxix1xwc46Gb8gFi7mnGD3SpvxjWKcH1hWW4jUa695TXkfEyTxYS1QvU8xh
+                    sol_value: 9.0014
+                    usd_value: 1541.97
+                    exchange: Magic Eden
+                    block_number: 113933092
+                    block_timestamp: '2021-12-30T01:47:37.000Z'
+                  - mint_address: 2HZEeXqJN4CcdzGkcbHkWrGjQALaEKWg2rsU9XkoT7q1
+                    token_name: SolPunk_#6711
+                    susp_wash: true
+                    update_authority: F5FKqzjucNDYymjHLxMR2uBT43QmaqBAMJwjwkvRRw4A
+                    collection_name: SolPunks
+                    collection_tag: solpunks
+                    first_signature: 4Ahk4MF7kbfsaB5MxnXtuwdFxDJsdY8RFZeea6gBHgpRj52wLyL5AZzpModdk3QjfDCP8PNy8f6kME9suERLCq5
+                    sol_value: 6.5055
+                    usd_value: 1308.93
+                    exchange: Solanart
+                    block_number: 113563410
+                    block_timestamp: '2021-12-27T12:59:29.000Z'
+                  - mint_address: 2BUaViC199FDyfhxdbSTKqrxvkCZ51n2hn2dfrBzTQuR
+                    token_name: 'Stoned Ape #4007'
+                    susp_wash: true
+                    update_authority: PUFFgnKKhQ23vp8uSPwdzrUhEr7WpLmjM85NB1FQgpb
+                    collection_name: Stoned Ape Crew
+                    collection_tag: stonedapecrew
+                    first_signature: 2sm66ojNPN6sFCT4PBWDoDygAecmAsi5S3fxm1v15a8CcBRcZ1XFiRYLM35ahDvKArhehp6UGVrrjYSRp1X1SJ32
+                    sol_value: 20.0014
+                    usd_value: 3958.1
+                    exchange: Magic Eden
+                    block_number: 113488721
+                    block_timestamp: '2021-12-27T02:07:13.000Z'
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /data/sol/getAccountNFTs:
+    post:
+      security:
+      - api_key: []
+      summary: Tokens Owned by Wallet
+      description: Returns all tokens owned for a given wallet
+      operationId: getSolAccountNFTs
+      tags:
+      - Solana
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                account_address:
+                  type: string
+                  description: The account address to query.
+                  example: 6CDuoSsn4ZRVvcBMdh9NEKkJebF3AFMdYTnPV4YrfEy6
+              required:
+              - account_address
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                - key: 4
+                  updateAuthority: 5Xsx3PU1APi7xwWXjvHhDymFPyLaYSGy1wjAQbMpJCHX
+                  mint: 5gcjaKKFpcvBWoBMp9svQyz2X2SZAp1h5t8ie5wP7ZRs
+                  data:
+                    name: 'Solander #3277'
+                    symbol: ''
+                    uri: https://arweave.net/hMOBh245uVIOdf7i3Jqib3aTiYeQGAIRo2SFMHqF320
+                    sellerFeeBasisPoints: 1000
+                    creators:
+                    - address: 5Xsx3PU1APi7xwWXjvHhDymFPyLaYSGy1wjAQbMpJCHX
+                      verified: 1
+                      share: 100
+                  primarySaleHappened: 1
+                  isMutable: 0
+                - key: 4
+                  updateAuthority: 78kenD1C8YLAVEvVhJzZ7kaLWyRcfEYgNzW7kFGTKqTp
+                  mint: 6mxLxe6wpVYYixwcov8xHJASYjY4RgZHYMEzjRbhRh7K
+                  data:
+                    name: 'HOG #1225'
+                    symbol: HOG
+                    uri: https://arweave.net/m9KI415MJ2u5wD8KX5soQi73HVOrXyuZhuOUHQkDcXg
+                    sellerFeeBasisPoints: 500
+                    creators:
+                    - address: HeQLHzLH3pKPCQyj2aJrYFLsWudeh1cy6pXn3WfGmS67
+                      verified: 1
+                      share: 0
+                    - address: 9XPWP731BdKs5WzUpxPw7qWCTisZDZk7Pwd12t5dr1iv
+                      verified: 0
+                      share: 100
+                  primarySaleHappened: 1
+                  isMutable: 1
+                - key: 4
+                  updateAuthority: 4Fd5mgBEF3kHG5ok246HFpKeJuEiXzgF2GWmeb3YG7Ek
+                  mint: 2J5B492wiKJ9Mb7TmNALQ2UC6Cx4Ks7erMcFK2RzNuDS
+                  data:
+                    name: 'WOOFers #4443'
+                    symbol: WFR
+                    uri: https://arweave.net/UUFmfOammy20MSputaWqOtMttMryJTMMcJcLkop5tC4
+                    sellerFeeBasisPoints: 500
+                    creators:
+                    - address: 2RGgEVqYWMXCNs2VwXhLYeNr6S76fmDdTv7DcrFYBXVn
+                      verified: 1
+                      share: 0
+                    - address: B8EzoVbg9VbKvJYekgtkCLpJncv9hknZL2718uYrzBK3
+                      verified: 0
+                      share: 100
+                  primarySaleHappened: 1
+                  isMutable: 1
+                - key: 4
+                  updateAuthority: 4Fd5mgBEF3kHG5ok246HFpKeJuEiXzgF2GWmeb3YG7Ek
+                  mint: BXM5ER7S8wfDW9JuiRpRVQuUQZfbH828qSmfuruQLA8w
+                  data:
+                    name: 'WOOFers #2390'
+                    symbol: WFR
+                    uri: https://arweave.net/hJ7-fQWsVQdlZT01kJTuRC2qU8jJtnrVJUYlWFfeaXk
+                    sellerFeeBasisPoints: 500
+                    creators:
+                    - address: 2RGgEVqYWMXCNs2VwXhLYeNr6S76fmDdTv7DcrFYBXVn
+                      verified: 1
+                      share: 0
+                    - address: B8EzoVbg9VbKvJYekgtkCLpJncv9hknZL2718uYrzBK3
+                      verified: 0
+                      share: 100
+                  primarySaleHappened: 1
+                  isMutable: 1
+                - key: 4
+                  updateAuthority: 7f3HakYbNopgUkHHboqD9SKFdh8V9VXTFj93n67DKd8w
+                  mint: BtGkpV3xp2yguUtUd6vRR9QzHYxSJksv1zdhNsN33NCF
+                  data:
+                    name: 'MetaEggs City #115'
+                    symbol: METAEGGS
+                    uri: https://arweave.net/EYJm7MEBEDH1x2N2FEfDhjD7fehS1L9ZsQTCweYGyrI
+                    sellerFeeBasisPoints: 800
+                    creators:
+                    - address: ATmGUonj53ZEXXoCXacBCSd4SE4UBf8AEno6GbWnMvUs
+                      verified: 1
+                      share: 0
+                    - address: 7f3HakYbNopgUkHHboqD9SKFdh8V9VXTFj93n67DKd8w
+                      verified: 0
+                      share: 100
+                  primarySaleHappened: 1
+                  isMutable: 1
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: array
+                    description: Returns all tokens owned for a given wallet
+                    items:
+                      type: object
+                      properties:
+                        key:
+                          type: number
+                          description: An account discriminator that identifies the type of metadata account
+                        updateAuthority:
+                          type: string
+                          description: The public key that is allowed to update this account
+                        mint:
+                          type: string
+                          description: The public key of the Mint Account it derives from
+                        data:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              description: The name of the collection
+                            symbol:
+                              type: string
+                              description: The ticker symbol of the collection
+                            uri:
+                              type: string
+                              description: The URI to the external metadata
+                            sellerFeeBasisPoints:
+                              type: number
+                              description: The royalties shared by the creators in basis points — i.e., 550 means 5.5% royalties
+                            creators:
+                              type: array
+                              description: Array of creator addresses
+                              items:
+                                type: object
+                                properties:
+                                  share:
+                                    type: number
+                                  address:
+                                    type: string
+                                    description: The creator address
+                        primarySaleHappened:
+                          type: number
+                          description: Indicates if the token has already been sold at least once
+                        isMutable:
+                          type: number
+                          description: Indicates if the metadata account can be updated
+                  status:
+                    type: number
+                    description: The response status code
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /data/sol/getCollectionTraits:
+    post:
+      security:
+      - api_key: []
+      summary: Traits by Collection
+      description: Returns a list of traits for a given collection
+      operationId: getSolCollectionTraits
+      tags:
+      - Solana
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                collection_tag:
+                  type: string
+                  description: The tag of the collection.
+                  example: solanamonkerejectsget
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                - Trait Count
+                - Unit Number
+                - Unit Type
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: array
+                    description: Array of the collection's traits
+                    items:
+                      type: string
+                  status:
+                    type: number
+                    description: The response status code
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /data/sol/getCollectionTransactions:
+    post:
+      security:
+      - api_key: []
+      summary: Transactions by Collections
+      description: Returns all transactions for a given collection
+      operationId: getSolCollectionTransactions
+      tags:
+      - Solana
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                collection_tag:
+                  type: string
+                  description: The Gallop slug for the collection. Please see sol/getCollections endpoint.
+                  example: degenape
+                page:
+                  type: integer
+                  description: The pagination cursor.
+                  example: 1
+                page_size:
+                  type: integer
+                  enum:
+                  - 50
+                  - 100
+                  - 500
+                  - 1000
+                  description: The number of records returned per page.
+                  example: 100
+                start_date:
+                  type: string
+                  description: The earliest block timestamp in ISO 8601 format.
+                  example: '2023-01-01T00:00:00.000Z'
+                end_date:
+                  type: string
+                  description: The latest block timestamp in ISO 8601 format.
+                  example: '2023-01-01T00:00:00.000Z'
+              required:
+              - collection_tag
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                  total_items: 341585
+                  total_pages: 3416
+                  page: 1
+                  transactions:
+                  - mint_address: 44bHsaNyZrCRjvLorpTs2xehjA7RfKHtdhrEfSNqES1u
+                    token_name: 'Degen Ape #8203'
+                    update_authority: DC2mkgwhy56w3viNtHDjJQmc7SGu2QX785bS4aexojwX
+                    collection_name: Degenerate Ape Academy
+                    collection_tag: degenape
+                    first_signature: aiw9Z16CzdU1F44vXWqKQhLPL3xQguNHXNKdB9qGcc1SjUBRkFVms8LQUBwGjMbPcbZkDwPgAnNt5Bp2HB25yMk
+                    currency_symbol: SOL
+                    sol_value: 64.0063
+                    usd_value: 5598.36
+                    exchange: Magic Eden
+                    block_number: 132188123
+                    block_timestamp: '2022-05-02T16:08:51.000Z'
+                  - mint_address: DYL7wvjLVeWr6tWW5jTawM4oWLXUbJ949VhM4Q7PGg1V
+                    token_name: 'Degen Ape #4930'
+                    update_authority: DC2mkgwhy56w3viNtHDjJQmc7SGu2QX785bS4aexojwX
+                    collection_name: Degenerate Ape Academy
+                    collection_tag: degenape
+                    first_signature: 2SFBfFv98G6qjcyQBgDKiH6ZnYJz29zh9cDFk91feVymrGxUAqivm3A93wWJnPQ5umx5oeXuMCUCKM4szhNed9BJ
+                    currency_symbol: SOL
+                    sol_value: 62.0063
+                    usd_value: 5435.31
+                    exchange: Magic Eden
+                    block_number: 132178671
+                    block_timestamp: '2022-05-02T14:24:53.000Z'
+                  - mint_address: 62UfTSThs4bqsiCb65NEeqZ1ZRfmY5rHYFHxzJjiYZdy
+                    token_name: 'Degen Ape #2050'
+                    update_authority: DC2mkgwhy56w3viNtHDjJQmc7SGu2QX785bS4aexojwX
+                    collection_name: Degenerate Ape Academy
+                    collection_tag: degenape
+                    first_signature: QQeUHwH6iFe8aFpCf2kC6yPzakryHsC9Pmt1vwSuu1vJkCF6xcF4oMtaoZmXJQCTmtcRwooZK2o6Dkw8zLL3UvX
+                    currency_symbol: SOL
+                    sol_value: 65.0063
+                    usd_value: 5755.39
+                    exchange: Magic Eden
+                    block_number: 132153051
+                    block_timestamp: '2022-05-02T09:50:24.000Z'
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: object
+                    description: Returns all transactions for a given collection
+                    properties:
+                      transactions:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            mint_address:
+                              type: string
+                              description: A public key generated during the creation of the account and uniquely identifies a given token
+                            token_name:
+                              type: string
+                              description: The token name
+                            update_authority:
+                              type: string
+                              description: The public key that is allowed to update this account
+                            collection_name:
+                              type: string
+                              description: The name of the collection
+                            collection_tag:
+                              type: string
+                              description: The Gallop collection name reference to use with other endpoints
+                            from_address:
+                              type: string
+                              description: The unique wallet address from which the token is tranferred
+                            to_address:
+                              type: string
+                              description: The unique wallet address receiving the token
+                            first_signature:
+                              type: string
+                              description: The first signature is used to identify and confirm transactions
+                            sol_value:
+                              type: number
+                              description: The equivalent SOL value
+                            usd_value:
+                              type: number
+                              description: The equivalent USD value
+                            exchange:
+                              type: string
+                              description: The marketplace traded and potential order contract details
+                            block_number:
+                              type: number
+                              description: The block number on which the transaction occurred
+                            block_timestamp:
+                              type: string
+                              description: The UTC timestamp at which the block was validated
+                      total_items:
+                        type: number
+                        description: The total number of items that can be retrieved
+                      total_pages:
+                        type: number
+                        description: The total number of pages that can be queried
+                      page:
+                        type: number
+                        description: The current reported page
+                  status:
+                    type: number
+                    description: The response status code
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /data/sol/getCollections:
+    post:
+      security:
+      - api_key: []
+      summary: Aggregated Collections Supported by Gallop
+      description: Returns all Gallop aggregated collections
+      operationId: getSolCollections
+      tags:
+      - Solana
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                page:
+                  type: integer
+                  description: The pagination cursor.
+                  example: 1
+                page_size:
+                  type: integer
+                  enum:
+                  - 50
+                  - 100
+                  - 500
+                  - 1000
+                  description: The number of records returned per page.
+                  example: 100
+                collection_name:
+                  type: string
+                  description: The name of the collection searched.
+                  example: degen
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                  total_items: 3
+                  total_pages: 1
+                  page: 1
+                  collections:
+                  - collection_name: Aurory
+                    collection_tag: aurory
+                    collection_address: 7BQdHnBKERaCYCnwLbbSoYHQZxcq7zLenYERDp94o18z
+                  - collection_name: Degenerate Ape Academy
+                    collection_tag: degenape
+                    collection_address: DSwfRF1jhhu6HpSuzaig1G19kzP73PfLZBPLofkw6fLD
+                  - collection_name: Degen Dojo
+                    collection_tag: degendojo
+                    collection_address: null
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: object
+                    description: Returns all Gallop aggregated collections
+                    properties:
+                      collections:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            collection_name:
+                              type: string
+                              description: The name of the collection
+                            collection_tag:
+                              type: string
+                              description: The Gallop collection name reference to use with other endpoints
+                            collection_address:
+                              type: string
+                              description: The unique address allocated for the collection
+                            update_authority:
+                              type: array
+                              items:
+                                type: string
+                              description: The public key allowed to update this account
+                      total_items:
+                        type: number
+                        description: The total number of items that can be retrieved
+                      total_pages:
+                        type: number
+                        description: The total number of pages that can be queried
+                      page:
+                        type: number
+                        description: The current reported page
+                  status:
+                    type: number
+                    description: The response status code
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /data/sol/getHistoricalTransactions:
+    post:
+      security:
+      - api_key: []
+      summary: Historical Transactions by Collection
+      description: Returns all transactions for a given collection in bulk
+      operationId: getSolHistoricalTransactions
+      tags:
+      - Solana
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                collection_tag:
+                  type: string
+                  description: The Gallop slug for the collection. Please see sol/getCollections endpoint.
+                  example: degenape
+                page:
+                  type: integer
+                  description: The pagination cursor.
+                  example: 1
+              required:
+              - collection_tag
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                  total_items: 10
+                  total_pages: 1
+                  page: 1
+                  mint_address:
+                  - 9CcbDoenSF2xBi6pzWAzbK37GLaDa4CRBLXzDigGD82
+                  - 2JKrCJMkNpL6EfEjCHuKcM55hqZgfCanmC8hpK4yWJqt
+                  - Eh3yRBvVecs1E91W4udPU6iaFY7xkxMFfQ7HVhR7vANi
+                  - CvjkQu1JdQAH6AZLriAHAi9oNHQL5ZcXnMcyPnhYEu5J
+                  - 9kBEQ7acyPmS79zZ7Dt7RzaSqUa3L2Pbb3VsR133485y
+                  - 3hjqyA1JivchTiPYcyhUpYDPhGQUvDa9VULjsDBGvooW
+                  - CQVx5mjr2odpnLFsVPNEZRvzmXuEXjmux7vFYCf3udKg
+                  - F7AV8iUC9FeYKu8uVBmZExwskJuGh8bu3p7KvJnKvJLj
+                  - DwCS9jwYEV2b95jnViuceRJcKhzjGP8pbhGhC9s3sF29
+                  - DAR8wC861Eea9F7ZeqtDWyAfJinMzjaqLQAzQLd8GTsN
+                  token_name:
+                  - ''
+                  - ''
+                  - ''
+                  - ''
+                  - ''
+                  - ''
+                  - ''
+                  - ''
+                  - ''
+                  - ''
+                  update_authority:
+                  - 4T8p54CubXcqRpXNnL6Zb6kFf22y91WggrkyoZ9Vu9HU
+                  - 4T8p54CubXcqRpXNnL6Zb6kFf22y91WggrkyoZ9Vu9HU
+                  - 4T8p54CubXcqRpXNnL6Zb6kFf22y91WggrkyoZ9Vu9HU
+                  - 4T8p54CubXcqRpXNnL6Zb6kFf22y91WggrkyoZ9Vu9HU
+                  - 4T8p54CubXcqRpXNnL6Zb6kFf22y91WggrkyoZ9Vu9HU
+                  - 4T8p54CubXcqRpXNnL6Zb6kFf22y91WggrkyoZ9Vu9HU
+                  - 4T8p54CubXcqRpXNnL6Zb6kFf22y91WggrkyoZ9Vu9HU
+                  - 4T8p54CubXcqRpXNnL6Zb6kFf22y91WggrkyoZ9Vu9HU
+                  - 4T8p54CubXcqRpXNnL6Zb6kFf22y91WggrkyoZ9Vu9HU
+                  - 4T8p54CubXcqRpXNnL6Zb6kFf22y91WggrkyoZ9Vu9HU
+                  collection_name: Angelz Dao
+                  collection_tag: angelzdao
+                  from_address:
+                  - 2H8iejHAb1sTnQatHiYfvxKqxWuiqtMYMDkqHMD9hAAz
+                  - 2H8iejHAb1sTnQatHiYfvxKqxWuiqtMYMDkqHMD9hAAz
+                  - 2H8iejHAb1sTnQatHiYfvxKqxWuiqtMYMDkqHMD9hAAz
+                  - 2H8iejHAb1sTnQatHiYfvxKqxWuiqtMYMDkqHMD9hAAz
+                  - 2H8iejHAb1sTnQatHiYfvxKqxWuiqtMYMDkqHMD9hAAz
+                  - 2H8iejHAb1sTnQatHiYfvxKqxWuiqtMYMDkqHMD9hAAz
+                  - 2H8iejHAb1sTnQatHiYfvxKqxWuiqtMYMDkqHMD9hAAz
+                  - 2H8iejHAb1sTnQatHiYfvxKqxWuiqtMYMDkqHMD9hAAz
+                  - 2H8iejHAb1sTnQatHiYfvxKqxWuiqtMYMDkqHMD9hAAz
+                  - 2H8iejHAb1sTnQatHiYfvxKqxWuiqtMYMDkqHMD9hAAz
+                  to_address:
+                  - FGw6WhiPLET9XkEcPD2quCyJa8m528QFPM9cswQYKJn8
+                  - FGw6WhiPLET9XkEcPD2quCyJa8m528QFPM9cswQYKJn8
+                  - FGw6WhiPLET9XkEcPD2quCyJa8m528QFPM9cswQYKJn8
+                  - FGw6WhiPLET9XkEcPD2quCyJa8m528QFPM9cswQYKJn8
+                  - FGw6WhiPLET9XkEcPD2quCyJa8m528QFPM9cswQYKJn8
+                  - FGw6WhiPLET9XkEcPD2quCyJa8m528QFPM9cswQYKJn8
+                  - FGw6WhiPLET9XkEcPD2quCyJa8m528QFPM9cswQYKJn8
+                  - FGw6WhiPLET9XkEcPD2quCyJa8m528QFPM9cswQYKJn8
+                  - FGw6WhiPLET9XkEcPD2quCyJa8m528QFPM9cswQYKJn8
+                  - FGw6WhiPLET9XkEcPD2quCyJa8m528QFPM9cswQYKJn8
+                  first_signature:
+                  - 4sSW2JY14uAAJ86LbhcEzoydTafpF6BKbgY6X9vubqDo41ZpgcAk1KyHC3qoQHSMjBJRFRCdsBsBXgKiY2vsT8v2
+                  - 4AnKJceEaqZXdwFpmWsRUXp1Cs3hqRQ5xmaVsPnbMW2WCN38mfNXbAMdzHHKV93avzsXBJMWHzGo6bmg9VU8Civv
+                  - 4LARRKsYsAQ1bMg5nNt82o3SDceQDRCzc6TKRzWHKTVBnJapWmnEjATNj1gKHFhNg7T5wwpDQPhamvX4wa5wkrKs
+                  - 4uqU5KxZazGrBExB8rvent5iynKXwBUx2BcBtEYRB6a1X3p4cvhDGcpCcD3UP9qdazhbT9QwyDTpoQ6Tj5uqSzMU
+                  - 2wri7kC8KhMsXBEyPPscE6qNWTCCxoXzgcTBvLi1p3KFqRYTsPUy1rQKJMicHJkEtrFCxoRBSbhAMVoL8FdAvMDm
+                  - 5LgvQrjFcfL2d25dLLVvvzgDNojgnaprVbr3fJCSbaJBtkoa2yhjAHZkdGo9fFp4yuwpVQWPGPtrqk5i6wSnLH78
+                  - 314Veijyo11gMKUqvXxFgh1g3Y7NEZXTeRhDzUnkTzMUuhjHp9EchGgBW2hrmx9waitv7NUwPkpRVVVF4sdRJUaP
+                  - 5nKMK6h26ZhNQRe5Yd1i4Gi75yFsMvPdu2j6f3VSEA9qYzfZX7tCwczRpyWKCgyrVPh9v8GoPgci3iWf6S2xZYbg
+                  - 2hF4neLwYjfozkCVDm5tJCTbo1v7eh8qMcU19vPxu3v2V8Kmrpf1JjBQ1bo8WSx6jcqmnistZzNzRzmdbkrUiC5a
+                  - 4tWbLdY8HeAVC1dzD4xjnqSw2M5MFpi5NrShY7xKoS94cW9AmvBV2UcgF6pdcKBATNydFH9sT78DgztzS2GpL5VH
+                  sol_value:
+                  - 0.0073
+                  - 0.0073
+                  - 0.0073
+                  - 0.0073
+                  - 0.0073
+                  - 0.0073
+                  - 0.0073
+                  - 0.0073
+                  - 0.0073
+                  - 0.0073
+                  usd_value:
+                  - 0.32
+                  - 0.32
+                  - 0.32
+                  - 0.32
+                  - 0.32
+                  - 0.32
+                  - 0.32
+                  - 0.32
+                  - 0.32
+                  - 0.31
+                  exchange:
+                  - Magic Eden
+                  - Magic Eden
+                  - Magic Eden
+                  - Magic Eden
+                  - Magic Eden
+                  - Magic Eden
+                  - Magic Eden
+                  - Magic Eden
+                  - Magic Eden
+                  - Magic Eden
+                  block_number:
+                  - 142183700
+                  - 142183695
+                  - 142183695
+                  - 142183695
+                  - 142183695
+                  - 142183695
+                  - 142183695
+                  - 142183695
+                  - 142183695
+                  - 142095552
+                  block_timestamp:
+                  - '2022-07-19T05:08:12.000Z'
+                  - '2022-07-19T05:08:09.000Z'
+                  - '2022-07-19T05:08:09.000Z'
+                  - '2022-07-19T05:08:09.000Z'
+                  - '2022-07-19T05:08:09.000Z'
+                  - '2022-07-19T05:08:09.000Z'
+                  - '2022-07-19T05:08:09.000Z'
+                  - '2022-07-19T05:08:09.000Z'
+                  - '2022-07-19T05:08:09.000Z'
+                  - '2022-07-18T13:02:20.000Z'
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: object
+                    description: Object of arrays ordered in descending transaction date
+                    properties:
+                      collection_name:
+                        type: string
+                        description: The name of the collection
+                      collection_tag:
+                        type: string
+                        description: The Gallop collection name reference to use with other endpoints
+                      mint_address:
+                        type: array
+                        items:
+                          type: string
+                        description: The public key generated during the creation of the account and uniquely identifies a given token
+                      token_name:
+                        type: array
+                        items:
+                          type: string
+                        description: The token name
+                      update_authority:
+                        type: array
+                        items:
+                          type: string
+                        description: The public key allowed to update this account
+                      from_address:
+                        type: array
+                        items:
+                          type: string
+                        description: A unique wallet address from which the corresponding token was tranferred
+                      to_address:
+                        type: array
+                        items:
+                          type: string
+                        description: A unique wallet address receiving the corresponding token
+                      sol_value:
+                        type: array
+                        items:
+                          type: number
+                        description: The equivalent SOL value
+                      usd_value:
+                        type: array
+                        items:
+                          type: number
+                        description: The equivalent USD value
+                      first_signature:
+                        type: array
+                        items:
+                          type: number
+                        description: The first signature is considered primary and is used identify and confirm transactions
+                      exchange:
+                        type: array
+                        items:
+                          type: string
+                        description: The marketplace where a transaction occurred
+                      block_number:
+                        type: array
+                        items:
+                          type: number
+                        description: The block number on which a transaction occurred
+                      block_timestamp:
+                        type: array
+                        items:
+                          type: string
+                        description: The UTC timestamp at which a block was validated
+                      total_items:
+                        type: number
+                        description: The total number of items that can be retrieved
+                      total_pages:
+                        type: number
+                        description: The total number of pages that can be queried
+                      page:
+                        type: number
+                        description: The current reported page
+                  status:
+                    type: number
+                    description: The response status code
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /data/sol/getMarketplaceData:
+    post:
+      security:
+      - api_key: []
+      summary: Collection Summary by Marketplace
+      description: Returns summary statistics for collections by marketplace
+      operationId: getSolMarketplaceData
+      tags:
+      - Solana
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                collection_tag:
+                  type: array
+                  description: Array of Gallop collection tags
+                  items:
+                    type: string
+                    example: downtowngirlz
+              required:
+              - collection_tag
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                - collection_tag: critters-cult
+                  marketplaces:
+                  - marketplace: Solanart
+                    updated_at: '2022-10-26T18:34:01.698Z'
+                    stats_summary:
+                      items: 5550
+                      total_volume: 111470
+                      floor_price: 9.2
+                      currency: SOL
+                  - marketplace: Magic_Eden
+                    updated_at: '2022-10-26T18:34:01.698Z'
+                    stats_summary:
+                      symbol: critters_cult
+                      floorPrice: 9.55
+                      listedCount: 649
+                      avgPrice24hr: 11.227580645161291
+                      volumeAll: 212830.250639258
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: object
+                    description: Returns summary statistics for collections by marketplace
+                    properties:
+                      marketplaces:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            marketplace:
+                              type: string
+                              description: The marketplace name where the stats summary was sourced
+                            updated_at:
+                              type: string
+                              description: The last time Gallop pulled the marketplace stats summary
+                            stats_summary:
+                              type: object
+                              description: The marketplace stats summary
+                      collection_tag:
+                        type: string
+                        description: The Gallop collection name reference to use with other endpoints
+                  status:
+                    type: number
+                    description: The response status code
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /data/sol/getMarketplaceFloorPrice:
+    post:
+      security:
+      - api_key: []
+      summary: Marketplace Floor Price by Collection
+      description: Returns current floor price for all collections by marketplace
+      operationId: getSolMarketplaceFloorPrice
+      tags:
+      - Solana
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                page:
+                  type: integer
+                  description: The pagination cursor.
+                  example: 1
+                page_size:
+                  type: integer
+                  enum:
+                  - 50
+                  - 100
+                  - 500
+                  - 1000
+                  description: The number of records returned per page.
+                  example: 100
+                collection_tag:
+                  type: array
+                  description: Array of Gallop collection tags
+                  items:
+                    type: string
+                    example: downtowngirlz
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                  total_items: 3
+                  total_pages: 1
+                  page: 1
+                  collections:
+                  - collection_tag: 3d-anon
+                    marketplaces:
+                    - updated_at: '2022-12-23T04:30:10.407'
+                      floor_price: 15
+                      marketplace: Solanart
+                      collection_id: 3d-anon
+                  - collection_tag: 4x4
+                    marketplaces:
+                    - updated_at: '2022-11-05T20:48:56.831'
+                      floor_price: 35
+                      marketplace: Magic_Eden
+                      collection_id: 4x4
+                    - updated_at: '2023-01-16T13:43:12.938'
+                      floor_price: 80.69
+                      marketplace: Solanart
+                      collection_id: 4x4
+                  - collection_tag: 6rings
+                    marketplaces:
+                    - updated_at: '2023-01-16T13:16:54.568'
+                      floor_price: 20
+                      marketplace: Solanart
+                      collection_id: 6rings
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: object
+                    description: Returns current floor price for all collections by marketplace
+                    properties:
+                      collections:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            collection_address:
+                              type: string
+                              description: The queried collection address
+                            marketplace:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  updated_at:
+                                    type: string
+                                    description: The last time Gallop pulled the marketplace floor price
+                                  floor_price:
+                                    type: number
+                                    description: The SOL value of the floor price
+                                  marketplace:
+                                    type: string
+                                    description: The marketplace name where the floor price was pulled from
+                                  collection_id:
+                                    type: string
+                                    description: The marketplace specific collection identifier
+                      total_items:
+                        type: number
+                        description: The total number of items that can be retrieved
+                      total_pages:
+                        type: number
+                        description: The total number of pages that can be queried
+                      page:
+                        type: number
+                        description: The current reported page
+                  status:
+                    type: number
+                    description: The response status code
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /data/sol/getNFTAccount:
+    post:
+      security:
+      - api_key: []
+      summary: Wallet Owners by Token
+      description: Returns all wallet owners for a given collection
+      operationId: getSolNFTAccount
+      tags:
+      - Solana
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mint_address:
+                  type: string
+                  description: The Solana token mint address.
+                  example: G6oNTZRyrU2tN1YnWREmFaLwEcMA7QDoCscxon4Xrkbp
+              required:
+              - mint_address
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                  token_name: skelr
+                  symbol: POWR
+                  collection_name: Fractals
+                  collection_tag: fractals
+                  owner_address: 6CDuoSsn4ZRVvcBMdh9NEKkJebF3AFMdYTnPV4YrfEy6
+                  token_account_address: 2qD4VsXEzE3cz8QvHzPeeHGaMAJBHsR4oGCb6XiLEYgi
+                  fin_transactions:
+                  - block_timestamp: '2021-12-31T19:07:21.000Z'
+                    currency_symbol: SOL
+                    sol_value: 0.0714
+                    usd_value: 12.22
+                    exchange: Magic Eden
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: object
+                    description: Returns all wallet owners for a given collection
+                    properties:
+                      token_name:
+                        type: string
+                        description: The token name
+                      symbol:
+                        type: string
+                        description: The ticker symbol of the collection
+                      collection_name:
+                        type: string
+                        description: The name of the collection
+                      collection_tag:
+                        type: string
+                        description: The Gallop collection name reference to use with other endpoints
+                      owner_address:
+                        type: string
+                        description: The public key of the token owner
+                      token_account_address:
+                        type: string
+                        description: The token account that holds information about the tokens owned by a public key
+                      fin_transactions:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            mint_address:
+                              type: string
+                              description: A public key generated during the creation of the account and uniquely identifies a given token
+                            token_name:
+                              type: string
+                              description: The token name
+                            update_authority:
+                              type: string
+                              description: The public key that is allowed to update this account
+                            collection_name:
+                              type: string
+                              description: The name of the collection
+                            collection_tag:
+                              type: string
+                              description: The Gallop collection name reference to use with other endpoints
+                            from_address:
+                              type: string
+                              description: The unique wallet address from which the token is tranferred
+                            to_address:
+                              type: string
+                              description: The unique wallet address receiving the token
+                            first_signature:
+                              type: string
+                              description: The first signature is used to identify and confirm transactions
+                            sol_value:
+                              type: number
+                              description: The equivalent SOL value
+                            usd_value:
+                              type: number
+                              description: The equivalent USD value
+                            exchange:
+                              type: string
+                              description: The marketplace traded and potential order contract details
+                            block_number:
+                              type: number
+                              description: The block number on which the transaction occurred
+                            block_timestamp:
+                              type: string
+                              description: The UTC timestamp at which the block was validated
+                  status:
+                    type: number
+                    description: The response status code
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /data/sol/getTokenTransactions:
+    post:
+      security:
+      - api_key: []
+      summary: Transactions by Token
+      description: Returns all transactions for a given token
+      operationId: getSolTokenTransactions
+      tags:
+      - Solana
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mint_address:
+                  type: string
+                  description: The mint address of the token.
+                  example: 5uarH96GLf4APmipQRrsD3SsW4K77zRPtWGwETcyz5GE
+                page:
+                  type: integer
+                  description: The pagination cursor.
+                  example: 1
+                page_size:
+                  type: integer
+                  enum:
+                  - 50
+                  - 100
+                  - 500
+                  - 1000
+                  description: The number of records returned per page.
+                  example: 100
+                start_date:
+                  type: string
+                  description: The earliest block timestamp in ISO 8601 format.
+                  example: '2023-01-01T00:00:00.000Z'
+                end_date:
+                  type: string
+                  description: The latest block timestamp in ISO 8601 format.
+                  example: '2023-01-01T00:00:00.000Z'
+              required:
+              - mint_address
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                  total_items: 5
+                  total_pages: 1
+                  page: 1
+                  transactions:
+                  - mint_address: B2V9GkXGEwmzZTHSMhLEC3NjjGHURrNNUgKioSDmTDQA
+                    token_name: 'DeGod #5644'
+                    update_authority: AxFuniPo7RaDgPH6Gizf4GZmLQFc4M5ipckeeZfkrPNn
+                    collection_name: DeGods
+                    collection_tag: degods
+                    first_signature: 4PQ8ygNHqaKc7e5TMaYRPZw9LQmARZzXHoktC6M424bT8FoQ8YVwK7V2vkvFsMPA4WKp7u4jMn2vCshyUh9c3hBk
+                    sol_value: 0
+                    usd_value: 18328.43
+                    exchange: Magic Eden v2
+                    block_number: 129015804
+                    block_timestamp: '2022-04-10T01:09:22.000Z'
+                  - mint_address: B2V9GkXGEwmzZTHSMhLEC3NjjGHURrNNUgKioSDmTDQA
+                    token_name: 'DeGod #5644'
+                    update_authority: AxFuniPo7RaDgPH6Gizf4GZmLQFc4M5ipckeeZfkrPNn
+                    collection_name: DeGods
+                    collection_tag: degods
+                    first_signature: 58VUbprocvJc7fxq53mbcuLmzSToquZBaSMMJ8rWDVUrtqqJgQpFyN7pxXMgnv4N5yQSzamoTgBE9V4yCUTNzbxJ
+                    sol_value: 0
+                    usd_value: 7737.95
+                    exchange: Magic Eden v2
+                    block_number: 126256820
+                    block_timestamp: '2022-03-23T06:48:10.000Z'
+                  - mint_address: B2V9GkXGEwmzZTHSMhLEC3NjjGHURrNNUgKioSDmTDQA
+                    token_name: 'DeGod #5644'
+                    update_authority: AxFuniPo7RaDgPH6Gizf4GZmLQFc4M5ipckeeZfkrPNn
+                    collection_name: DeGods
+                    collection_tag: degods
+                    first_signature: 3LVaQ4UfgJRPCSfQSVkzrSnp7pZfRGApTM1ybEFGNvsUBJYCJBKxgbWL88xj4QncyzKStYiBFSyrQZeAMK2GACEQ
+                    sol_value: 0
+                    usd_value: 3865.45
+                    exchange: Magic Eden v2
+                    block_number: 125534287
+                    block_timestamp: '2022-03-18T14:59:11.000Z'
+                  - mint_address: B2V9GkXGEwmzZTHSMhLEC3NjjGHURrNNUgKioSDmTDQA
+                    token_name: 'DeGod #5644'
+                    update_authority: AxFuniPo7RaDgPH6Gizf4GZmLQFc4M5ipckeeZfkrPNn
+                    collection_name: DeGods
+                    collection_tag: degods
+                    first_signature: B1GREGDkLJeLNczsN9ueP4K475nHjz3gpu1bj8FxYcKqjUETAB3Q3zEW7Kcd14mtNfxMQ9D3GQcD8xYPfrbEnsM
+                    sol_value: 0
+                    usd_value: 817.98
+                    exchange: Magic Eden v1
+                    block_number: 118628281
+                    block_timestamp: '2022-01-31T02:59:13.000Z'
+                  - mint_address: B2V9GkXGEwmzZTHSMhLEC3NjjGHURrNNUgKioSDmTDQA
+                    token_name: 'DeGod #5644'
+                    update_authority: AxFuniPo7RaDgPH6Gizf4GZmLQFc4M5ipckeeZfkrPNn
+                    collection_name: DeGods
+                    collection_tag: degods
+                    first_signature: 4wuJPrqqJhgXcxyyXEWwBUjhc9fLHwe6jwogzJCUrgeV7gAfu17mhSY62ai6WAA95WnduVMiWeTUEijmo4YYhDmB
+                    sol_value: 0
+                    usd_value: 1964.94
+                    exchange: Alpha Art
+                    block_number: 101110594
+                    block_timestamp: '2021-10-12T16:32:43.000Z'
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: object
+                    description: Returns all transactions for a given token
+                    properties:
+                      transactions:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            mint_address:
+                              type: string
+                              description: A public key generated during the creation of the account and uniquely identifies a given token
+                            token_name:
+                              type: string
+                              description: The token name
+                            update_authority:
+                              type: string
+                              description: The public key that is allowed to update this account
+                            collection_name:
+                              type: string
+                              description: The name of the collection
+                            collection_tag:
+                              type: string
+                              description: The Gallop collection name reference to use with other endpoints
+                            from_address:
+                              type: string
+                              description: The unique wallet address from which the token is tranferred
+                            to_address:
+                              type: string
+                              description: The unique wallet address receiving the token
+                            first_signature:
+                              type: string
+                              description: The first signature is used to identify and confirm transactions
+                            sol_value:
+                              type: number
+                              description: The equivalent SOL value
+                            usd_value:
+                              type: number
+                              description: The equivalent USD value
+                            exchange:
+                              type: string
+                              description: The marketplace traded and potential order contract details
+                            block_number:
+                              type: number
+                              description: The block number on which the transaction occurred
+                            block_timestamp:
+                              type: string
+                              description: The UTC timestamp at which the block was validated
+                      total_items:
+                        type: number
+                        description: The total number of items that can be retrieved
+                      total_pages:
+                        type: number
+                        description: The total number of pages that can be queried
+                      page:
+                        type: number
+                        description: The current reported page
+                  status:
+                    type: number
+                    description: The response status code
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /data/sol/getTokens:
+    post:
+      security:
+      - api_key: []
+      summary: Tokens by Collection
+      description: Returns all tokens for a given collection
+      operationId: getSolTokens
+      tags:
+      - Solana
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                collection_tag:
+                  type: string
+                  description: The Gallop tag for the Solana collection. Please see sol/getCollections endpoint.
+                  example: degenape
+                mint_address:
+                  type: array
+                  description: A list of token addresses.
+                  items:
+                    type: string
+                    example: G4Tbp5zWZRt1thiuv7ywkotcXZvf24DrUEMoM2j6Vj63
+                page:
+                  type: integer
+                  description: The pagination cursor.
+                  example: 1
+                page_size:
+                  type: integer
+                  enum:
+                  - 50
+                  - 100
+                  - 500
+                  - 1000
+                  description: The number of records returned per page.
+                  example: 100
+              required:
+              - collection_tag
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                  total_items: 1
+                  total_pages: 1
+                  page: 1
+                  tokens:
+                  - mint_address: BaMVLQJzs5wiq7Q9pKFBtD7unfWD4EEcAp52aVFV3Bhw
+                    token_name: 'Degen Ape #1'
+                    collection_name: Degenerate Ape Academy
+                    collection_tag: degenape
+                    symbol: DAPE
+                    token_uri: https://arweave.net/KpKbswk6xSV2vOmAoWJxtoNPzOICKoCmUfH09rMNMsg
+                    owner_address: 1BWutmTvYPwDtmw9abTkS4Ssr8no61spGAvW1X6NDix
+                    token_account_address: HRyHzToZ34CC1iuTncE3XB9BN4GDxNxCdky32W2NPCRT
+                    update_authority: DC2mkgwhy56w3viNtHDjJQmc7SGu2QX785bS4aexojwX
+                    on_chain_metadata:
+                      key: 4
+                      data:
+                        uri: https://arweave.net/KpKbswk6xSV2vOmAoWJxtoNPzOICKoCmUfH09rMNMsg
+                        name: 'Degen Ape #1'
+                        symbol: DAPE
+                        creators:
+                        - share: 39
+                          address: 9BKWqDHfHZh9j39xakYVMdr6hXmCLHH5VfCpeq2idU9L
+                          verified: 0
+                        - share: 25
+                          address: 9FYsKrNuEweb55Wa2jaj8wTKYDBvuCG3huhakEj96iN9
+                          verified: 0
+                        - share: 25
+                          address: HNGVuL5kqjDehw7KR63w9gxow32sX6xzRNgLb8GkbwCM
+                          verified: 0
+                        - share: 10
+                          address: 7FzXBBPjzrNJbm9MrZKZcyvP3ojVeYPUG2XkBPVZvuBu
+                          verified: 0
+                        - share: 1
+                          address: DC2mkgwhy56w3viNtHDjJQmc7SGu2QX785bS4aexojwX
+                          verified: 1
+                        sellerFeeBasisPoints: 420
+                      mint: BaMVLQJzs5wiq7Q9pKFBtD7unfWD4EEcAp52aVFV3Bhw
+                      isMutable: 0
+                      collection:
+                        key: DSwfRF1jhhu6HpSuzaig1G19kzP73PfLZBPLofkw6fLD
+                        verified: 1
+                      editionNonce: 253
+                      updateAuthority: DC2mkgwhy56w3viNtHDjJQmc7SGu2QX785bS4aexojwX
+                      primarySaleHappened: 1
+                    off_chain_metadata:
+                      name: 'Degen Ape #1'
+                      image: https://arweave.net/v3jwhUUPJtqt30e-8WmNNcukKJNfrszYeVlFZ-m4kDc
+                      symbol: DAPE
+                      edition: Class of 2021
+                      attributes:
+                      - value: Yellow
+                        trait_type: Background
+                      - value: Brown / Yellow
+                        trait_type: Fur / Skin
+                      - value: Fishing Hat
+                        trait_type: Head
+                      - value: Ape Force 1's
+                        trait_type: Mouth
+                      - value: No Traits
+                        trait_type: Teeth
+                      - value: Japanese Uniform
+                        trait_type: Clothing
+                      - value: No Traits
+                        trait_type: Eyewear
+                      - value: 1
+                        trait_type: generation
+                        display_type: number
+                      - value: 1
+                        trait_type: sequence
+                        display_type: number
+                      properties:
+                        files:
+                        - uri: https://arweave.net/v3jwhUUPJtqt30e-8WmNNcukKJNfrszYeVlFZ-m4kDc?ext=png
+                          type: image/png
+                        category: image
+                        creators:
+                        - share: 39
+                          address: 9BKWqDHfHZh9j39xakYVMdr6hXmCLHH5VfCpeq2idU9L
+                        - share: 25
+                          address: 9FYsKrNuEweb55Wa2jaj8wTKYDBvuCG3huhakEj96iN9
+                        - share: 25
+                          address: HNGVuL5kqjDehw7KR63w9gxow32sX6xzRNgLb8GkbwCM
+                        - share: 10
+                          address: 7FzXBBPjzrNJbm9MrZKZcyvP3ojVeYPUG2XkBPVZvuBu
+                        - share: 1
+                          address: DC2mkgwhy56w3viNtHDjJQmc7SGu2QX785bS4aexojwX
+                      description: Deep in the heart of Dingus Forest echoes the sleepless cries of a troop of 10,000 apes. These aren’t just regular apes, however. These are degenerate apes.
+                      external_url: ''
+                      background_color: '000000'
+                      seller_fee_basis_points: 420
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: array
+                    description: Returns all tokens for a given collection
+                    items:
+                      type: object
+                      properties:
+                        tokens:
+                          type: object
+                          properties:
+                            mint_address:
+                              type: string
+                              description: The public key of the Mint Account it derives from
+                            token_name:
+                              type: string
+                              description: The token name
+                            collection_name:
+                              type: string
+                              description: The name of the collection
+                            collection_tag:
+                              type: string
+                              description: The Gallop collection name reference to use with other endpoints
+                            symbol:
+                              type: string
+                              description: The ticker symbol of the collection
+                            token_uri:
+                              type: string
+                              description: The URI to the external metadata
+                            owner_address:
+                              type: string
+                              description: The public key of the token owner
+                            token_account_address:
+                              type: string
+                              description: The token account that holds information about the tokens owned by a public key
+                            update_authority:
+                              type: string
+                              description: The public key that is allowed to update this account
+                            on_chain_metadata:
+                              type: object
+                              properties:
+                                key:
+                                  type: number
+                                  description: An account discriminator that identifies the type of metadata account
+                                data:
+                                  type: object
+                                  properties:
+                                    name:
+                                      type: string
+                                      description: The name of the collection
+                                    symbol:
+                                      type: string
+                                      description: The ticker symbol of the collection
+                                    uri:
+                                      type: string
+                                      description: The URI to the external metadata
+                                    sellerFeeBasisPoints:
+                                      type: number
+                                      description: The royalties shared by the creators in basis points — i.e., 550 means 5.5% royalties
+                                    creators:
+                                      type: array
+                                      description: Array of creator addresses
+                                      items:
+                                        type: object
+                                        properties:
+                                          share:
+                                            type: number
+                                          address:
+                                            type: string
+                                            description: The creator address
+                                mint:
+                                  type: string
+                                  description: The public key of the Mint Account it derives from
+                            primarySaleHappened:
+                              type: number
+                              description: Indicates if the token has already been sold at least once
+                            isMutable:
+                              type: number
+                              description: Indicates if the metadata account can be updated
+                        total_items:
+                          type: number
+                          description: The total number of items that can be retrieved
+                        total_pages:
+                          type: number
+                          description: The total number of pages that can be queried
+                        page:
+                          type: number
+                          description: The current reported page
+                  status:
+                    type: number
+                    description: The response status code
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /insights/sol/getTokenAppraisal:
+    post:
+      security:
+      - api_key: []
+      summary: Liquidation & Appraisal Estimate by Token
+      description: Get estimates of appraisal and liquidation values for a set of tokens. The app returns nowcasts by default, but if provided a `horizon` and `frequency`, it will return forcasts for `horizon` periods out at interval `frequency`. The app is does not deliver individualized financial advice, but merely provides analytical estimates of token appraisal and liquidation values
+      operationId: getSolTokenAppraisal
+      tags:
+      - Solana
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mint_address:
+                  type: array
+                  description: List of mint addresses of tokens to appraise
+                  items:
+                    type: string
+                    example: 8hBJ4TfzgozfNxqaWLT9hwgMzrbWRKCoeJysjPQnNea5
+                rept_curr:
+                  type: string
+                  enum:
+                  - sol
+                  - usd
+                  description: The currency to report results in
+                  example: sol
+                frequency:
+                  type: string
+                  description: The interval at which to calculate intermediate results and forecasts.
+                  example: 1W
+                horizon:
+                  type: integer
+                  description: The forecast horizon (i.e. the number of periods to forecast out). Defaults to zero which only returns nowcasts.
+                  example: 5
+                alpha:
+                  type: number
+                  description: The significance level for the liquidation estimate, e.g. 0.05 for 95% confidence
+                  example: 0.1
+                exclude_wash:
+                  type: boolean
+                  description: Exclude suspected wash transactions?
+                  example: 'true'
+              required:
+              - mint_address
+      responses:
+        '200':
+          description: An object containing appraisal and liquidation value estimates for a (set of) given mint address(es).
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                - token_id: 8w9MstFEWkzPy8MMDKrZQysvgJEKjmpLiu5AUpgPiNAq
+                  appraisal: 78.03807216506911
+                  liquidation: 65.57171592775042
+                  forecasts: null
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+components:
+  securitySchemes:
+    api_key:
+      type: apiKey
+      in: header
+      name: x-api-key
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: false
+  samples-enabled: true

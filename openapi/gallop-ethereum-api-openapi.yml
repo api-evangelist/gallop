@@ -1,0 +1,3524 @@
+openapi: 3.0.2
+info:
+  title: Analytics Ethereum API
+  description: Sales, pricing, performance, and marketplace data, all in one place with low latency.
+  termsOfService: https://higallop.com/terms/
+  contact:
+    email: support@higallop.com
+  license:
+    name: UNLICENSED
+  version: 1.0.0
+servers:
+- url: https://api.prod.gallop.run/v1
+tags:
+- name: Ethereum
+paths:
+  /analytics/eth/getCollectionListingsOHLC:
+    post:
+      security:
+      - api_key: []
+      summary: Collection Floor Price and Listings Candlesticks
+      description: Returns historical floor price or more extensive open / high / floor / close candlesticks for collection listings at marketplaces at a selected time interval, as well as the number of active listings, the number of unique owners and the average age of open listings
+      operationId: getEthCollectionListingsOHLC
+      tags:
+      - Ethereum
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                collection_address:
+                  type: string
+                  description: The Ethereum contract address to identify the collection.
+                  example: '0x7bd29408f11d2bfc23c34f18275bbf23bb716bc7'
+                floor_only:
+                  type: boolean
+                  description: If `true`, report only historical floor prices. Otherwise, report OHFC candlesticks, number of active listings, number of unique owners and the average age of open listings.
+                  example: true
+                frequency:
+                  type: string
+                  description: The interval at which to return Floor prices / OHLF, e.g. `1D` for daily, `1M` for monthly etc. Must be >= `6H`
+                  example: 1D
+                rept_curr:
+                  type: string
+                  enum:
+                  - eth
+                  - usd
+                  description: The currency to report results in
+                  example: eth
+                report_start_date:
+                  type: string
+                  description: The ISO 8601 start date/datetime to return results for
+                  example: '2023-01-01T00:00:00.000Z'
+                report_end_date:
+                  type: string
+                  description: The ISO 8601 end date/datetime to return results for
+                  example: '2023-01-01T00:00:00.000Z'
+                trait_type:
+                  type: string
+                  description: Specify if results to be reported only for certain values of this trait type
+                  example: shirt
+                trait_value:
+                  type: array
+                  description: The trait value(s) of type `trait_type` to report results for
+                  items:
+                    type: string
+                    example: skull tee
+              required:
+              - collection_address
+      responses:
+        '200':
+          description: An object containing the collection sales OHLC prices
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                  collection_address: '0x0c2e57efddba8c768147d1fdf9176a0a6ebd5d83'
+                  response:
+                  - timestamp: '2023-01-01 00:00:00'
+                    num_active_listings: 138
+                    num_unique_owners: 26
+                    average_listing_age: 3311
+                    open:
+                      price: 0.2361
+                      token_id: '8911'
+                      marketplace_name: LooksRare
+                    high:
+                      price: 24.2069
+                      token_id: '0'
+                      marketplace_name: LooksRare
+                    floor:
+                      price: 0.2069
+                      token_id: '9065'
+                      marketplace_name: LooksRare
+                    close:
+                      price: 1.8037
+                      token_id: '2742'
+                      marketplace_name: LooksRare
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /analytics/eth/getCollectionPriceDiff:
+    post:
+      security:
+      - api_key: []
+      summary: Price Differentiation by Trait
+      description: Returns how trait differentiates price for a given collection
+      operationId: getEthCollectionPriceDiff
+      tags:
+      - Ethereum
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                collection_address:
+                  type: string
+                  description: The Ethereum contract address to identify the collection.
+                  example: '0x7bd29408f11d2bfc23c34f18275bbf23bb716bc7'
+                start_date:
+                  type: string
+                  description: The start timestamp in ISO 8601 format to pull data for calculations.
+                  example: '2023-01-01T00:00:00.000Z'
+                end_date:
+                  type: string
+                  description: The end timestamp in ISO 8601 format to pull data for calculations
+                  example: '2023-01-01T00:00:00.000Z'
+                exclude_wash:
+                  type: boolean
+                  description: Exclude suspected wash transactions?
+                  example: 'true'
+              required:
+              - collection_address
+      responses:
+        '200':
+          description: An object containing the collection's price differentiation
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                - Earring: 22
+                  Glasses: 0
+                  Glasses Color: 4
+                  Hair Color: 9
+                  Hair Style: 100
+                  Pants: 12
+                  Pants Color: 9
+                  Shirt: 5
+                  Shirt Color: 19
+                  Shoes: 17
+                  Shoes Color: 2
+                  Type: 34
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /analytics/eth/getCollectionSalesOHLC:
+    post:
+      security:
+      - api_key: []
+      summary: Collection Sales Price Candlesticks
+      description: Returns collection sales price open, high, low, close and volume at a selected time interval
+      operationId: getEthCollectionSalesOHLC
+      tags:
+      - Ethereum
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                collection_address:
+                  type: string
+                  description: The Ethereum contract address to identify the collection.
+                  example: '0x7bd29408f11d2bfc23c34f18275bbf23bb716bc7'
+                frequency:
+                  type: string
+                  description: The interval at which to return OHLC, e.g. `1D` for daily, `1M` for monthly etc.
+                  example: 1D
+                group_by:
+                  type: string
+                  description: An attribute of the NFT to group results by.
+                  example: Hat
+                volume:
+                  type: boolean
+                  description: If 'true', response dicts contain OHLCV
+                  example: false
+                n_trades:
+                  type: boolean
+                  description: If 'true', append number of trades to OHLC(V)
+                  example: false
+                rept_curr:
+                  type: string
+                  enum:
+                  - eth
+                  - usd
+                  description: The currency to report results in
+                  example: eth
+                start_date:
+                  type: string
+                  description: The start timestamp in ISO 8601 format to pull data for calculations
+                  example: '2023-01-01T00:00:00.000Z'
+                end_date:
+                  type: string
+                  description: The end timestamp in ISO 8601 format to pull data for calculations
+                  example: '2023-01-01T00:00:00.000Z'
+                exclude_wash:
+                  type: boolean
+                  description: Exclude suspected wash transactions?
+                  example: 'true'
+              required:
+              - collection_address
+      responses:
+        '200':
+          description: An object containing the collection sales OHLC prices
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                  collection_address:
+                  - '0xb7f7f6c52f2e2fdb1963eab30438024864c313f6'
+                  - '0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb'
+                  ohlc:
+                  - block_timestamp: '2022-07-18 00:00:00'
+                    body_type: Female
+                    close: 83
+                    high: 95
+                    low: 83
+                    open: 84.5
+                  - block_timestamp: '2022-07-19 00:00:00'
+                    body_type: Female
+                    close: 83.95
+                    high: 83.95
+                    low: 79
+                    open: 79
+                  - block_timestamp: '2022-07-18 00:00:00'
+                    body_type: Male
+                    close: 105
+                    high: 105
+                    low: 84
+                    open: 90
+                  - block_timestamp: '2022-07-19 00:00:00'
+                    body_type: Male
+                    close: 90
+                    high: 90
+                    low: 90
+                    open: 90
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /analytics/eth/getCollectionSummary:
+    post:
+      security:
+      - api_key: []
+      summary: Summary Statistics by Collection
+      description: Returns summary analytics for a given collection
+      operationId: getEthCollectionSummary
+      tags:
+      - Ethereum
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                collection_address:
+                  type: string
+                  description: The contract address of the collection.
+                  example: '0x3f5fb35468e9834a43dca1c160c69eaae78b6360'
+                group_by:
+                  type: string
+                  description: An attribute of the NFT.
+                  example: Fur
+                start_date:
+                  type: string
+                  description: The start timestamp in ISO 8601 format to pull data for calculations
+                  example: '2023-01-01T00:00:00.000Z'
+                end_date:
+                  type: string
+                  description: The end timestamp in ISO 8601 format to pull data for calculations
+                  example: '2023-01-01T00:00:00.000Z'
+                rept_curr:
+                  type: string
+                  enum:
+                  - eth
+                  - usd
+                  description: The currency to report results in
+                  example: eth
+                exclude_wash:
+                  type: boolean
+                  description: Exclude suspected wash transactions?
+                  example: 'true'
+              required:
+              - collection_address
+      responses:
+        '200':
+          description: An object containing the collection's analytical summary.
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                - avg_daily_floor_price_transacted: 0.11913347517730496
+                  avg_daily_transaction_count: 101.68617021276596
+                  avg_daily_volume: 68.80757258912233
+                  gain_since_last_trough: 36.75213675213678
+                  latest_floor_price: 0.08
+                  latest_peak_date: '2022-02-23'
+                  latest_rolling_median: 0.46499999999999997
+                  latest_rolling_quantile: 0.075
+                  latest_trough_date: '2022-02-21'
+                  loss_since_last_peak: -9.909909909909908
+                  max_daily_floor_price: 0.545
+                  min_daily_floor_price: 2.5e-05
+                  total_transaction_count: 19117
+                  total_transaction_volume: 12935.823646754998
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /analytics/eth/getDailyCollectionFloor:
+    post:
+      security:
+      - api_key: []
+      summary: Daily Floor Prices by Collection
+      description: Returns historical floor price on a daily interval in ETH
+      operationId: getEthDailyCollectionFloor
+      tags:
+      - Ethereum
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                collection_address:
+                  type: string
+                  description: The Ethereum contract address to identify the collection.
+                  example: '0x7bd29408f11d2bfc23c34f18275bbf23bb716bc7'
+              required:
+              - collection_address
+      responses:
+        '200':
+          description: An object containing the collection floor prices
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                  collection_address: '0x0c2e57efddba8c768147d1fdf9176a0a6ebd5d83'
+                  response:
+                  - timestamp: '2023-01-01 00:00:00'
+                    floor: 0.2142
+                  - timestamp: '2023-01-02 00:00:00'
+                    floor: 0.2122
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /analytics/eth/getLeaderBoard:
+    post:
+      security:
+      - api_key: []
+      summary: Ethereum Leaderboard by Collection
+      description: Returns top collections by volume transaction volume or sales count
+      operationId: getEthLeaderBoard
+      tags:
+      - Ethereum
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                page:
+                  type: integer
+                  description: The pagination cursor.
+                  example: 1
+                page_size:
+                  type: integer
+                  enum:
+                  - 50
+                  - 100
+                  - 500
+                  - 1000
+                  description: The number of records returned per page.
+                  example: 100
+                interval:
+                  type: string
+                  enum:
+                  - one_day
+                  - seven_days
+                  - thirty_days
+                  - ninety_days
+                  - all_time
+                  description: The requested time interval
+                  example: one_day
+                ranking_metric:
+                  type: string
+                  enum:
+                  - eth_volume
+                  - sales_count
+                  description: The requested calculation metric
+                  example: eth_volume
+              required:
+              - interval
+              - ranking_metric
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                  total_items: 1000
+                  total_pages: 20
+                  page: 1
+                  interval: all_time
+                  ranking_metric: eth_volume
+                  leaderboard:
+                  - rank: 1
+                    collection_address: '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d'
+                    collection_name: BoredApeYachtClub
+                    value: 893824.39
+                    type: ERC-721
+                    symbol: BAYC
+                  - rank: 2
+                    collection_address: '0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb'
+                    collection_name: CRYPTOPUNKS
+                    value: 881880.76
+                    type: null
+                    symbol: Ͼ
+                  - rank: 3
+                    collection_address: '0x60e4d786628fea6478f785a6d7e704777c86a7c6'
+                    collection_name: MutantApeYachtClub
+                    value: 594921.89
+                    type: ERC-721
+                    symbol: MAYC
+                  - rank: 4
+                    collection_address: '0x34d85c9cdeb23fa97cb08333b511ac86e1c4e258'
+                    collection_name: Otherdeed
+                    value: 460918.98
+                    type: ERC-721
+                    symbol: OTHR
+                  - rank: 5
+                    collection_address: '0xa7d8d9ef8d8ce8992df33d8b8cf4aebabd5bd270'
+                    collection_name: Art Blocks
+                    value: 377598.11
+                    type: ERC-721
+                    symbol: BLOCKS
+                  - rank: 6
+                    collection_address: '0xed5af388653567af2f388e6224dc7c4b3241c544'
+                    collection_name: Azuki
+                    value: 341917.75
+                    type: ERC-721
+                    symbol: AZUKI
+                  - rank: 7
+                    collection_address: '0x49cf6f5d44e70224e2e23fdcdd2c053f30ada28b'
+                    collection_name: CloneX
+                    value: 290730.21
+                    type: ERC-721
+                    symbol: CloneX
+                  - rank: 8
+                    collection_address: '0x23581767a106ae21c074b2276d25e5c3e136a68b'
+                    collection_name: Moonbirds
+                    value: 226458.36
+                    type: ERC-721
+                    symbol: MOONBIRD
+                  - rank: 9
+                    collection_address: '0x8a90cab2b38dba80c64b7734e58ee1db38b8992e'
+                    collection_name: Doodles
+                    value: 185765.51
+                    type: ERC-721
+                    symbol: DOODLE
+                  - rank: 10
+                    collection_address: '0x7bd29408f11d2bfc23c34f18275bbf23bb716bc7'
+                    collection_name: Meebits
+                    value: 177549.02
+                    type: ERC-721
+                    symbol: ⚇
+                  - rank: 11
+                    collection_address: '0xba30e5f9bb24caa003e9f2f0497ad287fdf95623'
+                    collection_name: BoredApeKennelClub
+                    value: 141699.65
+                    type: ERC-721
+                    symbol: BAKC
+                  - rank: 12
+                    collection_address: '0x1a92f7381b9f03921564a437210bb9396471050c'
+                    collection_name: Cool Cats
+                    value: 121509.7
+                    type: ERC-721
+                    symbol: COOL
+                  - rank: 13
+                    collection_address: '0x50f5474724e0ee42d9a4e711ccfb275809fd6d4a'
+                    collection_name: Sandbox's LANDs
+                    value: 110297.65
+                    type: ERC-721
+                    symbol: LAND
+                  - rank: 14
+                    collection_address: '0xff9c1b15b16263c61d017ee9f65c50e4ae0113d7'
+                    collection_name: Loot
+                    value: 91489.79
+                    type: ERC-721
+                    symbol: LOOT
+                  - rank: 15
+                    collection_address: '0x306b1ea3ecdf94ab739f1910bbda052ed4a9f949'
+                    collection_name: Beanz
+                    value: 89783.46
+                    type: ERC-721
+                    symbol: BEANZ
+                  - rank: 16
+                    collection_address: '0xe785e82358879f061bc3dcac6f0444462d4b5330'
+                    collection_name: World Of Women
+                    value: 77541.48
+                    type: ERC-721
+                    symbol: WOW
+                  - rank: 17
+                    collection_address: '0xbd3531da5cf5857e7cfaa92426877b022e612cf8'
+                    collection_name: PudgyPenguins
+                    value: 73515.5
+                    type: ERC-721
+                    symbol: PPG
+                  - rank: 18
+                    collection_address: '0x1cb1a5e65610aeff2551a50f76a87a7d3fb649c6'
+                    collection_name: Cryptoadz
+                    value: 71788.15
+                    type: ERC-721
+                    symbol: TOADZ
+                  - rank: 19
+                    collection_address: '0x059edd72cd353df5106d2b9cc5ab83a52287ac3a'
+                    collection_name: Art Blocks
+                    value: 64538.77
+                    type: ERC-721
+                    symbol: BLOCKS
+                  - rank: 20
+                    collection_address: '0x57a204aa1042f6e66dd7730813f4024114d74f37'
+                    collection_name: CyberKongz
+                    value: 62063.11
+                    type: ERC-721
+                    symbol: KONGZ
+                  - rank: 21
+                    collection_address: '0xa3aee8bce55beea1951ef834b99f3ac60d1abeeb'
+                    collection_name: VeeFriends
+                    value: 59176.68
+                    type: ERC-721
+                    symbol: VFT
+                  - rank: 22
+                    collection_address: '0xbce3781ae7ca1a5e050bd9c4c77369867ebc307e'
+                    collection_name: goblintown
+                    value: 58468.89
+                    type: ERC-721
+                    symbol: GOBLIN
+                  - rank: 23
+                    collection_address: '0x4db1f25d3d98600140dfc18deb7515be5bd293af'
+                    collection_name: HAPE PRIME
+                    value: 57607.58
+                    type: ERC-721
+                    symbol: HAPE
+                  - rank: 24
+                    collection_address: '0x160c404b2b49cbc3240055ceaee026df1e8497a0'
+                    collection_name: projectPXN
+                    value: 57178.91
+                    type: ERC-721
+                    symbol: GHOST
+                  - rank: 25
+                    collection_address: '0xbd4455da5929d5639ee098abfaa3241e9ae111af'
+                    collection_name: NFT Worlds
+                    value: 55017.03
+                    type: ERC-721
+                    symbol: NFT Worlds
+                  - rank: 26
+                    collection_address: '0x9c8ff314c9bc7f6e59a9d9225fb22946427edc03'
+                    collection_name: Nouns
+                    value: 51082.04
+                    type: ERC-721
+                    symbol: NOUN
+                  - rank: 27
+                    collection_address: '0x3bf2922f4520a8ba0c2efc3d2a1539678dad5e9d'
+                    collection_name: 0N1 Force
+                    value: 49527.75
+                    type: ERC-721
+                    symbol: 0N1
+                  - rank: 28
+                    collection_address: '0x9a534628b4062e123ce7ee2222ec20b86e16ca8f'
+                    collection_name: MekaVerse
+                    value: 49089.54
+                    type: ERC-721
+                    symbol: MEKA
+                  - rank: 29
+                    collection_address: '0x59468516a8259058bad1ca5f8f4bff190d30e066'
+                    collection_name: Invisible Friends
+                    value: 47762.17
+                    type: ERC-721
+                    symbol: INVSBLE
+                  - rank: 30
+                    collection_address: '0x79fcdef22feed20eddacbb2587640e45491b757f'
+                    collection_name: mfer
+                    value: 46001.04
+                    type: ERC-721
+                    symbol: MFER
+                  - rank: 31
+                    collection_address: '0xd2f668a8461d6761115daf8aeb3cdf5f40c532c6'
+                    collection_name: Karafuru
+                    value: 45111.59
+                    type: ERC-721
+                    symbol: KARAFURU
+                  - rank: 32
+                    collection_address: '0x60bb1e2aa1c9acafb4d34f71585d7e959f387769'
+                    collection_name: Art Gobblers
+                    value: 44747.72
+                    type: ERC-721
+                    symbol: GOBBLER
+                  - rank: 33
+                    collection_address: '0xc2c747e0f7004f9e8817db2ca4997657a7746928'
+                    collection_name: Hashmasks
+                    value: 41838.36
+                    type: ERC-721
+                    symbol: HM
+                  - rank: 34
+                    collection_address: '0x341a1c534248966c4b6afad165b98daed4b964ef'
+                    collection_name: Murakami.Flowers Seed
+                    value: 40811.53
+                    type: ERC-1155
+                    symbol: SEED
+                  - rank: 35
+                    collection_address: '0xccc441ac31f02cd96c153db6fd5fe0a2f4e6a68d'
+                    collection_name: FLUF
+                    value: 39839.97
+                    type: ERC-721
+                    symbol: FLUF
+                  - rank: 36
+                    collection_address: '0x5cc5b05a8a13e3fbdb0bb9fccd98d38e50f90c38'
+                    collection_name: Sandbox's LANDs
+                    value: 38580.76
+                    type: ERC-721
+                    symbol: LAND
+                  - rank: 37
+                    collection_address: '0x892848074ddea461a15f337250da3ce55580ca85'
+                    collection_name: CyberBrokers
+                    value: 37433.61
+                    type: ERC-721
+                    symbol: CYBERBROKERS
+                  - rank: 38
+                    collection_address: '0x82c7a8f707110f5fbb16184a5933e9f78a34c6ab'
+                    collection_name: Emblem Vault V4
+                    value: 37318.84
+                    type: ERC-721
+                    symbol: Emblem.pro
+                  - rank: 39
+                    collection_address: '0xb4d06d46a8285f4ec79fd294f78a881799d8ced9'
+                    collection_name: 3Landers
+                    value: 36722.12
+                    type: ERC-721
+                    symbol: 3L
+                  - rank: 40
+                    collection_address: '0xc92ceddfb8dd984a89fb494c376f9a48b999aafc'
+                    collection_name: Creature World
+                    value: 35635.74
+                    type: ERC-721
+                    symbol: CREATURE
+                  - rank: 41
+                    collection_address: '0x67d9417c9c3c250f61a83c7e8658dac487b56b09'
+                    collection_name: Phanta Bear
+                    value: 35191.14
+                    type: ERC-721
+                    symbol: PHB
+                  - rank: 42
+                    collection_address: '0x7ea3cca10668b8346aec0bf1844a49e995527c8b'
+                    collection_name: CyberKongz VX
+                    value: 34548.88
+                    type: ERC-721
+                    symbol: KONGZ VX
+                  - rank: 43
+                    collection_address: '0x28472a58a490c5e09a238847f66a68a47cc76f0f'
+                    collection_name: 'adidas Originals: Into the Metaverse'
+                    value: 34463.89
+                    type: ERC-1155
+                    symbol: ADI
+                  - rank: 44
+                    collection_address: '0x2acab3dea77832c09420663b0e1cb386031ba17b'
+                    collection_name: DeadFellaz
+                    value: 31868.21
+                    type: ERC-721
+                    symbol: DEADFELLAZ
+                  - rank: 45
+                    collection_address: '0x282bdd42f4eb70e7a9d9f40c8fea0825b7f68c5d'
+                    collection_name: V1 Cryptopunks (Wrapped)
+                    value: 31812.88
+                    type: ERC-721
+                    symbol: WPV1
+                  - rank: 46
+                    collection_address: '0x0c2e57efddba8c768147d1fdf9176a0a6ebd5d83'
+                    collection_name: KaijuKingz
+                    value: 31742.55
+                    type: ERC-721
+                    symbol: KAIJU
+                  - rank: 47
+                    collection_address: '0xfe8c6d19365453d26af321d0e8c910428c23873f'
+                    collection_name: Cold Blooded Creepz
+                    value: 31446.45
+                    type: ERC-721
+                    symbol: CBC
+                  - rank: 48
+                    collection_address: '0x86c10d10eca1fca9daf87a279abccabe0063f247'
+                    collection_name: Cool Pets
+                    value: 31428.01
+                    type: ERC-721
+                    symbol: PETS
+                  - rank: 49
+                    collection_address: '0x8943c7bac1914c9a7aba750bf2b6b09fd21037e0'
+                    collection_name: Lazy Lions
+                    value: 31216.72
+                    type: ERC-721
+                    symbol: LION
+                  - rank: 50
+                    collection_address: '0xf61f24c2d93bf2de187546b14425bf631f28d6dc'
+                    collection_name: World Of Women Galaxy
+                    value: 30781.83
+                    type: ERC-721
+                    symbol: WOWG
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /analytics/eth/getRarity:
+    post:
+      security:
+      - api_key: []
+      summary: Token Rarity by Collection
+      description: Returns rarity by token for a given collection
+      operationId: getEthRarity
+      tags:
+      - Ethereum
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                collection_address:
+                  type: string
+                  description: The Ethereum contract address to identify the collection.
+                  example: '0x716039ab9ce2780e35450b86dc6420f22460c380'
+                weights:
+                  type: object
+                  description: Dict containing trait keys and weight values.
+                  properties: {}
+                  example:
+                    Clothes: 0.1
+                    Ears: 0.1
+                    Eyes: 1
+                    Head: 0.1
+                    Mouth: 0.1
+                    Rarity: 0.1
+                    Trait Count: 0.1
+                token_id:
+                  type: array
+                  description: An array of token ids.
+                  items:
+                    type: string
+                    example: '1327'
+              required:
+              - collection_address
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                - token_id: '1357'
+                  token_name: 'Cool Monke #1357'
+                  rarity_score: 0.0831
+                  trait_rarity_score:
+                    Ears: 0.0008
+                    Eyes: 0.0221
+                    Head: 0.0015
+                    Mouth: 0.0221
+                    Rarity: 0.0029
+                    Clothes: 0.033
+                    Overall: 0.0831
+                    Trait Count: 0.0007
+                - token_id: '3333'
+                  token_name: 'Cool Monke #3333'
+                  rarity_score: 0.1984
+                  trait_rarity_score:
+                    Ears: 0.0008
+                    Eyes: 0.0221
+                    Head: 0.0015
+                    Mouth: 0.0387
+                    Rarity: 0.005
+                    Clothes: 0.1296
+                    Overall: 0.1984
+                    Trait Count: 0.0007
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /analytics/eth/getTokenSummary:
+    post:
+      security:
+      - api_key: []
+      summary: Summary Statistics by Token
+      description: Returns summary analytics for a given token
+      operationId: getEthTokenSummary
+      tags:
+      - Ethereum
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                collection_address:
+                  type: string
+                  description: The contract address of the token collection.
+                  example: '0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb'
+                token_id:
+                  type: array
+                  description: The id for the token.
+                  items:
+                    type: string
+                    example: '6000'
+                start_date:
+                  type: string
+                  description: The start timestamp in ISO 8601 format to pull data for calculations
+                  example: '2023-01-01T00:00:00.000Z'
+                end_date:
+                  type: string
+                  description: The end timestamp in ISO 8601 format to pull data for calculations
+                  example: '2023-01-01T00:00:00.000Z'
+                rept_curr:
+                  type: string
+                  enum:
+                  - eth
+                  - usd
+                  description: The currency to report results in
+                  example: eth
+                exclude_wash:
+                  type: boolean
+                  description: Exclude suspected wash transactions?
+                  example: 'true'
+              required:
+              - collection_address
+              - token_id
+      responses:
+        '200':
+          description: An object containing the token's analytical summary.
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                - collection_percentile: '55'
+                  currency_symbol: ETH
+                  latest_gross_median_spread_price: -1
+                  latest_sale: '2021-12-10'
+                  max_date: '2022-01-27 22:47:29'
+                  max_price: 99
+                  min_date: '2022-03-10 15:59:54'
+                  min_price: 69.99
+                  price: 80
+                  rolling_coll_median_price: 73
+                  rolling_coll_median_returns: 2.31
+                  rolling_collection_percentile_price: 75
+                  rolling_collection_percentile_returns: 4
+                  times_traded: 3
+                  token_id: '6000'
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /analytics/eth/getWalletPnL:
+    post:
+      security:
+      - api_key: []
+      summary: Wallet profit and loss information
+      description: Returns profit and loss of this wallet's NFT transactions
+      operationId: getEthWalletPnL
+      tags:
+      - Ethereum
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                wallet_address:
+                  type: string
+                  description: The wallet address to search.
+                  example: '0xab0cda4cc21207fd9433356afe9428b6fac8a8a5'
+                rept_curr:
+                  type: string
+                  enum:
+                  - eth
+                  - usd
+                  description: The currency to report results in
+                  example: eth
+                include_detail:
+                  type: boolean
+                  description: Whether to include detailed profit / loss information by token
+                  example: false
+              required:
+              - wallet_address
+      responses:
+        '200':
+          description: An object containing the profit and loss balances of NFTs traded by this wallet
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                  address: '0x2cbcfa87aa570d72ad7b376e729e167071f1cd33'
+                  rept_curr: eth
+                  pnl: 3.5718
+                  buy_volume: 37.5382
+                  sell_volume: 41.11
+                  token_trades_closed: 10
+                  tokens_held_cost_basis: 9.36
+                  tokens_held_in_wallet: 3
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /analytics/eth/getWashTrade:
+    post:
+      security:
+      - api_key: []
+      summary: Wash Trades by Transaction
+      description: Returns suspected wash trades for a given transaction hash
+      operationId: getEthWashTrade
+      tags:
+      - Ethereum
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                transaction_hash:
+                  type: string
+                  description: The transaction hash to valildate.
+                  example: '0x8a67b9ec06d01ebd2f8363f4a19cb6b55e3fa409877f18d5716716cce457676d'
+              required:
+              - transaction_hash
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                - collection_address: '0x7deb7bce4d360ebe68278dee6054b882aa62d19c'
+                  collection_name: Planets
+                  token_id: '7'
+                  susp_wash: true
+                  from_address: '0x566de524b2c6570f6d65bd3e65d6dfe057357305'
+                  to_address: '0x6a8fbdcd862fd48398dec9d50f2035217fe5cc0c'
+                  currency_symbol: WETH
+                  eth_value: 0.251
+                  usd_value: 651.71
+                  adj_value: 0.251
+                  exchange: Opensea
+                  block_number: 14052366
+                  block_timestamp: '2022-01-22T01:26:00.000Z'
+                  txn_hash: '0xd25867e78513bb9d8004f0482c9d69cb64a9caff815db026dc61fd19c2e6daa4'
+                  token_amount: 1
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /analytics/eth/getWashTransactions:
+    post:
+      security:
+      - api_key: []
+      summary: Wash Trades by Collection
+      description: Returns suspected wash trades by token for a given collection
+      operationId: getEthWashTransactions
+      tags:
+      - Ethereum
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                collection_address:
+                  type: string
+                  description: The collection address to search.
+                  example: '0x3bf2922f4520a8ba0c2efc3d2a1539678dad5e9d'
+                token_id:
+                  type: array
+                  description: An optional list of token ids.
+                  items:
+                    type: string
+                    example: '2334'
+                page:
+                  type: integer
+                  description: The pagination cursor.
+                  example: 1
+                page_size:
+                  type: integer
+                  enum:
+                  - 50
+                  - 100
+                  - 500
+                  - 1000
+                  description: The number of records returned per page.
+                  example: 100
+              required:
+              - collection_address
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                  total_items: 10
+                  total_pages: 1
+                  page: 1
+                  transactions:
+                  - collection_address: '0x7deb7bce4d360ebe68278dee6054b882aa62d19c'
+                    collection_name: Planets
+                    token_id: '5'
+                    from_address: '0x023a77d93490fc42f2de8b558068d53e884f6fe5'
+                    to_address: '0x25e526e16c260199a43094a158ffa118372edbf4'
+                    currency_symbol: ETH
+                    eth_value: 0.05
+                    usd_value: 67.32
+                    adj_value: 0.05
+                    exchange: Opensea - Seaport (Advanced)
+                    block_number: 15156430
+                    block_timestamp: -07-16T22:29:36.000Z
+                    txn_hash: '0x444c0591ca726568ca11aede77b2b3c22f0557ff368f4563048d378e1d235730'
+                    token_amount: 5
+                  - collection_address: '0x7deb7bce4d360ebe68278dee6054b882aa62d19c'
+                    collection_name: Planets
+                    token_id: '5'
+                    from_address: '0x43f778201c898eb332ab1af9ddcb4bdaa7ef8d2a'
+                    to_address: '0x25e526e16c260199a43094a158ffa118372edbf4'
+                    currency_symbol: ETH
+                    eth_value: 0.045
+                    usd_value: 60.72
+                    adj_value: 0.045
+                    exchange: Opensea - Seaport
+                    block_number: 15156140
+                    block_timestamp: -07-16T21:30:02.000Z
+                    txn_hash: '0x34d76bb0e8af55b0e7184c10ed7b01c3af5287f600ce2d35ef3b31a0bf93f5bf'
+                    token_amount: 1
+                  - collection_address: '0x7deb7bce4d360ebe68278dee6054b882aa62d19c'
+                    collection_name: Planets
+                    token_id: '5'
+                    from_address: '0x708ed7b90dce15a1b479f27539a3801cc70d9268'
+                    to_address: '0x25e526e16c260199a43094a158ffa118372edbf4'
+                    currency_symbol: ETH
+                    eth_value: 0.042
+                    usd_value: 56.3
+                    adj_value: 0.042
+                    exchange: Opensea - Seaport
+                    block_number: 15156135
+                    block_timestamp: -07-16T21:28:34.000Z
+                    txn_hash: '0x2fdc1b35555710f64f5cea4529f8cb6d5319b63a71ed49cec170facd0c753cb9'
+                    token_amount: 4
+                  - collection_address: '0x7deb7bce4d360ebe68278dee6054b882aa62d19c'
+                    collection_name: Planets
+                    token_id: '5'
+                    from_address: '0x708ed7b90dce15a1b479f27539a3801cc70d9268'
+                    to_address: '0x25e526e16c260199a43094a158ffa118372edbf4'
+                    currency_symbol: ETH
+                    eth_value: 0.042
+                    usd_value: 56.3
+                    adj_value: 0.042
+                    exchange: Opensea - Seaport
+                    block_number: 15156135
+                    block_timestamp: -07-16T21:28:34.000Z
+                    txn_hash: '0x2fdc1b35555710f64f5cea4529f8cb6d5319b63a71ed49cec170facd0c753cb9'
+                    token_amount: 4
+                  - collection_address: '0x7deb7bce4d360ebe68278dee6054b882aa62d19c'
+                    collection_name: Planets
+                    token_id: '5'
+                    from_address: '0x708ed7b90dce15a1b479f27539a3801cc70d9268'
+                    to_address: '0x25e526e16c260199a43094a158ffa118372edbf4'
+                    currency_symbol: ETH
+                    eth_value: 0.042
+                    usd_value: 56.3
+                    adj_value: 0.042
+                    exchange: Opensea - Seaport
+                    block_number: 15156135
+                    block_timestamp: -07-16T21:28:34.000Z
+                    txn_hash: '0x2fdc1b35555710f64f5cea4529f8cb6d5319b63a71ed49cec170facd0c753cb9'
+                    token_amount: 4
+                  - collection_address: '0x7deb7bce4d360ebe68278dee6054b882aa62d19c'
+                    collection_name: Planets
+                    token_id: '5'
+                    from_address: '0x708ed7b90dce15a1b479f27539a3801cc70d9268'
+                    to_address: '0x25e526e16c260199a43094a158ffa118372edbf4'
+                    currency_symbol: ETH
+                    eth_value: 0.042
+                    usd_value: 56.3
+                    adj_value: 0.042
+                    exchange: Opensea - Seaport
+                    block_number: 15156135
+                    block_timestamp: -07-16T21:28:34.000Z
+                    txn_hash: '0x2fdc1b35555710f64f5cea4529f8cb6d5319b63a71ed49cec170facd0c753cb9'
+                    token_amount: 4
+                  - collection_address: '0x7deb7bce4d360ebe68278dee6054b882aa62d19c'
+                    collection_name: Planets
+                    token_id: '6'
+                    from_address: '0x062eed02c619fb9fd5d3bbc07a1e56f1c550d5e5'
+                    to_address: '0x6375509c420d4752ac3b61d4f286306874f92bd1'
+                    currency_symbol: WETH
+                    eth_value: 0.04
+                    usd_value: 53.4
+                    adj_value: 0.04
+                    exchange: Opensea - Seaport
+                    block_number: 15155935
+                    block_timestamp: -07-16T20:48:00.000Z
+                    txn_hash: '0x6bb367573828ead2f3b1d8c4d472e13aa42a8355275b9527bc30742c114004e9'
+                    token_amount: 1
+                  - collection_address: '0x7deb7bce4d360ebe68278dee6054b882aa62d19c'
+                    collection_name: Planets
+                    token_id: '6'
+                    from_address: '0x25e526e16c260199a43094a158ffa118372edbf4'
+                    to_address: '0x994e55f68d5473700207608ec996b23dbcc02d6e'
+                    currency_symbol: WETH
+                    eth_value: 0.04
+                    usd_value: 53.43
+                    adj_value: 0.04
+                    exchange: Opensea - Seaport
+                    block_number: 15155721
+                    block_timestamp: -07-16T19:58:34.000Z
+                    txn_hash: '0x4f4fffdd75b3f21e7d2145249c9fcb5229399134f831c89d5cd9cabd162f2be1'
+                    token_amount: 1
+                  - collection_address: '0x7deb7bce4d360ebe68278dee6054b882aa62d19c'
+                    collection_name: Planets
+                    token_id: '5'
+                    from_address: '0xfe4697badfe257dbd51b61e87596091a70729fbb'
+                    to_address: '0x33c850438709a05b44c002a3af461e9badefda1e'
+                    currency_symbol: ETH
+                    eth_value: 0.043
+                    usd_value: 52.26
+                    adj_value: 0.043
+                    exchange: Opensea - Seaport
+                    block_number: 15151089
+                    block_timestamp: -07-16T02:42:19.000Z
+                    txn_hash: '0x6588565951c09c08b0b9dae8a6a9018029a9c4ab42f7c041f373588b14aa4bf7'
+                    token_amount: 1
+                  - collection_address: '0x7deb7bce4d360ebe68278dee6054b882aa62d19c'
+                    collection_name: Planets
+                    token_id: '5'
+                    from_address: '0xc309339b0b10d673a9a7e198cdb21227071e92ff'
+                    to_address: '0x174a32ae4cacb9f99378a108b45449f28ed6c6dc'
+                    currency_symbol: ETH
+                    eth_value: 0.042
+                    usd_value: 51.07
+                    adj_value: 0.042
+                    exchange: Opensea - Seaport
+                    block_number: 15150705
+                    block_timestamp: -07-16T01:19:38.000Z
+                    txn_hash: '0x0c79e56ce6f1808cd3c7eb2f9f3ced56ed4dbc42fbfc10b1a4f7e7a90a0c6406'
+                    token_amount: 1
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /data/eth/getCollectionOwners:
+    post:
+      security:
+      - api_key: []
+      summary: Wallet Owners by Collection
+      description: Returns all wallet owners for a given collection
+      operationId: getEthCollectionOwners
+      tags:
+      - Ethereum
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                collection_address:
+                  type: string
+                  description: The contract address of the collection.
+                  example: '0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb'
+                page:
+                  type: integer
+                  description: The pagination cursor.
+                  example: 1
+                page_size:
+                  type: integer
+                  enum:
+                  - 50
+                  - 100
+                  - 500
+                  - 1000
+                  description: The number of records returned per page.
+                  example: 100
+              required:
+              - collection_address
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                  total_items: 10
+                  total_pages: 1
+                  page: 1
+                  collection_address: '0x4f8730e0b32b04beaa5757e5aea3aef970e5b613'
+                  collection_name: Bloot
+                  owners:
+                  - token_id: '1'
+                    wallet_address: '0x580a96bc816c2324bdff5eb2a7e159ae7ee63022'
+                  - token_id: '2'
+                    wallet_address: '0x88db9217b2ea48c2b2446f42fcc9f541077d720b'
+                  - token_id: '3'
+                    wallet_address: '0x88db9217b2ea48c2b2446f42fcc9f541077d720b'
+                  - token_id: '4'
+                    wallet_address: '0x56879cc88fa3895c082c22035db1386dcac53bba'
+                  - token_id: '5'
+                    wallet_address: '0x56879cc88fa3895c082c22035db1386dcac53bba'
+                  - token_id: '6'
+                    wallet_address: '0xfb4eb570807e0e275b3e1dd14f1074a0e1cd5a2a'
+                  - token_id: '7'
+                    wallet_address: '0x56879cc88fa3895c082c22035db1386dcac53bba'
+                  - token_id: '8'
+                    wallet_address: '0x56879cc88fa3895c082c22035db1386dcac53bba'
+                  - token_id: '9'
+                    wallet_address: '0x182a36ad47ea21d96d864080b7baceda7ce44019'
+                  - token_id: '10'
+                    wallet_address: '0x792a623d269e6c5815d8a715d563985791353ae7'
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: object
+                    description: Returns all wallet owners for a given collection
+                    properties:
+                      owners:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            token_id:
+                              type: string
+                              description: The token identifier
+                            wallet_address:
+                              type: string
+                              description: The unique wallet address
+                      collection_address:
+                        type: string
+                        description: The unique address allocated for the collection
+                      collection_name:
+                        type: string
+                        description: The name of the collection
+                      total_items:
+                        type: number
+                        description: The total number of items that can be retrieved
+                      total_pages:
+                        type: number
+                        description: The total number of pages that can be queried
+                      page:
+                        type: number
+                        description: The current reported page
+                  status:
+                    type: number
+                    description: The response status code
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /data/eth/getCollectionTransactions:
+    post:
+      security:
+      - api_key: []
+      summary: Transactions by Collection
+      description: Returns all transactions for a given collection
+      operationId: getEthCollectionTransactions
+      tags:
+      - Ethereum
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                collection_address:
+                  type: string
+                  description: The contract address of the collection.
+                  example: '0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb'
+                page:
+                  type: integer
+                  description: The pagination cursor.
+                  example: 1
+                page_size:
+                  type: integer
+                  enum:
+                  - 50
+                  - 100
+                  - 500
+                  - 1000
+                  description: The number of records returned per page.
+                  example: 100
+                start_block_number:
+                  type: integer
+                  description: The oldest block number to return.
+                  example: 100
+                start_date:
+                  type: string
+                  description: The earliest block timestamp in ISO 8601 format.
+                  example: '2023-01-01T00:00:00.000Z'
+                end_date:
+                  type: string
+                  description: The latest block timestamp in ISO 8601 format.
+                  example: '2023-01-01T00:00:00.000Z'
+              required:
+              - collection_address
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                  total_items: 10
+                  total_pages: 1
+                  page: 1
+                  collection_address: '0x3bf2922f4520a8ba0c2efc3d2a1539678dad5e9d'
+                  collection_name: 0N1 Force
+                  transactions:
+                  - token_id: '3031'
+                    from_address: '0x0f08393a84a1ed49567accac1e5dd254096a09ce'
+                    to_address: '0xcbcc922ec77314d44b0be1a40e80a9b3ccf1fa6a'
+                    eth_value: 0.3
+                    usd_value: 472.44
+                    exchange: Opensea - Seaport
+                    block_number: 15194253
+                    block_timestamp: '2022-07-22T19:15:27.000Z'
+                    txn_hash: '0x6af8a8f4c067ff0fc44c0720a48fa5c903495de41e408e00bdb2358c4ce379fa'
+                    token_amount: 1
+                  - token_id: '3670'
+                    from_address: '0xf9d57e1402676e7074048a470632c624801e629d'
+                    to_address: '0x481775a1a694c31da312cd1b166e353151fe0579'
+                    eth_value: 0.547
+                    usd_value: 859.56
+                    exchange: Opensea - Seaport
+                    block_number: 15194146
+                    block_timestamp: '2022-07-22T18:52:47.000Z'
+                    txn_hash: '0x1355e52a87474a0b52892b11620affcfb2186a320c1f51e208d0b081f84b86b3'
+                    token_amount: 1
+                  - token_id: '5340'
+                    from_address: '0xb16b295c3e174e650660e74b5ec4abe44c29849b'
+                    to_address: '0x7fbbfd78ecd145a3312396ee97a8ed36346669d5'
+                    eth_value: 0.299
+                    usd_value: 477.11
+                    exchange: Opensea - Seaport
+                    block_number: 15190891
+                    block_timestamp: '2022-07-22T06:57:19.000Z'
+                    txn_hash: '0xcb1bf0d5928c4ad7d6a8b5d53fc1315cd4aaf3e09892d32c8c51915eab9c1c5c'
+                    token_amount: 1
+                  - token_id: '6592'
+                    from_address: '0xffa7282b67f72edd50e37b68d3599aa3ff3a9fb8'
+                    to_address: '0x38daea6f17e4308b0da9647db9ca6d84a3a7e195'
+                    eth_value: 0.28
+                    usd_value: 446.77
+                    exchange: Opensea (through GemSwap - Seaport)
+                    block_number: 15190871
+                    block_timestamp: '2022-07-22T06:51:58.000Z'
+                    txn_hash: '0xb5c43cbd77f137933304f6a868c2385e71024272d01dec3ecd06590cde6a0040'
+                    token_amount: 1
+                  - token_id: '1391'
+                    from_address: '0x470af085d49c645e14a3c38b19b14af503b06ca6'
+                    to_address: '0x38daea6f17e4308b0da9647db9ca6d84a3a7e195'
+                    eth_value: 0.28
+                    usd_value: 446.77
+                    exchange: X2Y2 (through GemSwap)
+                    block_number: 15190871
+                    block_timestamp: '2022-07-22T06:51:58.000Z'
+                    txn_hash: '0xb5c43cbd77f137933304f6a868c2385e71024272d01dec3ecd06590cde6a0040'
+                    token_amount: 1
+                  - token_id: '2345'
+                    from_address: '0x73db901ff39f28d57da2c0c9b358dbe2dd929f13'
+                    to_address: '0x86c994904dd138bdc8462ac06edd919ad70fe575'
+                    eth_value: 0.27
+                    usd_value: 426.77
+                    exchange: Opensea - Seaport
+                    block_number: 15189526
+                    block_timestamp: '2022-07-22T01:43:28.000Z'
+                    txn_hash: '0x1c1dc2ce614668806cbb368e6065bb97354c24aa4e2184f91cac43e2e9c40b55'
+                    token_amount: 1
+                  - token_id: '5720'
+                    from_address: '0x1dbf00bc3f40f551d79422a96367a6f58ae59412'
+                    to_address: '0x86c994904dd138bdc8462ac06edd919ad70fe575'
+                    eth_value: 0.269
+                    usd_value: 425.19
+                    exchange: Opensea - Seaport
+                    block_number: 15189523
+                    block_timestamp: '2022-07-22T01:43:03.000Z'
+                    txn_hash: '0x044c942d1941af19e53f72c451d4ed6650b634545fc9595f48fb7f040a29e3ba'
+                    token_amount: 1
+                  - token_id: '6622'
+                    from_address: '0x62ed759378160d283ff9c01660b3f55ca1c33e77'
+                    to_address: '0x5078cc37be18868620f25869e3d76bfcb9305516'
+                    eth_value: 0.2727
+                    usd_value: 430.58
+                    exchange: Opensea - Seaport
+                    block_number: 15189149
+                    block_timestamp: '2022-07-22T00:15:27.000Z'
+                    txn_hash: '0x1dbc262def552ff38cbf0cff7dd321d5e9aaac4fb9341ea4940775d6f7bb6c12'
+                    token_amount: 1
+                  - token_id: '5720'
+                    from_address: '0xbc52b1e8dab347c08130a722641e129bc5939ac5'
+                    to_address: '0x1dbf00bc3f40f551d79422a96367a6f58ae59412'
+                    eth_value: 0.23
+                    usd_value: 362.1
+                    exchange: Opensea - Seaport (Advanced)
+                    block_number: 15189130
+                    block_timestamp: '2022-07-22T00:10:42.000Z'
+                    txn_hash: '0xbd1fdf60b855f3f65a70a31cb0e300cc83b4c42fc39070cc11c8c33e7dcfd01b'
+                    token_amount: 1
+                  - token_id: '6592'
+                    from_address: '0x6188c2b2c93d100a6b8fdc89c2a2fcb91f5c6b3a'
+                    to_address: '0xffa7282b67f72edd50e37b68d3599aa3ff3a9fb8'
+                    eth_value: 0.2803
+                    usd_value: 440.77
+                    exchange: Opensea - Seaport
+                    block_number: 15188831
+                    block_timestamp: '2022-07-21T23:03:25.000Z'
+                    txn_hash: '0x7782406ecc8d0b127f05c33c7529bc96705059bb2001afd6fc4891c6fed83fa0'
+                    token_amount: 1
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: object
+                    description: Returns all transactions for a given collection
+                    properties:
+                      transactions:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            token_id:
+                              type: string
+                              description: The token identifier
+                            from_address:
+                              type: string
+                              description: The unique wallet address from which the token is tranferred
+                            to_address:
+                              type: string
+                              description: The unique wallet address receiving the token
+                            eth_value:
+                              type: number
+                              description: The equivalent ETH value
+                            usd_value:
+                              type: number
+                              description: The equivalent USD value
+                            exchange:
+                              type: string
+                              description: The marketplace traded and potential order contract details
+                            block_number:
+                              type: number
+                              description: The block number on which the transaction occurred
+                            block_timestamp:
+                              type: string
+                              description: The UTC timestamp at which the block was validated
+                            txn_hash:
+                              type: string
+                              description: The transaction hash
+                            token_amount:
+                              type: number
+                              description: The number of tokens that were transacted
+                      total_items:
+                        type: number
+                        description: The total number of items that can be retrieved
+                      total_pages:
+                        type: number
+                        description: The total number of pages that can be queried
+                      page:
+                        type: number
+                        description: The current reported page
+                  status:
+                    type: number
+                    description: The response status code
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /data/eth/getCollections:
+    post:
+      security:
+      - api_key: []
+      summary: Aggregated Collections Supported by Gallop
+      description: Returns all Gallop aggregated collections
+      operationId: getEthCollections
+      tags:
+      - Ethereum
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                page:
+                  type: integer
+                  description: The pagination cursor.
+                  example: 1
+                page_size:
+                  type: integer
+                  enum:
+                  - 50
+                  - 100
+                  - 500
+                  - 1000
+                  description: The number of records returned per page.
+                  example: 100
+                collection_name:
+                  type: string
+                  description: The name of the collection searched.
+                  example: cryptopunks
+                traded:
+                  type: boolean
+                  description: Only return collections that have traded.
+                  example: 'true'
+                created_after:
+                  type: string
+                  description: Only return collections recorded after this day [YYYY-MM-DD]
+                  example: '2023-01-15'
+                sort_by:
+                  type: string
+                  enum:
+                  - created_at
+                  - collection_name
+                  description: The value to sort by. Defaults to created_at
+                  example: created_at
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                  total_items: 55
+                  total_pages: 5
+                  page: 1
+                  collections:
+                  - collection_name: 0N1 Force
+                    symbol: 0N1
+                    collection_address: '0x3bf2922f4520a8ba0c2efc3d2a1539678dad5e9d'
+                  - collection_name: 3Landers
+                    symbol: 3L
+                    collection_address: '0xb4d06d46a8285f4ec79fd294f78a881799d8ced9'
+                  - collection_name: Acclimated​MoonCats
+                    symbol: "\uD83D\uDE3A"
+                    collection_address: '0xc3f733ca98e0dad0386979eb96fb1722a1a05e69'
+                  - collection_name: Adam Bomb Squad
+                    symbol: ABS
+                    collection_address: '0x7ab2352b1d2e185560494d5e577f9d3c238b78c5'
+                  - collection_name: ALIENFRENS
+                    symbol: ALIENFRENS
+                    collection_address: '0x123b30e25973fecd8354dd5f41cc45a3065ef88c'
+                  - collection_name: ALPACADABRAZ
+                    symbol: PACA
+                    collection_address: '0x3db5463a9e2d04334192c6f2dd4b72def4751a61'
+                  - collection_name: Animetas
+                    symbol: ANMT
+                    collection_address: '0x18df6c571f6fe9283b87f910e41dc5c8b77b7da5'
+                  - collection_name: Anonymice
+                    symbol: MICE
+                    collection_address: '0xbad6186e92002e312078b5a1dafd5ddf63d3f731'
+                  - collection_name: apekidsclub
+                    symbol: AKC
+                    collection_address: '0x9bf252f97891b907f002f2887eff9246e3054080'
+                  - collection_name: Art Blocks
+                    symbol: BLOCKS
+                    collection_address: '0xa7d8d9ef8d8ce8992df33d8b8cf4aebabd5bd270'
+                  - collection_name: ASMAIFAAllStarsBoxSet
+                    symbol: AIFABOX
+                    collection_address: '0x26437d312fb36bdd7ac9f322a6d4ccfe0c4fa313'
+                  - collection_name: Autoglyphs
+                    symbol: ☵
+                    collection_address: '0xd4e4078ca3495de5b1d4db434bebc5a986197782'
+                  - collection_name: Azuki
+                    symbol: AZUKI
+                    collection_address: '0xed5af388653567af2f388e6224dc7c4b3241c544'
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: object
+                    description: Returns all Gallop aggregated collections
+                    properties:
+                      collections:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            collection_name:
+                              type: string
+                              description: The name of the collection
+                            symbol:
+                              type: string
+                              description: The ticker symbol of the collection
+                            collection_address:
+                              type: string
+                              description: The unique address allocated for the collection
+                            created_at:
+                              type: string
+                              description: The time stamp at which Gallop picked up the collection
+                      total_items:
+                        type: number
+                        description: The total number of items that can be retrieved
+                      total_pages:
+                        type: number
+                        description: The total number of pages that can be queried
+                      page:
+                        type: number
+                        description: The current reported page
+                  status:
+                    type: number
+                    description: The response status code
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /data/eth/getEnsLookup:
+    post:
+      security:
+      - api_key: []
+      summary: ENS Lookup
+      description: Returns Ethereum Name Service data for a given wallet address
+      operationId: getEthEnsLookup
+      tags:
+      - Ethereum
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                page:
+                  type: integer
+                  description: The pagination cursor.
+                  example: 1
+                page_size:
+                  type: integer
+                  enum:
+                  - 50
+                  - 100
+                  - 500
+                  - 1000
+                  description: The number of records returned per page.
+                  example: 100
+                wallet_address:
+                  type: string
+                  description: The wallet address to query.
+                  example: '0xd8da6bf26964af9d7eed9e03e53415d37aa96045'
+                name:
+                  type: string
+                  description: The name to query.
+                  example: gallop
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                  total_items: 3
+                  total_pages: 1
+                  page: 1
+                  lookup:
+                  - ens_name: cindygallop.eth
+                    resolved_wallet_address: '0x03c609ad0c5f4d2b4b45329c879d01627ed044cf'
+                    ens_nft_owner: '0x03c609ad0c5f4d2b4b45329c879d01627ed044cf'
+                    ens_nft_token_id: '15517810867275400792454974873230676112786452149196343826542998772289206021344'
+                    on_chain_metadata: null
+                  - ens_name: cybergallops.eth
+                    resolved_wallet_address: '0xba2948f1fa6d88dac687f1ca8292a80c97001c88'
+                    ens_nft_owner: '0xba2948f1fa6d88dac687f1ca8292a80c97001c88'
+                    ens_nft_token_id: '8916934475999199779246118723595166231735896975510756527098834487350471780471'
+                    on_chain_metadata: null
+                  - ens_name: gallop.eth
+                    resolved_wallet_address: '0xe68e8cc7ff772b026c062b9cc28246676d044947'
+                    ens_nft_owner: '0x7c76b0b0b6a5144d48c7ae23f5d91712cb8354b4'
+                    ens_nft_token_id: '57055706468227773033118122077897942881246437083110876111525719177787586052276'
+                    on_chain_metadata: null
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: object
+                    description: Returns Ethereum Name Service data for a given wallet address
+                    properties:
+                      lookup:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            ens_name:
+                              type: string
+                              description: The human readable name associated to the ENS token
+                            resolved_wallet_address:
+                              type: string
+                              description: The wallet that the ENS points to
+                            ens_nft_owner:
+                              type: string
+                              description: The wallet that owns the ENS token
+                            ens_nft_token_id:
+                              type: string
+                              description: The NFT token identifier
+                            on_chain_metadata:
+                              type: object
+                              description: Metadata for the ENS token
+                              properties: {}
+                      total_items:
+                        type: number
+                        description: The total number of items that can be retrieved
+                      total_pages:
+                        type: number
+                        description: The total number of pages that can be queried
+                      page:
+                        type: number
+                        description: The current reported page
+                  status:
+                    type: number
+                    description: The response status code
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /data/eth/getFloorPriceByTrait:
+    post:
+      security:
+      - api_key: []
+      summary: Collection Floor Price By Trait
+      description: Returns floor price by trait for a given collection
+      operationId: getEthFloorPriceByTrait
+      tags:
+      - Ethereum
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                collection_address:
+                  type: string
+                  description: The contract address of a collection.
+                  example: '0x01cc1bd2dece86e54481f1e6aeffc2fcc6915480'
+              required:
+              - collection_address
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                  Head:
+                    Headband:
+                      floor_price: 5.98
+                      token:
+                        token_id: '6987'
+                        eth_value: 5.98
+                        marketplace: Blur
+                        owner: '0xd1ea7cc78720c2311f756cc63c3e94faad69aaf3'
+                        listed_at: '2023-05-24T13:59:05.000Z'
+                        suspicious: false
+                    Flat Cap Blue:
+                      floor_price: 5.94
+                      token:
+                        token_id: '8392'
+                        eth_value: 5.94
+                        marketplace: Blur
+                        owner: '0xcfea8e38ad74ab181c20988166b8d74f8da22ef9'
+                        listed_at: '2023-05-24T11:23:49.000Z'
+                        suspicious: false
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: object
+                    description: Returns live floor price by trait
+                    properties:
+                      attributes:
+                        type: array
+                        description: Collection trait
+                        items:
+                          type: array
+                          description: Trait values
+                          items:
+                            type: object
+                            properties:
+                              floor_price_eth:
+                                type: number
+                                description: The ETH value of the floor price
+                              item:
+                                type: object
+                                description: Token associated with the trait floor price
+                                properties:
+                                  token_id:
+                                    type: string
+                                    description: The token identifier
+                                  eth_value:
+                                    type: number
+                                    description: The equivalent ETH value
+                                  marketplace:
+                                    type: string
+                                    description: The marketplace name where the event took place
+                                  suspicious:
+                                    type: boolean
+                                    description: Whether the marketplace has flagged the token listing as suspicious
+                                  listed_at:
+                                    type: string
+                                    description: The listing date
+                  status:
+                    type: number
+                    description: The response status code
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /data/eth/getHistoricalEvents:
+    post:
+      security:
+      - api_key: []
+      summary: Marketplace Activity by Collection
+      description: Returns marketplace activity for a given collection
+      operationId: getEthHistoricalEvents
+      tags:
+      - Ethereum
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                collection_address:
+                  type: string
+                  description: The contract address of a collection. Leave empty for all collections
+                  example: '0x3fe1a4c1481c8351e91b64d5c398b159de07cbc5'
+                token_id:
+                  type: string
+                  description: The id for the token.
+                  example: '2868'
+                page:
+                  type: integer
+                  description: The pagination cursor.
+                  example: 1
+                page_size:
+                  type: integer
+                  enum:
+                  - 50
+                  - 100
+                  - 500
+                  - 1000
+                  description: The number of records returned per page.
+                  example: 100
+                event_date:
+                  type: string
+                  description: Only return events occuring after this day [YYYY-MM-DD]
+                  example: '2023-01-15'
+                event_type:
+                  type: string
+                  enum:
+                  - list
+                  - transfer
+                  - offer
+                  - mint
+                  - sale
+                  - cancel_list
+                  - cancel_offer
+                  description: 'The type of event: list, transfer, offer, mint, sale, cancel_list or cancel_offer'
+                  example: sale
+                occurred_before:
+                  type: string
+                  description: Only show events listed before this ISO 8601 timestamp
+                  example: '2022-08-19T16:46:49.129Z'
+                occurred_after:
+                  type: string
+                  description: Only show events listed after this ISO 8601 timestamp
+                  example: '2022-09-19T13:46:49.129Z'
+                include_metadata:
+                  type: boolean
+                  description: Include token metadata in response
+                  example: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                  collection_address: '0x764aeebcf425d56800ef2c84f2578689415a2daa'
+                  total_items: 10
+                  total_pages: 1
+                  page: 1
+                  events:
+                  - token_id: '22591'
+                    event_type: transfer
+                    from_address: '0x4d6283b4198c0039f2addc6a8784bbdef6e259eb'
+                    to_address: '0x330251b47edf5a5b2911451b9be840d0d03ae504'
+                    eth_value: null
+                    event_date: '2023-02-27T13:00:35.000Z'
+                    start_date: null
+                    end_date: null
+                    event_id: '452128763'
+                    collection_id: '0x764aeebcf425d56800ef2c84f2578689415a2daa'
+                    marketplace: LooksRare
+                    token_amount: 1
+                  - token_id: '22103'
+                    event_type: transfer
+                    from_address: '0x41758beb6011558ea86dfd68d5715a6e05f423ef'
+                    to_address: '0xc1c9a15ad507a1a9ca494f53768bff6b5181a8ba'
+                    eth_value: null
+                    event_date: '2023-02-27T12:59:47.000Z'
+                    start_date: null
+                    end_date: null
+                    event_id: '452127206'
+                    collection_id: '0x764aeebcf425d56800ef2c84f2578689415a2daa'
+                    marketplace: LooksRare
+                    token_amount: 1
+                  - token_id: '7456'
+                    event_type: transfer
+                    from_address: '0x41758beb6011558ea86dfd68d5715a6e05f423ef'
+                    to_address: '0xc1c9a15ad507a1a9ca494f53768bff6b5181a8ba'
+                    eth_value: null
+                    event_date: '2023-02-27T12:58:59.000Z'
+                    start_date: null
+                    end_date: null
+                    event_id: '452126203'
+                    collection_id: '0x764aeebcf425d56800ef2c84f2578689415a2daa'
+                    marketplace: LooksRare
+                    token_amount: 1
+                  - token_id: '26363'
+                    event_type: transfer
+                    from_address: '0xfa4d5258804d7723eb6a934c11b1bd423bc31623'
+                    to_address: '0xedce6a7105cb3d298e356b416cafd5cea4a433ff'
+                    eth_value: null
+                    event_date: '2023-02-17T17:26:35.000Z'
+                    start_date: null
+                    end_date: null
+                    event_id: '435794451'
+                    collection_id: '0x764aeebcf425d56800ef2c84f2578689415a2daa'
+                    marketplace: LooksRare
+                    token_amount: 1
+                  - token_id: '16444'
+                    event_type: transfer
+                    from_address: '0xbd1240f9376ef32eb8e744d049163fe614f55166'
+                    to_address: '0xf7e11960b6f84b3ea798f15fa8627a3bcffbefa2'
+                    eth_value: null
+                    event_date: '2023-02-17T17:20:23.000Z'
+                    start_date: null
+                    end_date: null
+                    event_id: '435784638'
+                    collection_id: '0x764aeebcf425d56800ef2c84f2578689415a2daa'
+                    marketplace: LooksRare
+                    token_amount: 1
+                  - token_id: '7122'
+                    event_type: transfer
+                    from_address: '0x7df70b612040c682d1cb2e32017446e230fcd747'
+                    to_address: '0xa9ad0a458e081c2d042ce806ac7ea7cdca824dc2'
+                    eth_value: null
+                    event_date: '2023-02-17T17:11:59.000Z'
+                    start_date: null
+                    end_date: null
+                    event_id: '435771023'
+                    collection_id: '0x764aeebcf425d56800ef2c84f2578689415a2daa'
+                    marketplace: LooksRare
+                    token_amount: 1
+                  - token_id: '7534'
+                    event_type: transfer
+                    from_address: '0x409f37a9d4cbd541f93ad8b9f10e8ac6706a34ce'
+                    to_address: '0x4363e7e54f81a8cb39dd556c66ca41e603732e91'
+                    eth_value: null
+                    event_date: '2023-02-17T16:47:47.000Z'
+                    start_date: null
+                    end_date: null
+                    event_id: '435729489'
+                    collection_id: '0x764aeebcf425d56800ef2c84f2578689415a2daa'
+                    marketplace: LooksRare
+                    token_amount: 1
+                  - token_id: '15663'
+                    event_type: transfer
+                    from_address: '0x24a39cfc33d0d5e473ca2af2ccdce2af60f15af1'
+                    to_address: '0xd2e46bcd3c16065fa6d3c291a23635f7322fe1be'
+                    eth_value: null
+                    event_date: '2023-02-17T16:43:47.000Z'
+                    start_date: null
+                    end_date: null
+                    event_id: '435722917'
+                    collection_id: '0x764aeebcf425d56800ef2c84f2578689415a2daa'
+                    marketplace: LooksRare
+                    token_amount: 1
+                  - token_id: '15789'
+                    event_type: transfer
+                    from_address: '0x24a39cfc33d0d5e473ca2af2ccdce2af60f15af1'
+                    to_address: '0x6f435a9421653b27f048957b8ba2092d65a711f9'
+                    eth_value: null
+                    event_date: '2023-02-17T16:41:59.000Z'
+                    start_date: null
+                    end_date: null
+                    event_id: '435719742'
+                    collection_id: '0x764aeebcf425d56800ef2c84f2578689415a2daa'
+                    marketplace: LooksRare
+                    token_amount: 1
+                  - token_id: '4180'
+                    event_type: transfer
+                    from_address: '0xfa88dd019d4bcb8ba2ef8ce63e64d48e727b0b33'
+                    to_address: '0x4bc8f720537b2a9dafad4c2ca9be9099c4ef0986'
+                    eth_value: null
+                    event_date: '2023-02-17T16:40:23.000Z'
+                    start_date: null
+                    end_date: null
+                    event_id: '435717356'
+                    collection_id: '0x764aeebcf425d56800ef2c84f2578689415a2daa'
+                    marketplace: LooksRare
+                    token_amount: 1
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: object
+                    description: Returns marketplace activity for a given collection
+                    properties:
+                      events:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            token_id:
+                              type: string
+                              description: The token identifier
+                            event_type:
+                              type: string
+                              description: The event type
+                            from_address:
+                              type: string
+                              description: The unique wallet address from which the token is tranferred
+                            to_address:
+                              type: string
+                              description: The unique wallet address receiving the token
+                            eth_value:
+                              type: number
+                              description: The equivalent ETH value
+                            event_date:
+                              type: string
+                              description: The date at which the event occurred
+                            start_date:
+                              type: string
+                              description: The start date
+                            end_date:
+                              type: string
+                              description: The end date
+                            event_id:
+                              type: string
+                              description: A unique event identifier
+                            collection_id:
+                              type: string
+                              description: The marketplace specific collection identifier
+                            marketplace:
+                              type: string
+                              description: The marketplace name where the event took place
+                      collection_address:
+                        type: string
+                        description: The unique address allocated for the collection
+                      total_items:
+                        type: number
+                        description: The total number of items that can be retrieved
+                      total_pages:
+                        type: number
+                        description: The total number of pages that can be queried
+                      page:
+                        type: number
+                        description: The current reported page
+                  status:
+                    type: number
+                    description: The response status code
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /data/eth/getHistoricalTransactions:
+    post:
+      security:
+      - api_key: []
+      summary: Historical Transactions by Collection
+      description: Returns all transactions for a given collection in bulk
+      operationId: getEthHistoricalTransactions
+      tags:
+      - Ethereum
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                collection_address:
+                  type: string
+                  description: The contract address of the collection.
+                  example: '0x3f5fb35468e9834a43dca1c160c69eaae78b6360'
+                token_id:
+                  type: string
+                  description: The id for the token.
+                page:
+                  type: integer
+                  description: The pagination cursor.
+                  example: 1
+              required:
+              - collection_address
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                  total_items: 10
+                  total_pages: 1
+                  page: 1
+                  collection_address: '0x3bf2922f4520a8ba0c2efc3d2a1539678dad5e9d'
+                  collection_name: 0N1 Force
+                  token_id:
+                  - '3031'
+                  - '3670'
+                  - '5340'
+                  - '6592'
+                  - '1391'
+                  - '2345'
+                  - '5720'
+                  - '6622'
+                  - '5720'
+                  - '6592'
+                  from_address:
+                  - '0x0f08393a84a1ed49567accac1e5dd254096a09ce'
+                  - '0xf9d57e1402676e7074048a470632c624801e629d'
+                  - '0xb16b295c3e174e650660e74b5ec4abe44c29849b'
+                  - '0xffa7282b67f72edd50e37b68d3599aa3ff3a9fb8'
+                  - '0x470af085d49c645e14a3c38b19b14af503b06ca6'
+                  - '0x73db901ff39f28d57da2c0c9b358dbe2dd929f13'
+                  - '0x1dbf00bc3f40f551d79422a96367a6f58ae59412'
+                  - '0x62ed759378160d283ff9c01660b3f55ca1c33e77'
+                  - '0xbc52b1e8dab347c08130a722641e129bc5939ac5'
+                  - '0x6188c2b2c93d100a6b8fdc89c2a2fcb91f5c6b3a'
+                  to_address:
+                  - '0xcbcc922ec77314d44b0be1a40e80a9b3ccf1fa6a'
+                  - '0x481775a1a694c31da312cd1b166e353151fe0579'
+                  - '0x7fbbfd78ecd145a3312396ee97a8ed36346669d5'
+                  - '0x38daea6f17e4308b0da9647db9ca6d84a3a7e195'
+                  - '0x38daea6f17e4308b0da9647db9ca6d84a3a7e195'
+                  - '0x86c994904dd138bdc8462ac06edd919ad70fe575'
+                  - '0x86c994904dd138bdc8462ac06edd919ad70fe575'
+                  - '0x5078cc37be18868620f25869e3d76bfcb9305516'
+                  - '0x1dbf00bc3f40f551d79422a96367a6f58ae59412'
+                  - '0xffa7282b67f72edd50e37b68d3599aa3ff3a9fb8'
+                  eth_value:
+                  - 0.3
+                  - 0.547
+                  - 0.299
+                  - 0.28
+                  - 0.28
+                  - 0.27
+                  - 0.269
+                  - 0.2727
+                  - 0.23
+                  - 0.2803
+                  usd_value:
+                  - 472.44
+                  - 859.56
+                  - 477.11
+                  - 446.77
+                  - 446.77
+                  - 426.77
+                  - 425.19
+                  - 430.58
+                  - 362.1
+                  - 440.77
+                  exchange:
+                  - Opensea - Seaport
+                  - Opensea - Seaport
+                  - Opensea - Seaport
+                  - Opensea (through GemSwap - Seaport)
+                  - X2Y2 (through GemSwap)
+                  - Opensea - Seaport
+                  - Opensea - Seaport
+                  - Opensea - Seaport
+                  - Opensea - Seaport (Advanced)
+                  - Opensea - Seaport
+                  block_number:
+                  - 15194253
+                  - 15194146
+                  - 15190891
+                  - 15190871
+                  - 15190871
+                  - 15189526
+                  - 15189523
+                  - 15189149
+                  - 15189130
+                  - 15188831
+                  block_timestamp:
+                  - '2022-07-22T19:15:27.000Z'
+                  - '2022-07-22T18:52:47.000Z'
+                  - '2022-07-22T06:57:19.000Z'
+                  - '2022-07-22T06:51:58.000Z'
+                  - '2022-07-22T06:51:58.000Z'
+                  - '2022-07-22T01:43:28.000Z'
+                  - '2022-07-22T01:43:03.000Z'
+                  - '2022-07-22T00:15:27.000Z'
+                  - '2022-07-22T00:10:42.000Z'
+                  - '2022-07-21T23:03:25.000Z'
+                  txn_hash:
+                  - '0x6af8a8f4c067ff0fc44c0720a48fa5c903495de41e408e00bdb2358c4ce379fa'
+                  - '0x1355e52a87474a0b52892b11620affcfb2186a320c1f51e208d0b081f84b86b3'
+                  - '0xcb1bf0d5928c4ad7d6a8b5d53fc1315cd4aaf3e09892d32c8c51915eab9c1c5c'
+                  - '0xb5c43cbd77f137933304f6a868c2385e71024272d01dec3ecd06590cde6a0040'
+                  - '0xb5c43cbd77f137933304f6a868c2385e71024272d01dec3ecd06590cde6a0040'
+                  - '0x1c1dc2ce614668806cbb368e6065bb97354c24aa4e2184f91cac43e2e9c40b55'
+                  - '0x044c942d1941af19e53f72c451d4ed6650b634545fc9595f48fb7f040a29e3ba'
+                  - '0x1dbc262def552ff38cbf0cff7dd321d5e9aaac4fb9341ea4940775d6f7bb6c12'
+                  - '0xbd1fdf60b855f3f65a70a31cb0e300cc83b4c42fc39070cc11c8c33e7dcfd01b'
+                  - '0x7782406ecc8d0b127f05c33c7529bc96705059bb2001afd6fc4891c6fed83fa0'
+                  token_amount:
+                  - 1
+                  - 1
+                  - 1
+                  - 1
+                  - 1
+                  - 1
+                  - 1
+                  - 1
+                  - 1
+                  - 1
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: object
+                    description: Object of arrays ordered in descending transaction date
+                    properties:
+                      token_id:
+                        type: array
+                        items:
+                          type: string
+                        description: A unique token identifier
+                      from_address:
+                        type: array
+                        items:
+                          type: string
+                        description: A unique wallet address from which the corresponding token was tranferred
+                      to_address:
+                        type: array
+                        items:
+                          type: string
+                        description: A unique wallet address receiving the corresponding token
+                      eth_value:
+                        type: array
+                        items:
+                          type: number
+                        description: The equivalent ETH value for each transaction
+                      usd_value:
+                        type: array
+                        items:
+                          type: number
+                        description: The equivalent USD value
+                      exchange:
+                        type: array
+                        items:
+                          type: string
+                        description: The marketplace where a transaction occurred
+                      block_number:
+                        type: array
+                        items:
+                          type: number
+                        description: The block number on which a transaction occurred
+                      block_timestamp:
+                        type: array
+                        items:
+                          type: string
+                        description: The UTC timestamp at which a block was validated
+                      collection_address:
+                        type: string
+                        description: The unique address allocated for the collection
+                      collection_name:
+                        type: string
+                        description: The name of the collection
+                      total_items:
+                        type: number
+                        description: The total number of items that can be retrieved
+                      total_pages:
+                        type: number
+                        description: The total number of pages that can be queried
+                      page:
+                        type: number
+                        description: The current reported page
+                  status:
+                    type: number
+                    description: The response status code
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /data/eth/getLiveListings:
+    post:
+      security:
+      - api_key: []
+      summary: Collection Live Listings by Marketplace
+      description: Returns live listings for a given collection by marketplace
+      operationId: getEthLiveListings
+      tags:
+      - Ethereum
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                collection_address:
+                  type: string
+                  description: The contract address of a collection.
+                  example: '0x01cc1bd2dece86e54481f1e6aeffc2fcc6915480'
+                include_metadata:
+                  type: boolean
+                  description: Include token metadata in response
+                  example: true
+              required:
+              - collection_address
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                  collection_address: '0x60e4d786628fea6478f785a6d7e704777c86a7c6'
+                  total_listings: 2
+                  listings:
+                  - token_id: '4244'
+                    eth_value: 15.29
+                    marketplace_name: Blur
+                    owner: '0x5e1416e0ec35b47a6b7687c5e783e9b98a83dd45'
+                    listed_at: '2023-03-06T10:46:57.000Z'
+                    suspicious: true
+                  - token_id: '6365'
+                    eth_value: 15.319
+                    marketplace_name: Blur
+                    owner: '0x77e3e957082ca648c1c5b0f3e6aec00ab1245186'
+                    listed_at: '2023-03-06T18:28:37.000Z'
+                    suspicious: true
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: object
+                    description: Returns live listings for a given collection by marketplace
+                    properties:
+                      listings:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            token_id:
+                              type: string
+                              description: The token identifier
+                            eth_value:
+                              type: number
+                              description: The equivalent ETH value
+                            marketplace:
+                              type: string
+                              description: The marketplace name where the token was listed
+                            listed_at:
+                              type: string
+                              description: The listing date
+                            suspicious:
+                              type: boolean
+                              description: Whether the marketplace has flagged the token listing as suspicious
+                      total_listings:
+                        type: number
+                      collection_address:
+                        type: string
+                        description: The unique address allocated for the collection
+                  status:
+                    type: number
+                    description: The response status code
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /data/eth/getMarketplaceData:
+    post:
+      security:
+      - api_key: []
+      summary: Collection Summary by Marketplace
+      description: Returns summary statistics for a collection by marketplace
+      operationId: getEthMarketplaceData
+      tags:
+      - Ethereum
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                collection_address:
+                  type: array
+                  description: Array of collection addresses
+                  items:
+                    type: string
+                    example: '0xd70f41dd5875eee7fa9dd8048567bc932124a8d2'
+                sub_collection_tags:
+                  type: array
+                  description: Array of sub collections (e.g. Art Blocks)
+                  items:
+                    type: string
+                    example: Fontana
+                normalized:
+                  type: boolean
+                  description: Return normalized data across marketplaces
+                  example: true
+              required:
+              - collection_address
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                - collection_address: '0xa7d8d9ef8d8ce8992df33d8b8cf4aebabd5bd270'
+                  marketplaces:
+                  - marketplace: OpenSea
+                    updated_at: '2022-10-06T18:33:05.291'
+                    url: opensea.io/collection/art-blocks
+                    stats_summary:
+                      one_hour_volume: 0
+                      one_hour_change: 0
+                      one_hour_sales: 0
+                      one_hour_sales_change: 0
+                      one_hour_average_price: 0
+                      one_hour_difference: 0
+                      six_hour_volume: 0
+                      six_hour_change: 0
+                      six_hour_sales: 0
+                      six_hour_sales_change: 0
+                      six_hour_average_price: 0
+                      six_hour_difference: 0
+                      one_day_volume: 0
+                      one_day_change: -1
+                      one_day_sales: 0
+                      one_day_sales_change: 0
+                      one_day_average_price: 0
+                      one_day_difference: -1.503
+                      seven_day_volume: 1.503
+                      seven_day_change: -0.7052941176470588
+                      seven_day_sales: 1
+                      seven_day_average_price: 1.503
+                      seven_day_difference: -3.5969999999999995
+                      thirty_day_volume: 9.933
+                      thirty_day_change: -0.3958029197080293
+                      thirty_day_sales: 4
+                      thirty_day_average_price: 2.48325
+                      thirty_day_difference: -6.5070000000000014
+                      total_volume: 1782.9105364414277
+                      total_sales: 749
+                      total_supply: 512
+                      count: 512
+                      num_owners: 250
+                      average_price: 2.380387899120731
+                      num_reports: 5
+                      market_cap: 769.536
+                      floor_price: 2.65
+                  - marketplace: X2Y2
+                    url: x2y2.io/collection/art-blocks
+                    updated_at: '2022-10-13T16:17:52.046Z'
+                    stats_summary:
+                      floor_price: 0.04
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: object
+                    description: Returns summary statistics for a collection by marketplace
+                    properties:
+                      marketplaces:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            marketplace:
+                              type: string
+                              description: The marketplace name where the stats summary was sourced
+                            updated_at:
+                              type: string
+                              description: The last time Gallop pulled the marketplace stats summary
+                            stats_summary:
+                              type: object
+                              description: The marketplace stats summary
+                      collection_address:
+                        type: string
+                        description: The unique address allocated for the collection
+                  status:
+                    type: number
+                    description: The response status code
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /data/eth/getMarketplaceFloorPrice:
+    post:
+      security:
+      - api_key: []
+      summary: Marketplace Floor Price by Collection
+      description: Returns current floor price for all collections by marketplace
+      operationId: getEthMarketplaceFloorPrice
+      tags:
+      - Ethereum
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                page:
+                  type: integer
+                  description: The pagination cursor.
+                  example: 1
+                page_size:
+                  type: integer
+                  enum:
+                  - 50
+                  - 100
+                  - 500
+                  - 1000
+                  description: The number of records returned per page.
+                  example: 100
+                collection_address:
+                  type: array
+                  description: Array of collection addresses
+                  items:
+                    type: string
+                    example: '0xd70f41dd5875eee7fa9dd8048567bc932124a8d2'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                  total_items: 1
+                  total_pages: 1
+                  page: 1
+                  collections:
+                  - collection_address: '0x8821bee2ba0df28761afff119d66390d594cd280'
+                    marketplaces:
+                    - updated_at: '2023-04-11T19:20:55.911'
+                      floor_price: 9.19
+                      marketplace: Blur
+                      collection_id: degods
+                      eth_floor_price: 9.19
+                      usd_floor_price: 17535.25
+                      sub_collection_tag: ''
+                    - updated_at: '2023-04-11T19:20:48.461'
+                      floor_price: 9.19
+                      marketplace: OpenSeaPro
+                      collection_id: degods
+                      eth_floor_price: 9.19
+                      usd_floor_price: 17535.25
+                      sub_collection_tag: ''
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: object
+                    description: Returns current floor price for all collections by marketplace
+                    properties:
+                      collections:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            collection_address:
+                              type: string
+                              description: The queried collection address
+                            marketplace:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  updated_at:
+                                    type: string
+                                    description: The last time Gallop pulled the marketplace floor price
+                                  floor_price:
+                                    type: number
+                                    description: The ETH value of the floor price
+                                  marketplace:
+                                    type: string
+                                    description: The marketplace name where the floor price was pulled from
+                                  collection_id:
+                                    type: string
+                                    description: The marketplace specific collection identifier
+                                  sub_collection_tag:
+                                    type: string
+                                    description: The sub collection tag if available, e.g. ArtBlocks
+                      total_items:
+                        type: number
+                        description: The total number of items that can be retrieved
+                      total_pages:
+                        type: number
+                        description: The total number of pages that can be queried
+                      page:
+                        type: number
+                        description: The current reported page
+                  status:
+                    type: number
+                    description: The response status code
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /data/eth/getTokenTransactions:
+    post:
+      security:
+      - api_key: []
+      summary: Transactions by Token
+      description: Returns all transactions for a given token
+      operationId: getEthTokenTransactions
+      tags:
+      - Ethereum
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                collection_address:
+                  type: string
+                  description: The contract address the token belongs to.
+                  example: '0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb'
+                token_id:
+                  type: string
+                  description: The token id.
+                  example: '6000'
+                page:
+                  type: integer
+                  description: The pagination cursor.
+                  example: 1
+                page_size:
+                  type: integer
+                  enum:
+                  - 50
+                  - 100
+                  - 500
+                  - 1000
+                  description: The number of records returned per page.
+                  example: 100
+                start_date:
+                  type: string
+                  description: The earliest block timestamp in ISO 8601 format.
+                  example: '2023-01-01T00:00:00.000Z'
+                start_block_number:
+                  type: integer
+                  description: The oldest block number to return.
+                  example: 100
+                end_date:
+                  type: string
+                  description: The latest block timestamp in ISO 8601 format.
+                  example: '2023-01-01T00:00:00.000Z'
+              required:
+              - collection_address
+              - token_id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                  total_items: 6
+                  total_pages: 1
+                  page: 1
+                  collection_address: '0x3bf2922f4520a8ba0c2efc3d2a1539678dad5e9d'
+                  collection_name: 0N1 Force
+                  transactions:
+                  - token_id: '6592'
+                    from_address: '0xffa7282b67f72edd50e37b68d3599aa3ff3a9fb8'
+                    to_address: '0x38daea6f17e4308b0da9647db9ca6d84a3a7e195'
+                    eth_value: 0.28
+                    usd_value: 446.77
+                    exchange: Opensea (through GemSwap - Seaport)
+                    block_number: 15190871
+                    block_timestamp: '2022-07-22T06:51:58.000Z'
+                    txn_hash: '0xb5c43cbd77f137933304f6a868c2385e71024272d01dec3ecd06590cde6a0040'
+                    token_amount: 1
+                  - token_id: '6592'
+                    from_address: '0x6188c2b2c93d100a6b8fdc89c2a2fcb91f5c6b3a'
+                    to_address: '0xffa7282b67f72edd50e37b68d3599aa3ff3a9fb8'
+                    eth_value: 0.2803
+                    usd_value: 440.77
+                    exchange: Opensea - Seaport
+                    block_number: 15188831
+                    block_timestamp: '2022-07-21T23:03:25.000Z'
+                    txn_hash: '0x7782406ecc8d0b127f05c33c7529bc96705059bb2001afd6fc4891c6fed83fa0'
+                    token_amount: 1
+                  - token_id: '6592'
+                    from_address: '0x85862ddd323e215e70dd4dd161b0c9f81d402c2a'
+                    to_address: '0x6188c2b2c93d100a6b8fdc89c2a2fcb91f5c6b3a'
+                    eth_value: 0.68
+                    usd_value: 1931.45
+                    exchange: Opensea
+                    block_number: 14703310
+                    block_timestamp: '2022-05-03T07:27:34.000Z'
+                    txn_hash: '0x1576e3ed5cb5725f3c29484c9a94be27aa7aacd11f47a014ef76d15f6081edfc'
+                    token_amount: 1
+                  - token_id: '6592'
+                    from_address: '0x13b3a50f3947476eda74fe191344524e2d2d28e5'
+                    to_address: '0x85862ddd323e215e70dd4dd161b0c9f81d402c2a'
+                    eth_value: 2.8
+                    usd_value: 9371.36
+                    exchange: Opensea
+                    block_number: 14011619
+                    block_timestamp: '2022-01-15T18:24:13.000Z'
+                    txn_hash: '0x043482303c6d0b69047eb8dfd54dc86a7cc595a0e8ad12406e21e256dae7bb0a'
+                    token_amount: 1
+                  - token_id: '6592'
+                    from_address: '0xcfa66e92f4070a6d80cd45f4738afa5ab6e62519'
+                    to_address: '0x13b3a50f3947476eda74fe191344524e2d2d28e5'
+                    eth_value: 3.5
+                    usd_value: 11727.45
+                    exchange: Opensea
+                    block_number: 13258687
+                    block_timestamp: '2021-09-19T21:40:26.000Z'
+                    txn_hash: '0xeb1308bc628c2451574d0b281366d8755706f7f8e297f6f2179ad9a05e0bc1b1'
+                    token_amount: 1
+                  - token_id: '6592'
+                    from_address: '0x07c5ea539a54318780655b7a74fc379f3f37c7a6'
+                    to_address: '0xcfa66e92f4070a6d80cd45f4738afa5ab6e62519'
+                    eth_value: 0.5199
+                    usd_value: 1661.84
+                    exchange: Opensea
+                    block_number: 13061167
+                    block_timestamp: '2021-08-20T08:55:04.000Z'
+                    txn_hash: '0x8c6ca2c88ad4d2cecfafd9baf9b9950c69a786e500dc8c03c978b238d12fb72d'
+                    token_amount: 1
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: object
+                    description: Returns all transactions for a given token
+                    properties:
+                      transactions:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            token_id:
+                              type: string
+                              description: The token identifier
+                            from_address:
+                              type: string
+                              description: The unique wallet address from which the token is tranferred
+                            to_address:
+                              type: string
+                              description: The unique wallet address receiving the token
+                            eth_value:
+                              type: number
+                              description: The equivalent ETH value
+                            usd_value:
+                              type: number
+                              description: The equivalent USD value
+                            exchange:
+                              type: string
+                              description: The marketplace traded and potential order contract details
+                            block_number:
+                              type: number
+                              description: The block number on which the transaction occurred
+                            block_timestamp:
+                              type: string
+                              description: The UTC timestamp at which the block was validated
+                            txn_hash:
+                              type: string
+                              description: The transaction hash
+                            token_amount:
+                              type: number
+                              description: The number of tokens that were transacted
+                      total_items:
+                        type: number
+                        description: The total number of items that can be retrieved
+                      total_pages:
+                        type: number
+                        description: The total number of pages that can be queried
+                      page:
+                        type: number
+                        description: The current reported page
+                  status:
+                    type: number
+                    description: The response status code
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /data/eth/getTokens:
+    post:
+      security:
+      - api_key: []
+      summary: Tokens by Collection
+      description: Returns all tokens for a given collection
+      operationId: getEthTokens
+      tags:
+      - Ethereum
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                collection_address:
+                  type: string
+                  description: The contract address of the token collection.
+                  example: '0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb'
+                token_id:
+                  type: array
+                  description: A list of token ids.
+                  items:
+                    type: string
+                    example: '303'
+                page:
+                  type: integer
+                  description: The pagination cursor.
+                  example: 1
+                page_size:
+                  type: integer
+                  enum:
+                  - 50
+                  - 100
+                  - 500
+                  - 1000
+                  description: The number of records returned per page.
+                  example: 100
+              required:
+              - collection_address
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                  total_items: 1000
+                  total_pages: 100
+                  page: 1
+                  collection_address: '0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb'
+                  collection_name: CRYPTOPUNKS
+                  tokens:
+                  - token_id: '0'
+                    token_name: CryptoPunk 0
+                    collection_address: '0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb'
+                    description: null
+                    collection_uri: https://larvalabs.com/
+                    image_uri: https://larvalabs.com/cryptopunks/details/0
+                    attributes:
+                    - value: Female
+                      trait_type: body_type
+                    - value:
+                      - Green Eye Shadow
+                      - Earring
+                      - Blonde Bob
+                      trait_type: accessories
+                  - token_id: '1'
+                    token_name: CryptoPunk 1
+                    collection_address: '0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb'
+                    description: null
+                    collection_uri: https://larvalabs.com/
+                    image_uri: https://larvalabs.com/cryptopunks/details/1
+                    attributes:
+                    - value: Male
+                      trait_type: body_type
+                    - value:
+                      - Smile
+                      - Mohawk
+                      trait_type: accessories
+                  - token_id: '2'
+                    token_name: CryptoPunk 2
+                    collection_address: '0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb'
+                    description: null
+                    collection_uri: https://larvalabs.com/
+                    image_uri: https://larvalabs.com/cryptopunks/details/2
+                    attributes:
+                    - value: Female
+                      trait_type: body_type
+                    - value:
+                      - Wild Hair
+                      trait_type: accessories
+                  - token_id: '3'
+                    token_name: CryptoPunk 3
+                    collection_address: '0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb'
+                    description: null
+                    collection_uri: https://larvalabs.com/
+                    image_uri: https://larvalabs.com/cryptopunks/details/3
+                    attributes:
+                    - value: Male
+                      trait_type: body_type
+                    - value:
+                      - Wild Hair
+                      - Nerd Glasses
+                      - Pipe
+                      trait_type: accessories
+                  - token_id: '4'
+                    token_name: CryptoPunk 4
+                    collection_address: '0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb'
+                    description: null
+                    collection_uri: https://larvalabs.com/
+                    image_uri: https://larvalabs.com/cryptopunks/details/4
+                    attributes:
+                    - value: Male
+                      trait_type: body_type
+                    - value:
+                      - Big Shades
+                      - Wild Hair
+                      - Earring
+                      - Goat
+                      trait_type: accessories
+                  - token_id: '5'
+                    token_name: CryptoPunk 5
+                    collection_address: '0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb'
+                    description: null
+                    collection_uri: https://larvalabs.com/
+                    image_uri: https://larvalabs.com/cryptopunks/details/5
+                    attributes:
+                    - value: Female
+                      trait_type: body_type
+                    - value:
+                      - Purple Eye Shadow
+                      - Half Shaved
+                      - Earring
+                      trait_type: accessories
+                  - token_id: '6'
+                    token_name: CryptoPunk 6
+                    collection_address: '0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb'
+                    description: null
+                    collection_uri: https://larvalabs.com/
+                    image_uri: https://larvalabs.com/cryptopunks/details/6
+                    attributes:
+                    - value: Male
+                      trait_type: body_type
+                    - value:
+                      - Do-rag
+                      trait_type: accessories
+                  - token_id: '7'
+                    token_name: CryptoPunk 7
+                    collection_address: '0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb'
+                    description: null
+                    collection_uri: https://larvalabs.com/
+                    image_uri: https://larvalabs.com/cryptopunks/details/7
+                    attributes:
+                    - value: Female
+                      trait_type: body_type
+                    - value:
+                      - Wild White Hair
+                      - Spots
+                      - Clown Eyes Blue
+                      trait_type: accessories
+                  - token_id: '8'
+                    token_name: CryptoPunk 8
+                    collection_address: '0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb'
+                    description: null
+                    collection_uri: https://larvalabs.com/
+                    image_uri: https://larvalabs.com/cryptopunks/details/8
+                    attributes:
+                    - value: Male
+                      trait_type: body_type
+                    - value:
+                      - Messy Hair
+                      - Luxurious Beard
+                      trait_type: accessories
+                  - token_id: '9'
+                    token_name: CryptoPunk 9
+                    collection_address: '0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb'
+                    description: null
+                    collection_uri: https://larvalabs.com/
+                    image_uri: https://larvalabs.com/cryptopunks/details/9
+                    attributes:
+                    - value: Male
+                      trait_type: body_type
+                    - value:
+                      - Clown Nose
+                      - Police Cap
+                      - Big Beard
+                      trait_type: accessories
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: object
+                    description: Returns all tokens for a given collection
+                    properties:
+                      tokens:
+                        type: array
+                        description: Key value pairs describing the token
+                        items:
+                          type: object
+                          properties:
+                            token_id:
+                              type: string
+                              description: The token identifier
+                            token_name:
+                              type: string
+                              description: The token name
+                            description:
+                              type: string
+                              description: The token description
+                            image_uri:
+                              type: string
+                              description: The image URI
+                            attributes:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  value:
+                                    type: number
+                                    description: The attribute value
+                                  trait_type:
+                                    type: string
+                                    description: The attribute trait type
+                      collection_address:
+                        type: string
+                        description: The unique address allocated for the collection
+                      collection_name:
+                        type: string
+                        description: The name of the collection
+                      total_items:
+                        type: number
+                        description: The total number of items that can be retrieved
+                      total_pages:
+                        type: number
+                        description: The total number of pages that can be queried
+                      page:
+                        type: number
+                        description: The current reported page
+                  status:
+                    type: number
+                    description: The response status code
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /data/eth/getWalletNFTs:
+    post:
+      security:
+      - api_key: []
+      summary: Tokens Owned by Wallet
+      description: Returns all tokens owned for a given wallet
+      operationId: getEthWalletNFTs
+      tags:
+      - Ethereum
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                wallet_address:
+                  type: string
+                  description: The wallet address to search.
+                  example: '0xab0cda4cc21207fd9433356afe9428b6fac8a8a5'
+                page:
+                  type: integer
+                  description: The pagination cursor.
+                  example: 1
+                page_size:
+                  type: integer
+                  enum:
+                  - 50
+                  - 100
+                  - 500
+                  - 1000
+                  description: The number of records returned per page.
+                  example: 100
+                include_metadata:
+                  type: boolean
+                  description: Include token metadata in response
+                  example: true
+              required:
+              - wallet_address
+      responses:
+        '200':
+          description: An object containing the tokens owned by this wallet
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                  total_items: 4
+                  total_pages: 1
+                  page: 1
+                  nfts_owned:
+                  - collection_name: Advanced WafukuGen Collection
+                    collection_address: '0x9e03ee1a4a60163a64e73f62a22170a865301c33'
+                    symbol: null
+                    type: ERC-721
+                    token_id: '223'
+                    amount_owned: 1
+                  - collection_name: Agoria {Comp-nd} x [ L ] Market
+                    collection_address: '0x0d1876e3fc564295a1b6bcf951f9d2e7af54be37'
+                    symbol: COMPND
+                    type: ERC-721
+                    token_id: '4215'
+                    amount_owned: 1
+                  - collection_name: Agoria {Comp-nd} x [ L ] Market
+                    collection_address: '0x0d1876e3fc564295a1b6bcf951f9d2e7af54be37'
+                    symbol: COMPND
+                    type: ERC-721
+                    token_id: '3258'
+                    amount_owned: 1
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: object
+                    description: Returns all tokens owned for a given wallet
+                    properties:
+                      nfts_owned:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            collection_address:
+                              type: string
+                              description: The unique address allocated for the collection
+                            collection_name:
+                              type: string
+                              description: The name of the collection
+                            symbol:
+                              type: string
+                              description: The ticker symbol of the collection
+                            type:
+                              type: string
+                              description: The collection's contract type
+                            token_id:
+                              type: string
+                              description: The token identifier
+                            amount_owned:
+                              type: number
+                              description: The number of tokens owned (1 for ERC-721)
+                      total_items:
+                        type: number
+                        description: The total number of items that can be retrieved
+                      total_pages:
+                        type: number
+                        description: The total number of pages that can be queried
+                      page:
+                        type: number
+                        description: The current reported page
+                  status:
+                    type: number
+                    description: The response status code
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /data/eth/getWalletTransactions:
+    post:
+      security:
+      - api_key: []
+      summary: Historical Token Transactions by Wallet
+      description: Returns all historical token transactions for a given wallet
+      operationId: getEthWalletTransactions
+      tags:
+      - Ethereum
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                wallet_address:
+                  type: string
+                  description: The wallet address to search.
+                  example: '0xe724e14c6b7599b710804df390e39928abfed082'
+                page:
+                  type: integer
+                  description: The pagination cursor.
+                  example: 1
+                page_size:
+                  type: integer
+                  enum:
+                  - 50
+                  - 100
+                  - 500
+                  - 1000
+                  description: The number of records returned per page.
+                  example: 100
+              required:
+              - wallet_address
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                  total_items: 3
+                  total_pages: 1
+                  page: 1
+                  transactions:
+                  - collection_address: '0x3bf2922f4520a8ba0c2efc3d2a1539678dad5e9d'
+                    collection_name: 0N1 Force
+                    token_id: '3031'
+                    from_address: '0x0f08393a84a1ed49567accac1e5dd254096a09ce'
+                    to_address: '0xcbcc922ec77314d44b0be1a40e80a9b3ccf1fa6a'
+                    eth_value: 0.3
+                    usd_value: 472.44
+                    exchange: Opensea - Seaport
+                    block_number: 15194253
+                    block_timestamp: '2022-07-22T19:15:27.000Z'
+                    txn_hash: '0x6af8a8f4c067ff0fc44c0720a48fa5c903495de41e408e00bdb2358c4ce379fa'
+                    token_amount: 1
+                  - collection_address: '0x3a8778a58993ba4b941f85684d74750043a4bb5f'
+                    collection_name: BullsOnTheBlock
+                    token_id: '9063'
+                    from_address: '0xc1f6770d736895894807dc95dcd9cbca766a7da1'
+                    to_address: '0xcbcc922ec77314d44b0be1a40e80a9b3ccf1fa6a'
+                    eth_value: 0.36
+                    usd_value: 1226.6
+                    exchange: Opensea
+                    block_number: 13354749
+                    block_timestamp: '2021-10-04T20:25:23.000Z'
+                    txn_hash: '0x28715ee6f17ad937ea50d4a8807b772b3aa6aa1e20d6d5dc8d66ccf297b5d59c'
+                    token_amount: 1
+                  - collection_address: '0xa08126f5e1ed91a635987071e6ff5eb2aeb67c48'
+                    collection_name: GalaxyEggs
+                    token_id: '7270'
+                    from_address: '0x03bfa058dd733ae9edd88939366322496ecb5291'
+                    to_address: '0xcbcc922ec77314d44b0be1a40e80a9b3ccf1fa6a'
+                    eth_value: 0.715
+                    usd_value: 2539.9
+                    exchange: Opensea
+                    block_number: 13232393
+                    block_timestamp: '2021-09-15T20:13:46.000Z'
+                    txn_hash: '0xff9e32d967659a28daa92c85714bd0ec786799e8f48f591038b96594330e73e8'
+                    token_amount: 1
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: object
+                    description: Returns all historical token transactions for a given wallet
+                    properties:
+                      transactions:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            token_id:
+                              type: string
+                              description: The token identifier
+                            from_address:
+                              type: string
+                              description: The unique wallet address from which the token is tranferred
+                            to_address:
+                              type: string
+                              description: The unique wallet address receiving the token
+                            eth_value:
+                              type: number
+                              description: The equivalent ETH value
+                            usd_value:
+                              type: number
+                              description: The equivalent USD value
+                            exchange:
+                              type: string
+                              description: The marketplace traded and potential order contract details
+                            block_number:
+                              type: number
+                              description: The block number on which the transaction occurred
+                            block_timestamp:
+                              type: string
+                              description: The UTC timestamp at which the block was validated
+                            txn_hash:
+                              type: string
+                              description: The transaction hash
+                            token_amount:
+                              type: number
+                              description: The number of tokens that were transacted
+                      total_items:
+                        type: number
+                        description: The total number of items that can be retrieved
+                      total_pages:
+                        type: number
+                        description: The total number of pages that can be queried
+                      page:
+                        type: number
+                        description: The current reported page
+                  status:
+                    type: number
+                    description: The response status code
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /insights/eth/getTokenAppraisal:
+    post:
+      security:
+      - api_key: []
+      summary: Liquidation & Appraisal Estimate by Token
+      description: Get estimates of appraisal and liquidation values for a set of tokens. The app returns nowcasts by default, but if provided a `horizon` and `frequency`, it will return forcasts for `horizon` periods out at interval `frequency`. The app is does not deliver individualized financial advice, but merely provides analytical estimates of token appraisal and liquidation values
+      operationId: getEthTokenAppraisal
+      tags:
+      - Ethereum
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                collection_address:
+                  type: string
+                  description: The contract address of the token collection.
+                  example: '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d'
+                token_id:
+                  type: array
+                  description: The id(s) for the token(s).
+                  items:
+                    type: string
+                    example: '40'
+                rept_curr:
+                  type: string
+                  enum:
+                  - eth
+                  - usd
+                  description: The currency to report results in
+                  example: eth
+                frequency:
+                  type: string
+                  description: The interval at which to calculate intermediate results and forecasts.
+                  example: 1W
+                horizon:
+                  type: integer
+                  description: The forecast horizon (i.e. the number of periods to forecast out). Defaults to zero which only returns nowcasts.
+                  example: 5
+                alpha:
+                  type: number
+                  description: The significance level for the liquidation estimate, e.g. 0.05 for 95% confidence
+                  example: 0.1
+                exclude_wash:
+                  type: boolean
+                  description: Exclude suspected wash transactions?
+                  example: 'true'
+              required:
+              - collection_address
+              - token_id
+      responses:
+        '200':
+          description: An object containing appraisal and liquidation value estimates for a (set of) given token id(s).
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                - token_id: '40'
+                  appraisal: 78.03807216506911
+                  liquidation: 65.57171592775042
+                  forecasts: null
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /insights/eth/getWalletLabels:
+    post:
+      security:
+      - api_key: []
+      summary: Wallet Activity Labels
+      description: "Classifies a wallet's behaviour according to its on-chain activity.          Each wallet has labels for volume (ETH value transacted), activity (number of unique transactions), and wash (proportion of trades suspected to be washes). \n         Labels for volume_status include: zero (no transactions), light (less than ~0.75 ETH transacted), neutral (less than ~100 ETH transacted), high (over ~100 ETH transacted) \n         Labels for activity_status include: zero (no transactions), dormant (fewer than ~12 transactions), neutral (fewer than ~200 transactions), active (over ~200 transactions) \n         Labels for wash_status include: none (no suspected washes), low (fewer 5% of transactions are suspected washes), moderate (fewer 50% of transactions are suspected washes), high (over 50% of transactions are suspected washes) \n         Note: label weights are based on constant quantiles so exact thresholds are subject to change."
+      operationId: getEthWalletLabels
+      tags:
+      - Ethereum
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                wallet_address:
+                  type: array
+                  description: The EVM compatible wallet addresses
+                  items:
+                    type: string
+                    example: '0xcf561ea02950b819b0999ab3c3b43243d53e9b51'
+              required:
+              - wallet_address
+      responses:
+        '200':
+          description: An object containing the wallet labels
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                - blockchain: eth
+                  wallet_address: '0x73b03def245f5c8ab4f58a40df4ae28ace64b1c4'
+                  volume_status: heavy
+                  activity_status: active
+                  wash_status: low
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /insights/eth/getWalletValuation:
+    post:
+      security:
+      - api_key: []
+      summary: Value All Tokens Owned by Wallet
+      description: Returns valuation of all non-fungible and semi-fungible tokens owned for a given wallet (ERC-721 and ERC-1155)
+      operationId: getEthWalletValuation
+      tags:
+      - Ethereum
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                wallet_address:
+                  type: string
+                  description: The wallet address to search.
+                  example: '0xab0cda4cc21207fd9433356afe9428b6fac8a8a5'
+                historical:
+                  type: boolean
+                  description: Inlcude historical wallet valuation?
+                  example: 'true'
+                include_hist_nfts:
+                  type: boolean
+                  description: Include top 10 individual nft valuation in response (historical only)?
+                  example: 'true'
+              required:
+              - wallet_address
+      responses:
+        '200':
+          description: An object containing the tokens owned by this wallet
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                  total_items: 4
+                  nfts_valued: 3
+                  wallet_value: 99.164
+                  liquidation_value: 88.5258
+                  nfts_owned:
+                  - collection_name: CRYPTOPUNKS
+                    sub_collection_tag: null
+                    collection_address: '0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb'
+                    symbol: Ͼ
+                    type: ERC-721
+                    token_id: '6561'
+                    amount_owned: '1'
+                    appraised_price: 78.0208
+                    liquidation_price: 69.8141
+                  - collection_name: Art Blocks
+                    sub_collection_tag: chromie-squiggle-by-snowfro
+                    collection_address: '0x059edd72cd353df5106d2b9cc5ab83a52287ac3a'
+                    symbol: BLOCKS
+                    type: ERC-721
+                    token_id: '9426'
+                    amount_owned: '1'
+                    appraised_price: 12.9411
+                    liquidation_price: 11.4637
+                  - collection_name: QQL Mint Pass
+                    sub_collection_tag: null
+                    collection_address: '0xc73b17179bf0c59cd5860bb25247d1d1092c1088'
+                    symbol: QQL-MP
+                    type: ERC-721
+                    token_id: '960'
+                    amount_owned: '1'
+                    appraised_price: 8.2021
+                    liquidation_price: 7.248
+                  - collection_name: FlyFrogs
+                    sub_collection_tag: null
+                    collection_address: '0x795108498c0ec7cdd4b1d62a27344e600d39c6d1'
+                    symbol: FlyFrogs
+                    type: ERC-1155
+                    token_id: '3'
+                    amount_owned: '1'
+                    appraised_price: null
+                    liquidation_price: null
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+components:
+  securitySchemes:
+    api_key:
+      type: apiKey
+      in: header
+      name: x-api-key
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: false
+  samples-enabled: true

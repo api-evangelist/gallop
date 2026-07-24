@@ -1,0 +1,213 @@
+openapi: 3.0.2
+info:
+  title: Analytics Ethereum Starknet API
+  description: Sales, pricing, performance, and marketplace data, all in one place with low latency.
+  termsOfService: https://higallop.com/terms/
+  contact:
+    email: support@higallop.com
+  license:
+    name: UNLICENSED
+  version: 1.0.0
+servers:
+- url: https://api.prod.gallop.run/v1
+tags:
+- name: Starknet
+paths:
+  /data/skn/getMarketplaceData:
+    post:
+      security:
+      - api_key: []
+      summary: Gallop Marketplace Data
+      description: Lists marketplace data from contract address.
+      operationId: getSknMarketplaceData
+      tags:
+      - Starknet
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                collection_address:
+                  type: array
+                  description: Array of collection addresses
+                  items:
+                    type: string
+                    example: '0x04acd4b2a59eae7196f6a5c26ead8cb5f9d7ad3d911096418a23357bb2eac075'
+              required:
+              - collection_address
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                - collection_address: '0x07861c4e276294a7e859ff0ae2eec0c68300ad9cbb43219db907da9bad786488'
+                  marketplaces:
+                  - marketplace: Mint Square
+                    updated_at: '2022-10-07T13:45:04.949Z'
+                    url: mintsquare.io/collection/starknet/0x07861c4e276294a7e859ff0ae2eec0c68300ad9cbb43219db907da9bad786488
+                    stats_summary:
+                      floor_price: '100000000000000'
+                      num_items: 10006
+                      num_owners: 7439
+                      total_volume: '2554471421000000000'
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: object
+                    description: Returns summary statistics for collections by marketplace
+                    properties:
+                      marketplaces:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            marketplace:
+                              type: string
+                              description: The marketplace name where the stats summary was sourced
+                            updated_at:
+                              type: string
+                              description: The last time Gallop pulled the marketplace stats summary
+                            stats_summary:
+                              type: object
+                              description: The marketplace stats summary
+                      collection_address:
+                        type: string
+                        description: The unique address allocated for the collection
+                  status:
+                    type: number
+                    description: The response status code
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+  /data/skn/getMarketplaceFloorPrice:
+    post:
+      security:
+      - api_key: []
+      summary: Marketplace Floor Price by Collection
+      description: Returns current floor price for all collections by marketplace
+      operationId: getSknMarketplaceFloorPrice
+      tags:
+      - Starknet
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                page:
+                  type: integer
+                  description: The pagination cursor.
+                  example: 1
+                page_size:
+                  type: integer
+                  enum:
+                  - 50
+                  - 100
+                  - 500
+                  - 1000
+                  description: The number of records returned per page.
+                  example: 100
+                collection_address:
+                  type: array
+                  description: Array of collection addresses
+                  items:
+                    type: string
+                    example: '0x00002d0fe59a81c3c98fe65bbe62061e39e6effbd9ff9b4ca35ea3e9fdad7591'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              example:
+                status: 200
+                response:
+                  total_items: 3
+                  total_pages: 1
+                  page: 1
+                  collections:
+                  - collection_address: '0x00002d0fe59a81c3c98fe65bbe62061e39e6effbd9ff9b4ca35ea3e9fdad7591'
+                    marketplaces:
+                    - updated_at: '2022-11-04T01:00:08.765'
+                      floor_price: 5.55
+                      marketplace: Mint Square
+                      collection_id: '0x00002d0fe59a81c3c98fe65bbe62061e39e6effbd9ff9b4ca35ea3e9fdad7591'
+                  - collection_address: '0x0044bac3f28118ea1946963a1bc1dc6e3752e2ed1b355c0113fd8087d2db6b66'
+                    marketplaces:
+                    - updated_at: '2022-11-04T01:00:09.792'
+                      floor_price: null
+                      marketplace: Mint Square
+                      collection_id: '0x0044bac3f28118ea1946963a1bc1dc6e3752e2ed1b355c0113fd8087d2db6b66'
+                  - collection_address: '0x03090623ea32d932ca1236595076b00702e7d860696faf300ca9eb13bfe0a78c'
+                    marketplaces:
+                    - updated_at: '2022-11-04T01:00:02.628'
+                      floor_price: 0.00025
+                      marketplace: Aspect
+                      collection_id: '0x03090623ea32d932ca1236595076b00702e7d860696faf300ca9eb13bfe0a78c'
+                    - updated_at: '2022-11-04T01:00:07.829'
+                      floor_price: 0.0003
+                      marketplace: Mint Square
+                      collection_id: '0x03090623ea32d932ca1236595076b00702e7d860696faf300ca9eb13bfe0a78c'
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: object
+                    description: Returns current floor price for all collections by marketplace
+                    properties:
+                      collections:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            collection_address:
+                              type: string
+                              description: The queried collection address
+                            marketplace:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  updated_at:
+                                    type: string
+                                    description: The last time Gallop pulled the marketplace floor price
+                                  floor_price:
+                                    type: number
+                                    description: The ETH value of the floor price
+                                  marketplace:
+                                    type: string
+                                    description: The marketplace name where the floor price was pulled from
+                                  collection_id:
+                                    type: string
+                                    description: The marketplace specific collection identifier
+                      total_items:
+                        type: number
+                        description: The total number of items that can be retrieved
+                      total_pages:
+                        type: number
+                        description: The total number of pages that can be queried
+                      page:
+                        type: number
+                        description: The current reported page
+                  status:
+                    type: number
+                    description: The response status code
+        '400':
+          description: Bad request
+        '403':
+          description: Unauthorized
+components:
+  securitySchemes:
+    api_key:
+      type: apiKey
+      in: header
+      name: x-api-key
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: false
+  samples-enabled: true
