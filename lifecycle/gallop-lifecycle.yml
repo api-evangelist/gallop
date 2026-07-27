@@ -1,0 +1,23 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/*.json + https://gallop.readme.io/
+versioning:
+  scheme: uri-path
+  current: v1
+  spec_version: 1.0.0
+  base_path: /v1
+deprecation:
+  policy_url: null
+  sunset_header: false
+  deprecated_operations: []
+sla:
+  url: null
+  uptime_target: null
+status_page: null
+provider_status:
+  state: defunct-or-dormant
+  evidence:
+  - higallop.com in registry redemptionPeriod (expired 2026-05-18)
+  - api.prod.gallop.run no longer resolves / unreachable
+  - developer docs at gallop.readme.io still published
+  observed: '2026-07-19'

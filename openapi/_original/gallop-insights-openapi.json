@@ -1,0 +1,594 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "Insights API",
+    "description": "Recommendation, appraisal, discovery, and fraud tools to supercharge NFT applications.",
+    "termsOfService": "https://higallop.com/terms/",
+    "contact": {
+      "email": "support@higallop.com"
+    },
+    "license": {
+      "name": "UNLICENSED"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.prod.gallop.run/v1"
+    }
+  ],
+  "paths": {
+    "/insights/eth/getTokenAppraisal": {
+      "post": {
+        "security": [
+          {
+            "api_key": []
+          }
+        ],
+        "summary": "Liquidation & Appraisal Estimate by Token",
+        "description": "Get estimates of appraisal and liquidation values for a set of tokens. The app returns nowcasts by default, but if provided a `horizon` and `frequency`, it will return forcasts for `horizon` periods out at interval `frequency`. The app is does not deliver individualized financial advice, but merely provides analytical estimates of token appraisal and liquidation values",
+        "operationId": "getEthTokenAppraisal",
+        "tags": [
+          "Ethereum"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "collection_address": {
+                    "type": "string",
+                    "description": "The contract address of the token collection.",
+                    "example": "0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d"
+                  },
+                  "token_id": {
+                    "type": "array",
+                    "description": "The id(s) for the token(s).",
+                    "items": {
+                      "type": "string",
+                      "example": "40"
+                    }
+                  },
+                  "rept_curr": {
+                    "type": "string",
+                    "enum": [
+                      "eth",
+                      "usd"
+                    ],
+                    "description": "The currency to report results in",
+                    "example": "eth"
+                  },
+                  "frequency": {
+                    "type": "string",
+                    "description": "The interval at which to calculate intermediate results and forecasts.",
+                    "example": "1W"
+                  },
+                  "horizon": {
+                    "type": "integer",
+                    "description": "The forecast horizon (i.e. the number of periods to forecast out). Defaults to zero which only returns nowcasts.",
+                    "example": 5
+                  },
+                  "alpha": {
+                    "type": "number",
+                    "description": "The significance level for the liquidation estimate, e.g. 0.05 for 95% confidence",
+                    "example": 0.1
+                  },
+                  "exclude_wash": {
+                    "type": "boolean",
+                    "description": "Exclude suspected wash transactions?",
+                    "example": "true"
+                  }
+                },
+                "required": [
+                  "collection_address",
+                  "token_id"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "An object containing appraisal and liquidation value estimates for a (set of) given token id(s).",
+            "content": {
+              "application/json": {
+                "example": {
+                  "status": 200,
+                  "response": [
+                    {
+                      "token_id": "40",
+                      "appraisal": 78.03807216506911,
+                      "liquidation": 65.57171592775042,
+                      "forecasts": null
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "403": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/insights/eth/getWalletLabels": {
+      "post": {
+        "security": [
+          {
+            "api_key": []
+          }
+        ],
+        "summary": "Wallet Activity Labels",
+        "description": "Classifies a wallet's behaviour according to its on-chain activity.          Each wallet has labels for volume (ETH value transacted), activity (number of unique transactions), and wash (proportion of trades suspected to be washes). \n         Labels for volume_status include: zero (no transactions), light (less than ~0.75 ETH transacted), neutral (less than ~100 ETH transacted), high (over ~100 ETH transacted) \n         Labels for activity_status include: zero (no transactions), dormant (fewer than ~12 transactions), neutral (fewer than ~200 transactions), active (over ~200 transactions) \n         Labels for wash_status include: none (no suspected washes), low (fewer 5% of transactions are suspected washes), moderate (fewer 50% of transactions are suspected washes), high (over 50% of transactions are suspected washes) \n         Note: label weights are based on constant quantiles so exact thresholds are subject to change.",
+        "operationId": "getEthWalletLabels",
+        "tags": [
+          "Ethereum"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "wallet_address": {
+                    "type": "array",
+                    "description": "The EVM compatible wallet addresses",
+                    "items": {
+                      "type": "string",
+                      "example": "0xcf561ea02950b819b0999ab3c3b43243d53e9b51"
+                    }
+                  }
+                },
+                "required": [
+                  "wallet_address"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "An object containing the wallet labels",
+            "content": {
+              "application/json": {
+                "example": {
+                  "status": 200,
+                  "response": [
+                    {
+                      "blockchain": "eth",
+                      "wallet_address": "0x73b03def245f5c8ab4f58a40df4ae28ace64b1c4",
+                      "volume_status": "heavy",
+                      "activity_status": "active",
+                      "wash_status": "low"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "403": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/insights/eth/getWalletValuation": {
+      "post": {
+        "security": [
+          {
+            "api_key": []
+          }
+        ],
+        "summary": "Value All Tokens Owned by Wallet",
+        "description": "Returns valuation of all non-fungible and semi-fungible tokens owned for a given wallet (ERC-721 and ERC-1155)",
+        "operationId": "getEthWalletValuation",
+        "tags": [
+          "Ethereum"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "wallet_address": {
+                    "type": "string",
+                    "description": "The wallet address to search.",
+                    "example": "0xab0cda4cc21207fd9433356afe9428b6fac8a8a5"
+                  },
+                  "historical": {
+                    "type": "boolean",
+                    "description": "Inlcude historical wallet valuation?",
+                    "example": "true"
+                  },
+                  "include_hist_nfts": {
+                    "type": "boolean",
+                    "description": "Include top 10 individual nft valuation in response (historical only)?",
+                    "example": "true"
+                  }
+                },
+                "required": [
+                  "wallet_address"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "An object containing the tokens owned by this wallet",
+            "content": {
+              "application/json": {
+                "example": {
+                  "status": 200,
+                  "response": {
+                    "total_items": 4,
+                    "nfts_valued": 3,
+                    "wallet_value": 99.164,
+                    "liquidation_value": 88.5258,
+                    "nfts_owned": [
+                      {
+                        "collection_name": "CRYPTOPUNKS",
+                        "sub_collection_tag": null,
+                        "collection_address": "0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb",
+                        "symbol": "\u03fe",
+                        "type": "ERC-721",
+                        "token_id": "6561",
+                        "amount_owned": "1",
+                        "appraised_price": 78.0208,
+                        "liquidation_price": 69.8141
+                      },
+                      {
+                        "collection_name": "Art Blocks",
+                        "sub_collection_tag": "chromie-squiggle-by-snowfro",
+                        "collection_address": "0x059edd72cd353df5106d2b9cc5ab83a52287ac3a",
+                        "symbol": "BLOCKS",
+                        "type": "ERC-721",
+                        "token_id": "9426",
+                        "amount_owned": "1",
+                        "appraised_price": 12.9411,
+                        "liquidation_price": 11.4637
+                      },
+                      {
+                        "collection_name": "QQL Mint Pass",
+                        "sub_collection_tag": null,
+                        "collection_address": "0xc73b17179bf0c59cd5860bb25247d1d1092c1088",
+                        "symbol": "QQL-MP",
+                        "type": "ERC-721",
+                        "token_id": "960",
+                        "amount_owned": "1",
+                        "appraised_price": 8.2021,
+                        "liquidation_price": 7.248
+                      },
+                      {
+                        "collection_name": "FlyFrogs",
+                        "sub_collection_tag": null,
+                        "collection_address": "0x795108498c0ec7cdd4b1d62a27344e600d39c6d1",
+                        "symbol": "FlyFrogs",
+                        "type": "ERC-1155",
+                        "token_id": "3",
+                        "amount_owned": "1",
+                        "appraised_price": null,
+                        "liquidation_price": null
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "403": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/insights/pol/getTokenAppraisal": {
+      "post": {
+        "security": [
+          {
+            "api_key": []
+          }
+        ],
+        "summary": "Liquidation & Appraisal Estimate by Token",
+        "description": "Get estimates of appraisal and liquidation values for a set of tokens. The app returns nowcasts by default, but if provided a `horizon` and `frequency`, it will return forcasts for `horizon` periods out at interval `frequency`. The app is does not deliver individualized financial advice, but merely provides analytical estimates of token appraisal and liquidation values",
+        "operationId": "getPolTokenAppraisal",
+        "tags": [
+          "Polygon"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "collection_address": {
+                    "type": "string",
+                    "description": "The contract address of the token collection.",
+                    "example": "0xad59ecb77033391e847cc96829b08beb83151088"
+                  },
+                  "token_id": {
+                    "type": "array",
+                    "description": "The id(s) for the token(s).",
+                    "items": {
+                      "type": "string",
+                      "example": "5715"
+                    }
+                  },
+                  "rept_curr": {
+                    "type": "string",
+                    "enum": [
+                      "eth",
+                      "usd",
+                      "matic"
+                    ],
+                    "description": "The currency to report results in",
+                    "example": "eth"
+                  },
+                  "frequency": {
+                    "type": "string",
+                    "description": "The interval at which to calculate intermediate results and forecasts.",
+                    "example": "1W"
+                  },
+                  "horizon": {
+                    "type": "integer",
+                    "description": "The forecast horizon (i.e. the number of periods to forecast out). Defaults to zero which only returns nowcasts.",
+                    "example": 5
+                  },
+                  "alpha": {
+                    "type": "number",
+                    "description": "The significance level for the liquidation estimate, e.g. 0.05 for 95% confidence",
+                    "example": 0.1
+                  },
+                  "exclude_wash": {
+                    "type": "boolean",
+                    "description": "Exclude suspected wash transactions?",
+                    "example": "true"
+                  }
+                },
+                "required": [
+                  "collection_address",
+                  "token_id"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "An object containing appraisal and liquidation value estimates for a (set of) given token id(s).",
+            "content": {
+              "application/json": {
+                "example": {
+                  "status": 200,
+                  "response": [
+                    {
+                      "appraisal": 0.086,
+                      "forecasts": {
+                        "appraisal": {
+                          "2022-11-16 00:00:00": 0.08567277189118791,
+                          "2022-11-16 12:00:00": 0.0854334216627671,
+                          "2022-11-17 00:00:00": 0.08717138963930088
+                        },
+                        "liquidation": {
+                          "2022-11-16 00:00:00": 0.08567277189118791,
+                          "2022-11-16 12:00:00": 0.0854334216627671,
+                          "2022-11-17 00:00:00": 0.08717138963930088
+                        }
+                      },
+                      "liquidation": 0.086,
+                      "token_id": "5715"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "403": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/insights/pol/getWalletLabels": {
+      "post": {
+        "security": [
+          {
+            "api_key": []
+          }
+        ],
+        "summary": "Wallet Activity Labels",
+        "description": "Classifies a wallet's behaviour according to its on-chain activity",
+        "operationId": "getPolWalletLabels",
+        "tags": [
+          "Polygon"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "wallet_address": {
+                    "type": "array",
+                    "description": "The EVM compatible wallet addresses",
+                    "items": {
+                      "type": "string",
+                      "example": "0xcf561ea02950b819b0999ab3c3b43243d53e9b51"
+                    }
+                  }
+                },
+                "required": [
+                  "wallet_address"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "An object containing the wallet labels",
+            "content": {
+              "application/json": {
+                "example": {
+                  "status": 200,
+                  "response": [
+                    {
+                      "blockchain": "pol",
+                      "wallet_address": "0xfdff2b0be5caf0d62c89ba460e607b58263f3ca0",
+                      "volume_status": "heavy",
+                      "activity_status": "active",
+                      "wash_status": "low"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "403": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/insights/sol/getTokenAppraisal": {
+      "post": {
+        "security": [
+          {
+            "api_key": []
+          }
+        ],
+        "summary": "Liquidation & Appraisal Estimate by Token",
+        "description": "Get estimates of appraisal and liquidation values for a set of tokens. The app returns nowcasts by default, but if provided a `horizon` and `frequency`, it will return forcasts for `horizon` periods out at interval `frequency`. The app is does not deliver individualized financial advice, but merely provides analytical estimates of token appraisal and liquidation values",
+        "operationId": "getSolTokenAppraisal",
+        "tags": [
+          "Solana"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "mint_address": {
+                    "type": "array",
+                    "description": "List of mint addresses of tokens to appraise",
+                    "items": {
+                      "type": "string",
+                      "example": "8hBJ4TfzgozfNxqaWLT9hwgMzrbWRKCoeJysjPQnNea5"
+                    }
+                  },
+                  "rept_curr": {
+                    "type": "string",
+                    "enum": [
+                      "sol",
+                      "usd"
+                    ],
+                    "description": "The currency to report results in",
+                    "example": "sol"
+                  },
+                  "frequency": {
+                    "type": "string",
+                    "description": "The interval at which to calculate intermediate results and forecasts.",
+                    "example": "1W"
+                  },
+                  "horizon": {
+                    "type": "integer",
+                    "description": "The forecast horizon (i.e. the number of periods to forecast out). Defaults to zero which only returns nowcasts.",
+                    "example": 5
+                  },
+                  "alpha": {
+                    "type": "number",
+                    "description": "The significance level for the liquidation estimate, e.g. 0.05 for 95% confidence",
+                    "example": 0.1
+                  },
+                  "exclude_wash": {
+                    "type": "boolean",
+                    "description": "Exclude suspected wash transactions?",
+                    "example": "true"
+                  }
+                },
+                "required": [
+                  "mint_address"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "An object containing appraisal and liquidation value estimates for a (set of) given mint address(es).",
+            "content": {
+              "application/json": {
+                "example": {
+                  "status": 200,
+                  "response": [
+                    {
+                      "token_id": "8w9MstFEWkzPy8MMDKrZQysvgJEKjmpLiu5AUpgPiNAq",
+                      "appraisal": 78.03807216506911,
+                      "liquidation": 65.57171592775042,
+                      "forecasts": null
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "403": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    }
+  },
+  "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": false,
+    "samples-enabled": true
+  },
+  "components": {
+    "securitySchemes": {
+      "api_key": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-api-key"
+      }
+    }
+  },
+  "_id": {
+    "buffer": {
+      "0": 99,
+      "1": 64,
+      "2": 105,
+      "3": 109,
+      "4": 53,
+      "5": 232,
+      "6": 233,
+      "7": 0,
+      "8": 108,
+      "9": 201,
+      "10": 48,
+      "11": 24
+    }
+  }
+}

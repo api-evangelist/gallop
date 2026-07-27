@@ -1,0 +1,17 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Gallop Data API
+  version: 1.0.0
+extends: openapi/gallop-data-openapi.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: '2026-07-19'
+    x-apievangelist-chains:
+    - ethereum
+    - solana
+    - polygon
+    - starknet
+    x-apievangelist-provider-status: backend host api.prod.gallop.run unreachable as of 2026-07-19; docs
+      live at gallop.readme.io
+    x-apievangelist-conventions: conventions/gallop-conventions.yml

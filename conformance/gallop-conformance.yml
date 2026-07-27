@@ -1,0 +1,25 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/*.json
+standards:
+- id: oauth2
+  conforms: false
+- id: openid-connect
+  conforms: false
+- id: api-key-auth
+  conforms: true
+  evidence: 'securitySchemes api_key: apiKey in header x-api-key'
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: errors are plain status codes with a custom {status,response} envelope, not application/problem+json
+- id: pagination
+  conforms: true
+  evidence: page / page_size request params + total_items/total_pages/page response fields
+- id: idempotency
+  conforms: false
+- id: webhooks
+  conforms: false
+- id: asyncapi-events
+  conforms: false
+- id: json-api
+  conforms: false

@@ -1,0 +1,21 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/gallop-data-openapi.json, openapi/gallop-analytics-openapi.json, openapi/gallop-insights-openapi.json
+format: custom
+note: Gallop returns a JSON envelope {status, response}; errors are plain HTTP status codes, not RFC 9457
+  problem+json. Every operation documents 200 / 400 / 403.
+envelope:
+  status_field: status
+  payload_field: response
+problems:
+- status: 400
+  title: Bad request
+  meaning: The request body was malformed or a parameter was invalid (e.g. bad collection_address, unsupported
+    page_size).
+  remediation: Validate request-body properties against the operation schema; page_size must be one of
+    50, 100, 500, 1000.
+- status: 403
+  title: Unauthorized
+  meaning: Missing or invalid API key.
+  remediation: Send a valid key in the x-api-key request header.
+applies_to: all 69 operations

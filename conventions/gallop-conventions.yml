@@ -1,0 +1,43 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/*.json + https://gallop.readme.io/docs/api-quick-start
+authentication:
+  style: api-key
+  location: header
+  parameter: x-api-key
+  see: authentication/gallop-authentication.yml
+request_style:
+  http_method: POST
+  body: application/json
+  note: All Gallop operations are POST with a JSON request body, including read/query operations.
+pagination:
+  style: page-number
+  params:
+    page: 1-based page cursor
+    page_size: records per page; enum 50 | 100 | 500 | 1000
+  response_fields:
+  - total_items
+  - total_pages
+  - page
+response_envelope:
+  shape: '{ status: <http-status>, response: <payload> }'
+  status_field: status
+  payload_field: response
+idempotency:
+  supported: false
+  note: No idempotency-key mechanism documented; query operations are naturally safe to retry.
+rate_limiting:
+  limit: 5 requests/second per API key
+  see: rate-limits/gallop-rate-limits.yml
+versioning:
+  scheme: uri-path
+  current: v1
+  see: lifecycle/gallop-lifecycle.yml
+errors:
+  see: errors/gallop-problem-types.yml
+  format: custom envelope, HTTP status codes
+chains:
+- ethereum (eth)
+- solana (sol)
+- polygon (pol)
+- starknet (skn)

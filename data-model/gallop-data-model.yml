@@ -1,0 +1,70 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/*.json request/response fields
+note: Entities and relationships derived from Gallop request parameters (collection_address, token_id,
+  wallet_address, transaction_hash, marketplace) and response payloads across the Data, Analytics and
+  Insights APIs.
+entities:
+- name: Collection
+  key: collection_address
+  aka:
+  - collection_name
+  - collection_tag
+  - symbol
+  chains:
+  - eth
+  - sol
+  - pol
+  - skn
+- name: Token
+  key: token_id
+  note: NFT within a collection (ERC-721 / ERC-1155 / SPL)
+- name: Trait
+  note: attribute of a collection/token used for rarity and floor-by-trait
+- name: Transaction
+  key: transaction_hash
+  note: on-chain sale/transfer event
+- name: Wallet
+  key: wallet_address
+  note: owner / trader address; ENS-resolvable on eth
+- name: Marketplace
+  note: venue (e.g. OpenSea) a collection trades on
+- name: Listing
+  note: live sell order for a token on a marketplace
+relationships:
+- from: Collection
+  type: has_many
+  to: Token
+  via: collection_address
+- from: Token
+  type: belongs_to
+  to: Collection
+  via: collection_address
+- from: Collection
+  type: has_many
+  to: Trait
+  via: collection_address
+- from: Token
+  type: has_many
+  to: Transaction
+  via: token_id
+- from: Collection
+  type: has_many
+  to: Transaction
+  via: collection_address
+- from: Wallet
+  type: has_many
+  to: Token
+  via: wallet_address
+- from: Wallet
+  type: has_many
+  to: Transaction
+  via: wallet_address
+- from: Collection
+  type: has_many
+  to: Listing
+  via: marketplace
+- from: Collection
+  type: has_many
+  to: Marketplace
+  via: marketplace

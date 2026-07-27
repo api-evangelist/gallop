@@ -1,0 +1,10 @@
+generated: '2026-07-19'
+method: searched
+source: https://gallop.readme.io/docs/api-quick-start
+limits:
+- scope: per-api-key
+  limit_count: 5
+  window: 1s
+  description: Maximum of 5 requests per second per API key.
+headers:
+  note: No rate-limit response headers documented.

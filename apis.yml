@@ -1,22 +1,82 @@
 aid: gallop
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/gallop.png
 name: Gallop
-description: 'Gallop is a company surfaced as a portfolio company of amplify-partners and added to the
-  API Evangelist network as a stub for enrichment. Sector: developer-tools. This profile is a lead awaiting
-  the enrichment pipeline.'
+description: 'Gallop is an NFT data and analytics platform (backed by Amplify Partners) that provides composable data-aggregation, analytics and insight APIs so data engineers, developers and data scientists can rapidly deploy NFT products and experiences. Its REST APIs cover Ethereum, Solana, Polygon and Starknet across three surfaces: a Data API (collections, tokens, traits, transactions, wallet holdings, live listings, floor prices, ENS lookup), an Analytics API (collection/token summaries, rarity, wash-trade detection, OHLC candlesticks, leaderboards, wallet P&L) and an Insights API (token appraisal/liquidation estimates, wallet activity labels and wallet valuation). Authentication is via an x-api-key header, all operations are POST, and calls are limited to 5 requests/second. Note: as of mid-2026 the primary domain (higallop.com) is in registry redemption and the api.prod.gallop.run backend is unreachable, though the developer documentation remains published on ReadMe.'
 url: https://raw.githubusercontent.com/api-evangelist/gallop/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - amplify-partners
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profiled
+x-tier-reason: enriched-from-published-docs
+x-provider-status: defunct-or-dormant (higallop.com in redemption; api.prod.gallop.run unreachable; docs live on ReadMe)
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
 - Developer Tools
-apis: []
+- NFT
+- Blockchain
+- Web3
+- Data
+- Analytics
+- Crypto
+- Ethereum
+- Solana
+apis:
+- aid: gallop:gallop-ethereum-api
+  name: Gallop Ethereum API
+  description: The Ethereum API from Gallop — 28 operation(s) for ethereum.
+  humanURL: https://gallop.readme.io/reference
+  baseURL: https://api.prod.gallop.run/v1
+  tags:
+  - Ethereum
+  properties:
+  - type: OpenAPI
+    url: openapi/gallop-ethereum-api-openapi.yml
+- aid: gallop:gallop-polygon-api
+  name: Gallop Polygon API
+  description: The Polygon API from Gallop — 21 operation(s) for polygon.
+  humanURL: https://gallop.readme.io/reference
+  baseURL: https://api.prod.gallop.run/v1
+  tags:
+  - Polygon
+  properties:
+  - type: OpenAPI
+    url: openapi/gallop-polygon-api-openapi.yml
+- aid: gallop:gallop-solana-api
+  name: Gallop Solana API
+  description: The Solana API from Gallop — 18 operation(s) for solana.
+  humanURL: https://gallop.readme.io/reference
+  baseURL: https://api.prod.gallop.run/v1
+  tags:
+  - Solana
+  properties:
+  - type: OpenAPI
+    url: openapi/gallop-solana-api-openapi.yml
+- aid: gallop:gallop-starknet-api
+  name: Gallop Starknet API
+  description: The Starknet API from Gallop — 2 operation(s) for starknet.
+  humanURL: https://gallop.readme.io/reference
+  baseURL: https://api.prod.gallop.run/v1
+  tags:
+  - Starknet
+  properties:
+  - type: OpenAPI
+    url: openapi/gallop-starknet-api-openapi.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -25,3 +85,46 @@ maintainers:
 common:
 - type: Website
   url: https://higallop.com
+- type: DeveloperPortal
+  url: https://gallop.readme.io
+- type: Documentation
+  url: https://gallop.readme.io
+- type: APIReference
+  url: https://gallop.readme.io/reference
+- type: GettingStarted
+  url: https://gallop.readme.io/docs/api-quick-start
+- type: SignUp
+  url: https://higallop.com/signup
+- type: TermsOfService
+  url: https://higallop.com/terms/
+- type: Support
+  url: mailto:support@higallop.com
+- type: LLMsTxt
+  url: llms/gallop-llms.txt
+- type: Authentication
+  url: authentication/gallop-authentication.yml
+- type: AgenticAccess
+  url: agentic-access/gallop-agentic-access.yml
+- type: DomainSecurity
+  url: security/gallop-domain-security.yml
+- type: Conventions
+  url: conventions/gallop-conventions.yml
+- type: ErrorCatalog
+  url: errors/gallop-problem-types.yml
+- type: RateLimits
+  url: rate-limits/gallop-rate-limits.yml
+- type: DataModel
+  url: data-model/gallop-data-model.yml
+- type: Lifecycle
+  url: lifecycle/gallop-lifecycle.yml
+- type: Conformance
+  url: conformance/gallop-conformance.yml
+- type: MCPServer
+  url: mcp/gallop-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

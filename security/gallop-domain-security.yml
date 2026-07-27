@@ -1,0 +1,20 @@
+generated: '2026-07-19'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: higallop.com
+  https: false
+- host: api.prod.gallop.run
+  https: false
+domains:
+- domain: higallop.com
+  dnssec: false
+  caa: []
+  spf: false
+  dmarc: false
+- domain: gallop.run
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: none

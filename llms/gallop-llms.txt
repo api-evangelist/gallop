@@ -1,0 +1,74 @@
+# Gallop Documentation
+
+> Gallop provides composable data aggregation and insight APIs enabling data engineers, developers, and data scientists to rapidly deploy NFT products and experiences.
+
+## API Reference
+- [Aggregated Collections Supported by Gallop](https://gallop.readme.io/reference/getethcollections-1.md): Returns all Gallop aggregated collections
+- [Tokens by Collection](https://gallop.readme.io/reference/getethtokens-1.md): Returns all tokens for a given collection
+- [Transactions by Collection](https://gallop.readme.io/reference/getethcollectiontransactions-1.md): Returns all transactions for a given collection
+- [Transactions by Token](https://gallop.readme.io/reference/getethtokentransactions-1.md): Returns all transactions for a given token
+- [Collection Summary by Marketplace](https://gallop.readme.io/reference/getethmarketplacedata-1.md): Returns summary statistics for a collection by marketplace
+- [Collection Live Listings by Marketplace](https://gallop.readme.io/reference/getethlivelistings.md): Returns live listings for a given collection by marketplace
+- [Tokens Owned by Wallet](https://gallop.readme.io/reference/getethwalletnfts.md): Returns all tokens owned for a given wallet
+- [Historical Token Transactions by Wallet](https://gallop.readme.io/reference/getethwallettransactions-1.md): Returns all historical token transactions for a given wallet
+- [Historical Transactions by Collection](https://gallop.readme.io/reference/getethhistoricaltransactions-1.md): Returns all transactions for a given collection in bulk
+- [Marketplace Activity by Collection](https://gallop.readme.io/reference/getethhistoricalevents-1.md): Returns marketplace activity for a given collection
+- [Wallet Owners by Collection](https://gallop.readme.io/reference/getethcollectionowners-1.md): Returns all wallet owners for a given collection
+- [Marketplace Floor Price by Collection](https://gallop.readme.io/reference/getethmarketplacefloorprice-1.md): Returns current floor price for all collections by marketplace
+- [ENS Lookup](https://gallop.readme.io/reference/getethenslookup.md): Returns Ethereum Name Service data for a given wallet address
+- [Collection Floor Price By Trait](https://gallop.readme.io/reference/getethfloorpricebytrait.md): Returns floor price by trait for a given collection
+- [Aggregated Collections Supported by Gallop](https://gallop.readme.io/reference/getsolcollections-1.md): Returns all Gallop aggregated collections
+- [Tokens by Collection](https://gallop.readme.io/reference/getsoltokens-1.md): Returns all tokens for a given collection
+- [Transactions by Collections](https://gallop.readme.io/reference/getsolcollectiontransactions-1.md): Returns all transactions for a given collection
+- [Transactions by Token](https://gallop.readme.io/reference/getsoltokentransactions-1.md): Returns all transactions for a given token
+- [Tokens Owned by Wallet](https://gallop.readme.io/reference/getsolaccountnfts-1.md): Returns all tokens owned for a given wallet
+- [Wallet Owners by Token](https://gallop.readme.io/reference/getsolnftaccount-1.md): Returns all wallet owners for a given collection
+- [Collection Summary by Marketplace](https://gallop.readme.io/reference/getsolmarketplacedata-1.md): Returns summary statistics for collections by marketplace
+- [Traits by Collection](https://gallop.readme.io/reference/getsolcollectiontraits-1.md): Returns a list of traits for a given collection
+- [Historical Transactions by Collection](https://gallop.readme.io/reference/getsolhistoricaltransactions-1.md): Returns all transactions for a given collection in bulk
+- [Marketplace Floor Price by Collection](https://gallop.readme.io/reference/getsolmarketplacefloorprice-1.md): Returns current floor price for all collections by marketplace
+- [Aggregated Collections Supported by Gallop](https://gallop.readme.io/reference/getpolcollections.md): Returns all Gallop aggregated collections
+- [Transactions by Collection](https://gallop.readme.io/reference/getpolcollectiontransactions.md): Returns all transactions for a given collection
+- [Transactions by Token](https://gallop.readme.io/reference/getpoltokentransactions.md): Returns all transactions for a given token
+- [Tokens by Collection](https://gallop.readme.io/reference/getpoltokens.md): Returns all tokens for a given collection
+- [Traits by Collection](https://gallop.readme.io/reference/getpolcollectiontraits.md): Returns a list of traits for a given collection
+- [Tokens Owned by Wallet](https://gallop.readme.io/reference/getpolwalletnfts.md): Returns all tokens owned for a given wallet
+- [Wallet Owners by Collection](https://gallop.readme.io/reference/getpolcollectionowners.md): Returns all wallet owners for a given collection
+- [Collection Summary by Marketplace](https://gallop.readme.io/reference/getpolmarketplacedata-1.md): Returns summary statistics for collections by marketplace
+- [Marketplace Floor Price by Collection](https://gallop.readme.io/reference/getpolmarketplacefloorprice.md): Returns current floor price for all collections by marketplace
+- [Historical Token Transactions by Wallet](https://gallop.readme.io/reference/getpolwallettransactions.md): Returns all historical token transactions for a given wallet
+- [Historical Transactions by Collection](https://gallop.readme.io/reference/getpolhistoricaltransactions.md): Returns all transactions for a given collection in bulk
+- [Marketplace Floor Price by Collection](https://gallop.readme.io/reference/getsknmarketplacefloorprice-1.md): Returns current floor price for all collections by marketplace
+- [Gallop Marketplace Data](https://gallop.readme.io/reference/getsknmarketplacedata.md): Lists marketplace data from contract address.
+- [Summary Statistics by Collection](https://gallop.readme.io/reference/getethcollectionsummary-1.md): Returns summary analytics for a given collection
+- [Summary Statistics by Token](https://gallop.readme.io/reference/getethtokensummary-1.md): Returns summary analytics for a given token
+- [Price Differentiation by Trait](https://gallop.readme.io/reference/getethcollectionpricediff-1.md): Returns how trait differentiates price for a given collection
+- [Wash Trades by Collection](https://gallop.readme.io/reference/getethwashtransactions-1.md): Returns suspected wash trades by token for a given collection
+- [Wash Trades by Transaction](https://gallop.readme.io/reference/getethwashtrade-1.md): Returns suspected wash trades for a given transaction hash
+- [Token Rarity by Collection](https://gallop.readme.io/reference/getethrarity-1.md): Returns rarity by token for a given collection
+- [Collection Sales Price Candlesticks](https://gallop.readme.io/reference/getethcollectionsalesohlc-1.md): Returns collection sales price open, high, low, close and volume at a selected time interval
+- [Collection Floor Price and Listings Candlesticks](https://gallop.readme.io/reference/getethcollectionlistingsohlc.md): Returns historical floor price or more extensive open / high / floor / close candlesticks for collection listings at marketplaces at a selected time interval, as well as the number of active listings, the number of unique owners and the average age of open listings
+- [Daily Floor Prices by Collection](https://gallop.readme.io/reference/getethdailycollectionfloor.md): Returns historical floor price on a daily interval in ETH
+- [Ethereum Leaderboard by Collection](https://gallop.readme.io/reference/getethleaderboard.md): Returns top collections by volume transaction volume or sales count
+- [Wallet profit and loss information](https://gallop.readme.io/reference/getethwalletpnl.md): Returns profit and loss of this wallet's NFT transactions
+- [Summary Statistics by Collection](https://gallop.readme.io/reference/getsolcollectionsummary-1.md): Returns summary analytics for a given collection
+- [Summary Statistics by Token](https://gallop.readme.io/reference/getsoltokensummary-1.md): Returns summary analytics for a given token
+- [Price Differentiation by Trait](https://gallop.readme.io/reference/getsolcollectionpricediff-1.md): Returns how trait differentiates price for a given collection
+- [Wash Trades by Collection](https://gallop.readme.io/reference/getsolwashtransactions-1.md): Returns suspected wash trades by token for a given collection
+- [Wash Trades by Transaction](https://gallop.readme.io/reference/getsolwashtrade-1.md): Returns suspected wash trades for a given transaction hash
+- [Token Rarity by Collection](https://gallop.readme.io/reference/getsolrarity-1.md): Returns rarity by token for a given collection
+- [Collection Sales Price Candlesticks](https://gallop.readme.io/reference/getsolcollectionsalesohlc-1.md): Returns collection sales price open, high, low, close and volume at a selected time interval
+- [Summary Statistics by Collection](https://gallop.readme.io/reference/getpolcollectionsummary.md): Returns summary analytics for a given collection
+- [Summary Statistics by Token](https://gallop.readme.io/reference/getpoltokensummary.md): Returns summary analytics for a given token
+- [Price Differentiation by Trait](https://gallop.readme.io/reference/getpolcollectionpricediff.md): Returns how trait differentiates price for a given collection
+- [Wash Trades by Collection](https://gallop.readme.io/reference/getpolwashtransactions.md): Returns suspected wash trades by token for a given collection
+- [Wash Trades by Transaction](https://gallop.readme.io/reference/getpolwashtrade.md): Returns suspected wash trades for a given transaction hash
+- [Token Rarity by Collection](https://gallop.readme.io/reference/getpolrarity.md): Returns rarity by token for a given collection
+- [Collection Sales Price Candlesticks](https://gallop.readme.io/reference/getpolcollectionsalesohlc.md): Returns collection sales price open, high, low, close and volume at a selected time interval
+- [Polygon Leaderboard by Collection](https://gallop.readme.io/reference/getpolleaderboard.md): Returns top collections by volume transaction volume or sales count
+- [Liquidation & Appraisal Estimate by Token](https://gallop.readme.io/reference/getethtokenappraisal.md): Get estimates of appraisal and liquidation values for a set of tokens. The app returns nowcasts by default, but if provided a `horizon` and `frequency`, it will return forcasts for `horizon` periods out at interval `frequency`. The app is does not deliver individualized financial advice, but merely provides analytical estimates of token appraisal and liquidation values
+- [Wallet Activity Labels](https://gallop.readme.io/reference/getethwalletlabels-1.md): Classifies a wallet's behaviour according to its on-chain activity.          Each wallet has labels for volume (ETH value transacted), activity (number of unique transactions), and wash (proportion of trades suspected to be washes).           Labels for volume_status include: zero (no transactions), light (less than ~0.75 ETH transacted), neutral (less than ~100 ETH transacted), high (over ~100 ETH transacted)           Labels for activity_status include: zero (no transactions), dormant (fewer than ~12 transactions), neutral (fewer than ~200 transactions), active (over ~200 transactions)           Labels for wash_status include: none (no suspected washes), low (fewer 5% of transactions are suspected washes), moderate (fewer 50% of transactions are suspected washes), high (over 50% of transactions are suspected washes)           Note: label weights are based on constant quantiles so exact thresholds are subject to change.
+- [Value All Tokens Owned by Wallet](https://gallop.readme.io/reference/getethwalletvaluation.md): Returns valuation of all non-fungible and semi-fungible tokens owned for a given wallet (ERC-721 and ERC-1155)
+- [Liquidation & Appraisal Estimate by Token](https://gallop.readme.io/reference/getsoltokenappraisal.md): Get estimates of appraisal and liquidation values for a set of tokens. The app returns nowcasts by default, but if provided a `horizon` and `frequency`, it will return forcasts for `horizon` periods out at interval `frequency`. The app is does not deliver individualized financial advice, but merely provides analytical estimates of token appraisal and liquidation values
+- [Liquidation & Appraisal Estimate by Token](https://gallop.readme.io/reference/getpoltokenappraisal.md): Get estimates of appraisal and liquidation values for a set of tokens. The app returns nowcasts by default, but if provided a `horizon` and `frequency`, it will return forcasts for `horizon` periods out at interval `frequency`. The app is does not deliver individualized financial advice, but merely provides analytical estimates of token appraisal and liquidation values
+- [Wallet Activity Labels](https://gallop.readme.io/reference/getpolwalletlabels-1.md): Classifies a wallet's behaviour according to its on-chain activity

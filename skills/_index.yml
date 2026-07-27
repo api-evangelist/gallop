@@ -1,0 +1,16 @@
+generated: '2026-07-19'
+method: generated
+source: openapi/*.json (operationIds verified against Gallop's published OpenAPI)
+skills:
+- file: gallop-collection-market-snapshot.md
+  name: Gallop collection market snapshot
+  api: openapi/gallop-data-openapi.json
+  operations: [getEthCollections, getEthMarketplaceData, getEthMarketplaceFloorPrice, getEthCollectionSummary]
+- file: gallop-wallet-portfolio-valuation.md
+  name: Gallop wallet portfolio valuation
+  api: openapi/gallop-data-openapi.json
+  operations: [getEthWalletNFTs, getEthWalletValuation, getEthWalletPnL, getEthWalletLabels]
+- file: gallop-token-rarity-and-appraisal.md
+  name: Gallop token rarity and appraisal
+  api: openapi/gallop-analytics-openapi.json
+  operations: [getEthTokens, getEthRarity, getEthTokenAppraisal]

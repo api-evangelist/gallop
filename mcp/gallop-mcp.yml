@@ -1,0 +1,218 @@
+generated: '2026-07-19'
+method: derived
+status: candidate
+source: openapi/*.json
+note: Candidate MCP tool surface derived one-tool-per-operation from Gallop's OpenAPI. No official hosted
+  Gallop MCP server was found. Backend api.prod.gallop.run is currently unreachable.
+server:
+  name: gallop
+  transport: http
+  url: null
+tools:
+- name: getEthCollectionListingsOHLC
+  description: Collection Floor Price and Listings Candlesticks
+  source_operation: openapi/gallop-analytics-openapi.json#getEthCollectionListingsOHLC
+- name: getEthCollectionPriceDiff
+  description: Price Differentiation by Trait
+  source_operation: openapi/gallop-analytics-openapi.json#getEthCollectionPriceDiff
+- name: getEthCollectionSalesOHLC
+  description: Collection Sales Price Candlesticks
+  source_operation: openapi/gallop-analytics-openapi.json#getEthCollectionSalesOHLC
+- name: getEthCollectionSummary
+  description: Summary Statistics by Collection
+  source_operation: openapi/gallop-analytics-openapi.json#getEthCollectionSummary
+- name: getEthDailyCollectionFloor
+  description: Daily Floor Prices by Collection
+  source_operation: openapi/gallop-analytics-openapi.json#getEthDailyCollectionFloor
+- name: getEthLeaderBoard
+  description: Ethereum Leaderboard by Collection
+  source_operation: openapi/gallop-analytics-openapi.json#getEthLeaderBoard
+- name: getEthRarity
+  description: Token Rarity by Collection
+  source_operation: openapi/gallop-analytics-openapi.json#getEthRarity
+- name: getEthTokenSummary
+  description: Summary Statistics by Token
+  source_operation: openapi/gallop-analytics-openapi.json#getEthTokenSummary
+- name: getEthWalletPnL
+  description: Wallet profit and loss information
+  source_operation: openapi/gallop-analytics-openapi.json#getEthWalletPnL
+- name: getEthWashTrade
+  description: Wash Trades by Transaction
+  source_operation: openapi/gallop-analytics-openapi.json#getEthWashTrade
+- name: getEthWashTransactions
+  description: Wash Trades by Collection
+  source_operation: openapi/gallop-analytics-openapi.json#getEthWashTransactions
+- name: getPolCollectionPriceDiff
+  description: Price Differentiation by Trait
+  source_operation: openapi/gallop-analytics-openapi.json#getPolCollectionPriceDiff
+- name: getPolCollectionSalesOHLC
+  description: Collection Sales Price Candlesticks
+  source_operation: openapi/gallop-analytics-openapi.json#getPolCollectionSalesOHLC
+- name: getPolCollectionSummary
+  description: Summary Statistics by Collection
+  source_operation: openapi/gallop-analytics-openapi.json#getPolCollectionSummary
+- name: getPolLeaderBoard
+  description: Polygon Leaderboard by Collection
+  source_operation: openapi/gallop-analytics-openapi.json#getPolLeaderBoard
+- name: getPolRarity
+  description: Token Rarity by Collection
+  source_operation: openapi/gallop-analytics-openapi.json#getPolRarity
+- name: getPolTokenSummary
+  description: Summary Statistics by Token
+  source_operation: openapi/gallop-analytics-openapi.json#getPolTokenSummary
+- name: getPolWashTrade
+  description: Wash Trades by Transaction
+  source_operation: openapi/gallop-analytics-openapi.json#getPolWashTrade
+- name: getPolWashTransactions
+  description: Wash Trades by Collection
+  source_operation: openapi/gallop-analytics-openapi.json#getPolWashTransactions
+- name: getSolCollectionPriceDiff
+  description: Price Differentiation by Trait
+  source_operation: openapi/gallop-analytics-openapi.json#getSolCollectionPriceDiff
+- name: getSolCollectionSalesOHLC
+  description: Collection Sales Price Candlesticks
+  source_operation: openapi/gallop-analytics-openapi.json#getSolCollectionSalesOHLC
+- name: getSolCollectionSummary
+  description: Summary Statistics by Collection
+  source_operation: openapi/gallop-analytics-openapi.json#getSolCollectionSummary
+- name: getSolRarity
+  description: Token Rarity by Collection
+  source_operation: openapi/gallop-analytics-openapi.json#getSolRarity
+- name: getSolTokenSummary
+  description: Summary Statistics by Token
+  source_operation: openapi/gallop-analytics-openapi.json#getSolTokenSummary
+- name: getSolWashTrade
+  description: Wash Trades by Transaction
+  source_operation: openapi/gallop-analytics-openapi.json#getSolWashTrade
+- name: getSolWashTransactions
+  description: Wash Trades by Collection
+  source_operation: openapi/gallop-analytics-openapi.json#getSolWashTransactions
+- name: getEthCollectionOwners
+  description: Wallet Owners by Collection
+  source_operation: openapi/gallop-data-openapi.json#getEthCollectionOwners
+- name: getEthCollectionTransactions
+  description: Transactions by Collection
+  source_operation: openapi/gallop-data-openapi.json#getEthCollectionTransactions
+- name: getEthCollections
+  description: Aggregated Collections Supported by Gallop
+  source_operation: openapi/gallop-data-openapi.json#getEthCollections
+- name: getEthEnsLookup
+  description: ENS Lookup
+  source_operation: openapi/gallop-data-openapi.json#getEthEnsLookup
+- name: getEthFloorPriceByTrait
+  description: Collection Floor Price By Trait
+  source_operation: openapi/gallop-data-openapi.json#getEthFloorPriceByTrait
+- name: getEthHistoricalEvents
+  description: Marketplace Activity by Collection
+  source_operation: openapi/gallop-data-openapi.json#getEthHistoricalEvents
+- name: getEthHistoricalTransactions
+  description: Historical Transactions by Collection
+  source_operation: openapi/gallop-data-openapi.json#getEthHistoricalTransactions
+- name: getEthLiveListings
+  description: Collection Live Listings by Marketplace
+  source_operation: openapi/gallop-data-openapi.json#getEthLiveListings
+- name: getEthMarketplaceData
+  description: Collection Summary by Marketplace
+  source_operation: openapi/gallop-data-openapi.json#getEthMarketplaceData
+- name: getEthMarketplaceFloorPrice
+  description: Marketplace Floor Price by Collection
+  source_operation: openapi/gallop-data-openapi.json#getEthMarketplaceFloorPrice
+- name: getEthTokenTransactions
+  description: Transactions by Token
+  source_operation: openapi/gallop-data-openapi.json#getEthTokenTransactions
+- name: getEthTokens
+  description: Tokens by Collection
+  source_operation: openapi/gallop-data-openapi.json#getEthTokens
+- name: getEthWalletNFTs
+  description: Tokens Owned by Wallet
+  source_operation: openapi/gallop-data-openapi.json#getEthWalletNFTs
+- name: getEthWalletTransactions
+  description: Historical Token Transactions by Wallet
+  source_operation: openapi/gallop-data-openapi.json#getEthWalletTransactions
+- name: getPolCollectionOwners
+  description: Wallet Owners by Collection
+  source_operation: openapi/gallop-data-openapi.json#getPolCollectionOwners
+- name: getPolCollectionTraits
+  description: Traits by Collection
+  source_operation: openapi/gallop-data-openapi.json#getPolCollectionTraits
+- name: getPolCollectionTransactions
+  description: Transactions by Collection
+  source_operation: openapi/gallop-data-openapi.json#getPolCollectionTransactions
+- name: getPolCollections
+  description: Aggregated Collections Supported by Gallop
+  source_operation: openapi/gallop-data-openapi.json#getPolCollections
+- name: getPolHistoricalTransactions
+  description: Historical Transactions by Collection
+  source_operation: openapi/gallop-data-openapi.json#getPolHistoricalTransactions
+- name: getPolMarketplaceData
+  description: Collection Summary by Marketplace
+  source_operation: openapi/gallop-data-openapi.json#getPolMarketplaceData
+- name: getPolMarketplaceFloorPrice
+  description: Marketplace Floor Price by Collection
+  source_operation: openapi/gallop-data-openapi.json#getPolMarketplaceFloorPrice
+- name: getPolTokenTransactions
+  description: Transactions by Token
+  source_operation: openapi/gallop-data-openapi.json#getPolTokenTransactions
+- name: getPolTokens
+  description: Tokens by Collection
+  source_operation: openapi/gallop-data-openapi.json#getPolTokens
+- name: getPolWalletNFTs
+  description: Tokens Owned by Wallet
+  source_operation: openapi/gallop-data-openapi.json#getPolWalletNFTs
+- name: getPolWalletTransactions
+  description: Historical Token Transactions by Wallet
+  source_operation: openapi/gallop-data-openapi.json#getPolWalletTransactions
+- name: getSknMarketplaceData
+  description: Gallop Marketplace Data
+  source_operation: openapi/gallop-data-openapi.json#getSknMarketplaceData
+- name: getSknMarketplaceFloorPrice
+  description: Marketplace Floor Price by Collection
+  source_operation: openapi/gallop-data-openapi.json#getSknMarketplaceFloorPrice
+- name: getSolAccountNFTs
+  description: Tokens Owned by Wallet
+  source_operation: openapi/gallop-data-openapi.json#getSolAccountNFTs
+- name: getSolCollectionTraits
+  description: Traits by Collection
+  source_operation: openapi/gallop-data-openapi.json#getSolCollectionTraits
+- name: getSolCollectionTransactions
+  description: Transactions by Collections
+  source_operation: openapi/gallop-data-openapi.json#getSolCollectionTransactions
+- name: getSolCollections
+  description: Aggregated Collections Supported by Gallop
+  source_operation: openapi/gallop-data-openapi.json#getSolCollections
+- name: getSolHistoricalTransactions
+  description: Historical Transactions by Collection
+  source_operation: openapi/gallop-data-openapi.json#getSolHistoricalTransactions
+- name: getSolMarketplaceData
+  description: Collection Summary by Marketplace
+  source_operation: openapi/gallop-data-openapi.json#getSolMarketplaceData
+- name: getSolMarketplaceFloorPrice
+  description: Marketplace Floor Price by Collection
+  source_operation: openapi/gallop-data-openapi.json#getSolMarketplaceFloorPrice
+- name: getSolNFTAccount
+  description: Wallet Owners by Token
+  source_operation: openapi/gallop-data-openapi.json#getSolNFTAccount
+- name: getSolTokenTransactions
+  description: Transactions by Token
+  source_operation: openapi/gallop-data-openapi.json#getSolTokenTransactions
+- name: getSolTokens
+  description: Tokens by Collection
+  source_operation: openapi/gallop-data-openapi.json#getSolTokens
+- name: getEthTokenAppraisal
+  description: Liquidation & Appraisal Estimate by Token
+  source_operation: openapi/gallop-insights-openapi.json#getEthTokenAppraisal
+- name: getEthWalletLabels
+  description: Wallet Activity Labels
+  source_operation: openapi/gallop-insights-openapi.json#getEthWalletLabels
+- name: getEthWalletValuation
+  description: Value All Tokens Owned by Wallet
+  source_operation: openapi/gallop-insights-openapi.json#getEthWalletValuation
+- name: getPolTokenAppraisal
+  description: Liquidation & Appraisal Estimate by Token
+  source_operation: openapi/gallop-insights-openapi.json#getPolTokenAppraisal
+- name: getPolWalletLabels
+  description: Wallet Activity Labels
+  source_operation: openapi/gallop-insights-openapi.json#getPolWalletLabels
+- name: getSolTokenAppraisal
+  description: Liquidation & Appraisal Estimate by Token
+  source_operation: openapi/gallop-insights-openapi.json#getSolTokenAppraisal
