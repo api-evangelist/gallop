@@ -216,3 +216,9 @@ tools:
 - name: getSolTokenAppraisal
   description: Liquidation & Appraisal Estimate by Token
   source_operation: openapi/gallop-insights-openapi.json#getSolTokenAppraisal
+deployment:
+  mode: none
+  verified: derived
+  tools: 69
+  checked: '2026-08-12'
+  source: catalog MCP census

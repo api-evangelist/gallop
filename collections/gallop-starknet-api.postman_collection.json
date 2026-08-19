@@ -1,0 +1,466 @@
+{
+  "item": [
+    {
+      "id": "fb444eef-1a19-4c63-899f-8a4c96cecb75",
+      "name": "Starknet",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "af68555c-99b0-4342-a807-ad3be8f3a8d6",
+          "name": "Gallop Marketplace Data",
+          "request": {
+            "name": "Gallop Marketplace Data",
+            "description": {
+              "content": "Lists marketplace data from contract address.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "skn",
+                "getMarketplaceData"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"collection_address\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "49aad2dd-c8d6-43ee-86a7-933f3d0e8d7f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "skn",
+                    "getMarketplaceData"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"collection_address\": [\n    \"0x04acd4b2a59eae7196f6a5c26ead8cb5f9d7ad3d911096418a23357bb2eac075\",\n    \"0x04acd4b2a59eae7196f6a5c26ead8cb5f9d7ad3d911096418a23357bb2eac075\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"response\": [\n    {\n      \"collection_address\": \"0x07861c4e276294a7e859ff0ae2eec0c68300ad9cbb43219db907da9bad786488\",\n      \"marketplaces\": [\n        {\n          \"marketplace\": \"Mint Square\",\n          \"updated_at\": \"2022-10-07T13:45:04.949Z\",\n          \"url\": \"mintsquare.io/collection/starknet/0x07861c4e276294a7e859ff0ae2eec0c68300ad9cbb43219db907da9bad786488\",\n          \"stats_summary\": {\n            \"floor_price\": \"100000000000000\",\n            \"num_items\": 10006,\n            \"num_owners\": 7439,\n            \"total_volume\": \"2554471421000000000\"\n          }\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "679063cc-73fa-4273-a74a-42809962b83f",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "skn",
+                    "getMarketplaceData"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"collection_address\": [\n    \"0x04acd4b2a59eae7196f6a5c26ead8cb5f9d7ad3d911096418a23357bb2eac075\",\n    \"0x04acd4b2a59eae7196f6a5c26ead8cb5f9d7ad3d911096418a23357bb2eac075\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a1a31ce3-5864-4003-a5c1-2aa28be4b484",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "skn",
+                    "getMarketplaceData"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"collection_address\": [\n    \"0x04acd4b2a59eae7196f6a5c26ead8cb5f9d7ad3d911096418a23357bb2eac075\",\n    \"0x04acd4b2a59eae7196f6a5c26ead8cb5f9d7ad3d911096418a23357bb2eac075\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "99fe0c0e-2f67-43ae-a941-eeffd8a5cb40",
+          "name": "Marketplace Floor Price by Collection",
+          "request": {
+            "name": "Marketplace Floor Price by Collection",
+            "description": {
+              "content": "Returns current floor price for all collections by marketplace",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "skn",
+                "getMarketplaceFloorPrice"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"page\": \"<integer>\",\n  \"page_size\": \"<integer>\",\n  \"collection_address\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f6f7a24a-769d-4072-9f0b-2d9d1e6ee1de",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "skn",
+                    "getMarketplaceFloorPrice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"page\": 1,\n  \"page_size\": 100,\n  \"collection_address\": [\n    \"0x00002d0fe59a81c3c98fe65bbe62061e39e6effbd9ff9b4ca35ea3e9fdad7591\",\n    \"0x00002d0fe59a81c3c98fe65bbe62061e39e6effbd9ff9b4ca35ea3e9fdad7591\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"response\": {\n    \"total_items\": 3,\n    \"total_pages\": 1,\n    \"page\": 1,\n    \"collections\": [\n      {\n        \"collection_address\": \"0x00002d0fe59a81c3c98fe65bbe62061e39e6effbd9ff9b4ca35ea3e9fdad7591\",\n        \"marketplaces\": [\n          {\n            \"updated_at\": \"2022-11-04T01:00:08.765\",\n            \"floor_price\": 5.55,\n            \"marketplace\": \"Mint Square\",\n            \"collection_id\": \"0x00002d0fe59a81c3c98fe65bbe62061e39e6effbd9ff9b4ca35ea3e9fdad7591\"\n          }\n        ]\n      },\n      {\n        \"collection_address\": \"0x0044bac3f28118ea1946963a1bc1dc6e3752e2ed1b355c0113fd8087d2db6b66\",\n        \"marketplaces\": [\n          {\n            \"updated_at\": \"2022-11-04T01:00:09.792\",\n            \"floor_price\": null,\n            \"marketplace\": \"Mint Square\",\n            \"collection_id\": \"0x0044bac3f28118ea1946963a1bc1dc6e3752e2ed1b355c0113fd8087d2db6b66\"\n          }\n        ]\n      },\n      {\n        \"collection_address\": \"0x03090623ea32d932ca1236595076b00702e7d860696faf300ca9eb13bfe0a78c\",\n        \"marketplaces\": [\n          {\n            \"updated_at\": \"2022-11-04T01:00:02.628\",\n            \"floor_price\": 0.00025,\n            \"marketplace\": \"Aspect\",\n            \"collection_id\": \"0x03090623ea32d932ca1236595076b00702e7d860696faf300ca9eb13bfe0a78c\"\n          },\n          {\n            \"updated_at\": \"2022-11-04T01:00:07.829\",\n            \"floor_price\": 0.0003,\n            \"marketplace\": \"Mint Square\",\n            \"collection_id\": \"0x03090623ea32d932ca1236595076b00702e7d860696faf300ca9eb13bfe0a78c\"\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b7f37c6a-b029-4dd1-ab46-0a4eb47fc554",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "skn",
+                    "getMarketplaceFloorPrice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"page\": 1,\n  \"page_size\": 100,\n  \"collection_address\": [\n    \"0x00002d0fe59a81c3c98fe65bbe62061e39e6effbd9ff9b4ca35ea3e9fdad7591\",\n    \"0x00002d0fe59a81c3c98fe65bbe62061e39e6effbd9ff9b4ca35ea3e9fdad7591\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "11879970-d781-43ed-befc-ca8dfcebec4d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "skn",
+                    "getMarketplaceFloorPrice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"page\": 1,\n  \"page_size\": 100,\n  \"collection_address\": [\n    \"0x00002d0fe59a81c3c98fe65bbe62061e39e6effbd9ff9b4ca35ea3e9fdad7591\",\n    \"0x00002d0fe59a81c3c98fe65bbe62061e39e6effbd9ff9b4ca35ea3e9fdad7591\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.prod.gallop.run/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "149c0092-dde5-4d73-a057-ee5e260ad6f2",
+    "name": "Analytics Ethereum Starknet API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Sales, pricing, performance, and marketplace data, all in one place with low latency.\n\nContact Support:\n Email: support@higallop.com",
+      "type": "text/plain"
+    }
+  }
+}

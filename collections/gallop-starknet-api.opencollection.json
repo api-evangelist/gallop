@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Analytics Ethereum Starknet API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Starknet",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gallop Marketplace Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.gallop.run/v1/data/skn/getMarketplaceData",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Lists marketplace data from contract address."
+        },
+        {
+          "info": {
+            "name": "Marketplace Floor Price by Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.gallop.run/v1/data/skn/getMarketplaceFloorPrice",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns current floor price for all collections by marketplace"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

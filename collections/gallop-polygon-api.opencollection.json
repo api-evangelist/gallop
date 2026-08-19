@@ -1,0 +1,459 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Analytics Ethereum Polygon API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Polygon",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Price Differentiation by Trait",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.gallop.run/v1/analytics/pol/getCollectionPriceDiff",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns how trait differentiates price for a given collection"
+        },
+        {
+          "info": {
+            "name": "Collection Sales Price Candlesticks",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.gallop.run/v1/analytics/pol/getCollectionSalesOHLC",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns collection sales price open, high, low, close and volume at a selected time interval"
+        },
+        {
+          "info": {
+            "name": "Summary Statistics by Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.gallop.run/v1/analytics/pol/getCollectionSummary",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns summary analytics for a given collection"
+        },
+        {
+          "info": {
+            "name": "Polygon Leaderboard by Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.gallop.run/v1/analytics/pol/getLeaderBoard",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns top collections by volume transaction volume or sales count"
+        },
+        {
+          "info": {
+            "name": "Token Rarity by Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.gallop.run/v1/analytics/pol/getRarity",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns rarity by token for a given collection"
+        },
+        {
+          "info": {
+            "name": "Summary Statistics by Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.gallop.run/v1/analytics/pol/getTokenSummary",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns summary analytics for a given token"
+        },
+        {
+          "info": {
+            "name": "Wash Trades by Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.gallop.run/v1/analytics/pol/getWashTrade",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns suspected wash trades for a given transaction hash"
+        },
+        {
+          "info": {
+            "name": "Wash Trades by Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.gallop.run/v1/analytics/pol/getWashTransactions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns suspected wash trades by token for a given collection"
+        },
+        {
+          "info": {
+            "name": "Wallet Owners by Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.gallop.run/v1/data/pol/getCollectionOwners",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all wallet owners for a given collection"
+        },
+        {
+          "info": {
+            "name": "Traits by Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.gallop.run/v1/data/pol/getCollectionTraits",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a list of traits for a given collection"
+        },
+        {
+          "info": {
+            "name": "Transactions by Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.gallop.run/v1/data/pol/getCollectionTransactions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all transactions for a given collection"
+        },
+        {
+          "info": {
+            "name": "Aggregated Collections Supported by Gallop",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.gallop.run/v1/data/pol/getCollections",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all Gallop aggregated collections"
+        },
+        {
+          "info": {
+            "name": "Historical Transactions by Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.gallop.run/v1/data/pol/getHistoricalTransactions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all transactions for a given collection in bulk"
+        },
+        {
+          "info": {
+            "name": "Collection Summary by Marketplace",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.gallop.run/v1/data/pol/getMarketplaceData",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns summary statistics for collections by marketplace"
+        },
+        {
+          "info": {
+            "name": "Marketplace Floor Price by Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.gallop.run/v1/data/pol/getMarketplaceFloorPrice",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns current floor price for all collections by marketplace"
+        },
+        {
+          "info": {
+            "name": "Transactions by Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.gallop.run/v1/data/pol/getTokenTransactions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all transactions for a given token"
+        },
+        {
+          "info": {
+            "name": "Tokens by Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.gallop.run/v1/data/pol/getTokens",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all tokens for a given collection"
+        },
+        {
+          "info": {
+            "name": "Tokens Owned by Wallet",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.gallop.run/v1/data/pol/getWalletNFTs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all tokens owned for a given wallet"
+        },
+        {
+          "info": {
+            "name": "Historical Token Transactions by Wallet",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.gallop.run/v1/data/pol/getWalletTransactions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns all historical token transactions for a given wallet"
+        },
+        {
+          "info": {
+            "name": "Liquidation & Appraisal Estimate by Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.gallop.run/v1/insights/pol/getTokenAppraisal",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get estimates of appraisal and liquidation values for a set of tokens. The app returns nowcasts by default, but if provided a `horizon` and `frequency`, it will return forcasts for `horizon` periods out at interval `frequency`. The app is does not deliver individualized financial advice, but merely provides analytical estimates of token appraisal and liquidation values"
+        },
+        {
+          "info": {
+            "name": "Wallet Activity Labels",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.prod.gallop.run/v1/insights/pol/getWalletLabels",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Classifies a wallet's behaviour according to its on-chain activity"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

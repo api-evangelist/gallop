@@ -1,0 +1,3938 @@
+{
+  "item": [
+    {
+      "id": "f464087e-bbb9-40c6-a19d-71e965c0cd07",
+      "name": "Solana",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "54d69393-a259-4263-8d3a-93aaa7ca4c3d",
+          "name": "Price Differentiation by Trait",
+          "request": {
+            "name": "Price Differentiation by Trait",
+            "description": {
+              "content": "Returns how trait differentiates price for a given collection",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "analytics",
+                "sol",
+                "getCollectionPriceDiff"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"collection_tag\": \"<string>\",\n  \"start_date\": \"<string>\",\n  \"end_date\": \"<string>\",\n  \"exclude_wash\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2540d0f7-e83d-485e-9545-0f21de10be99",
+              "name": "An object containing the collection's price differentiation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analytics",
+                    "sol",
+                    "getCollectionPriceDiff"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"collection_tag\": \"shadowysupercoder\",\n  \"start_date\": \"2023-01-01T00:00:00.000Z\",\n  \"end_date\": \"2023-01-01T00:00:00.000Z\",\n  \"exclude_wash\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"response\": [\n    {\n      \"Background\": 9,\n      \"Base Model\": 5,\n      \"Desk\": 0,\n      \"Favorite Programming Language\": 10,\n      \"Hoodie\": 10,\n      \"Monitor 1\": 100,\n      \"Monitor 2\": 55,\n      \"Monitor 3\": 65,\n      \"Mouth\": 1\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a984b085-c474-40c1-a3d1-da934149827c",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analytics",
+                    "sol",
+                    "getCollectionPriceDiff"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"collection_tag\": \"shadowysupercoder\",\n  \"start_date\": \"2023-01-01T00:00:00.000Z\",\n  \"end_date\": \"2023-01-01T00:00:00.000Z\",\n  \"exclude_wash\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c55731ec-aeb9-41c9-8ae1-eae63cff5ccd",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analytics",
+                    "sol",
+                    "getCollectionPriceDiff"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"collection_tag\": \"shadowysupercoder\",\n  \"start_date\": \"2023-01-01T00:00:00.000Z\",\n  \"end_date\": \"2023-01-01T00:00:00.000Z\",\n  \"exclude_wash\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0db1db61-1ff2-41d8-9a5a-979e6a75c61d",
+          "name": "Collection Sales Price Candlesticks",
+          "request": {
+            "name": "Collection Sales Price Candlesticks",
+            "description": {
+              "content": "Returns collection sales price open, high, low, close and volume at a selected time interval",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "analytics",
+                "sol",
+                "getCollectionSalesOHLC"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"collection_tag\": \"<string>\",\n  \"frequency\": \"<string>\",\n  \"group_by\": \"<string>\",\n  \"volume\": \"<boolean>\",\n  \"rept_curr\": \"<string>\",\n  \"start_date\": \"<string>\",\n  \"end_date\": \"<string>\",\n  \"exclude_wash\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c6537dd1-a273-4d0e-8e92-8f4014e0f7b3",
+              "name": "An object containing the collection sales OHLC prices",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analytics",
+                    "sol",
+                    "getCollectionSalesOHLC"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"collection_tag\": \"shadowysupercoder\",\n  \"frequency\": \"1D\",\n  \"group_by\": \"Favorite Programming Language\",\n  \"volume\": false,\n  \"rept_curr\": \"sol\",\n  \"start_date\": \"2023-01-01T00:00:00.000Z\",\n  \"end_date\": \"2023-01-01T00:00:00.000Z\",\n  \"exclude_wash\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"response\": {\n    \"collection_tag\": \"portals\",\n    \"ohlc\": [\n      {\n        \"Unit Type\": \"Ivory\",\n        \"block_timestamp\": \"2022-06-30 00:00:00\",\n        \"open\": 50.0063,\n        \"high\": 50.0063,\n        \"low\": 27.0063,\n        \"close\": 29.5063\n      },\n      {\n        \"Unit Type\": \"Ivory\",\n        \"block_timestamp\": \"2022-07-31 00:00:00\",\n        \"open\": 29.7063,\n        \"high\": 36.4863,\n        \"low\": 24.4963,\n        \"close\": 30.0063\n      },\n      {\n        \"Unit Type\": \"Onyx\",\n        \"block_timestamp\": \"2022-06-30 00:00:00\",\n        \"open\": 199.0063,\n        \"high\": 200.0063,\n        \"low\": 125.0063,\n        \"close\": 164.0063\n      },\n      {\n        \"Unit Type\": \"Onyx\",\n        \"block_timestamp\": \"2022-07-31 00:00:00\",\n        \"open\": 169.0063,\n        \"high\": 177.6963,\n        \"low\": 150.0063,\n        \"close\": 173.0063\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ffe48ae6-bd77-4f82-8fb8-38dc5652c105",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analytics",
+                    "sol",
+                    "getCollectionSalesOHLC"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"collection_tag\": \"shadowysupercoder\",\n  \"frequency\": \"1D\",\n  \"group_by\": \"Favorite Programming Language\",\n  \"volume\": false,\n  \"rept_curr\": \"sol\",\n  \"start_date\": \"2023-01-01T00:00:00.000Z\",\n  \"end_date\": \"2023-01-01T00:00:00.000Z\",\n  \"exclude_wash\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f40db3be-8c99-4a5e-9948-2960653618f4",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analytics",
+                    "sol",
+                    "getCollectionSalesOHLC"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"collection_tag\": \"shadowysupercoder\",\n  \"frequency\": \"1D\",\n  \"group_by\": \"Favorite Programming Language\",\n  \"volume\": false,\n  \"rept_curr\": \"sol\",\n  \"start_date\": \"2023-01-01T00:00:00.000Z\",\n  \"end_date\": \"2023-01-01T00:00:00.000Z\",\n  \"exclude_wash\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1694a137-d034-40c3-b1db-461512e098bf",
+          "name": "Summary Statistics by Collection",
+          "request": {
+            "name": "Summary Statistics by Collection",
+            "description": {
+              "content": "Returns summary analytics for a given collection",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "analytics",
+                "sol",
+                "getCollectionSummary"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"collection_tag\": \"<string>\",\n  \"group_by\": \"<string>\",\n  \"start_date\": \"<string>\",\n  \"end_date\": \"<string>\",\n  \"rept_curr\": \"<string>\",\n  \"exclude_wash\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "60c544c4-f748-4039-be23-6e1e287c2cf1",
+              "name": "An object containing the collection's analytical summary.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analytics",
+                    "sol",
+                    "getCollectionSummary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"collection_tag\": \"shadowysupercoder\",\n  \"group_by\": \"Favorite Programming Language\",\n  \"start_date\": \"2023-01-01T00:00:00.000Z\",\n  \"end_date\": \"2023-01-01T00:00:00.000Z\",\n  \"rept_curr\": \"sol\",\n  \"exclude_wash\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"response\": [\n    {\n      \"avg_daily_floor_price_transacted\": 47.539330105503666,\n      \"avg_daily_transaction_count\": 31.700534759358288,\n      \"avg_daily_volume\": 1320.835757783679,\n      \"gain_since_last_trough\": 1.2819901699432368,\n      \"latest_floor_price\": 79.00631272,\n      \"latest_peak_date\": \"2022-03-01\",\n      \"latest_rolling_median\": 81.00144768,\n      \"latest_rolling_quantile\": 63.00627988,\n      \"latest_trough_date\": \"2022-03-02\",\n      \"loss_since_last_peak\": -3.5406306348007233,\n      \"max_daily_floor_price\": 134.50144768,\n      \"min_daily_floor_price\": 0.02631272,\n      \"total_transaction_count\": 5928,\n      \"total_transaction_volume\": 246996.28670554797\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ce5923e-159c-411c-9496-07c8761baad4",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analytics",
+                    "sol",
+                    "getCollectionSummary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"collection_tag\": \"shadowysupercoder\",\n  \"group_by\": \"Favorite Programming Language\",\n  \"start_date\": \"2023-01-01T00:00:00.000Z\",\n  \"end_date\": \"2023-01-01T00:00:00.000Z\",\n  \"rept_curr\": \"sol\",\n  \"exclude_wash\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "82ed7464-3280-4e74-823c-dc469e8021bb",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analytics",
+                    "sol",
+                    "getCollectionSummary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"collection_tag\": \"shadowysupercoder\",\n  \"group_by\": \"Favorite Programming Language\",\n  \"start_date\": \"2023-01-01T00:00:00.000Z\",\n  \"end_date\": \"2023-01-01T00:00:00.000Z\",\n  \"rept_curr\": \"sol\",\n  \"exclude_wash\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2b1cc4df-2bae-4b09-8f83-8f2485516f9d",
+          "name": "Token Rarity by Collection",
+          "request": {
+            "name": "Token Rarity by Collection",
+            "description": {
+              "content": "Returns rarity by token for a given collection",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "analytics",
+                "sol",
+                "getRarity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"collection_tag\": \"<string>\",\n  \"mint_address\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"weights\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bfe525fe-3403-40a4-93c3-2e2cf59a6865",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analytics",
+                    "sol",
+                    "getRarity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"collection_tag\": \"portals\",\n  \"mint_address\": [\n    \"9quKRGQ73y25CfVCeZ5u9VpaXZ27JzYQM374QDzGAXK2\",\n    \"9quKRGQ73y25CfVCeZ5u9VpaXZ27JzYQM374QDzGAXK2\"\n  ],\n  \"weights\": {\n    \"Unit Type\": 1.2,\n    \"Unit Number\": 0.4,\n    \"Trait Count\": 0.5\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"response\": [\n    {\n      \"mint_address\": \"8mNbJHv1MHngP64NqH8MTCCYj4Ht5q6TuaWadEAmwhcK\",\n      \"token_name\": \"Portals | Ivory #1000\",\n      \"rarity_score\": 3.0013,\n      \"trait_rarity_score\": {\n        \"Overall\": 3.0013,\n        \"Trait Count\": 0.0006,\n        \"Unit Number\": 3,\n        \"Unit Type\": 0.0007\n      }\n    },\n    {\n      \"mint_address\": \"9quKRGQ73y25CfVCeZ5u9VpaXZ27JzYQM374QDzGAXK2\",\n      \"token_name\": \"Portals | Ivory #4613\",\n      \"rarity_score\": 3.0013,\n      \"trait_rarity_score\": {\n        \"Overall\": 3.0013,\n        \"Trait Count\": 0.0006,\n        \"Unit Number\": 3,\n        \"Unit Type\": 0.0007\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "143b01d8-4549-4721-9590-173480dd43cf",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analytics",
+                    "sol",
+                    "getRarity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"collection_tag\": \"portals\",\n  \"mint_address\": [\n    \"9quKRGQ73y25CfVCeZ5u9VpaXZ27JzYQM374QDzGAXK2\",\n    \"9quKRGQ73y25CfVCeZ5u9VpaXZ27JzYQM374QDzGAXK2\"\n  ],\n  \"weights\": {\n    \"Unit Type\": 1.2,\n    \"Unit Number\": 0.4,\n    \"Trait Count\": 0.5\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "09ab79a8-e5dd-4126-a86e-2d0e741e29ae",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analytics",
+                    "sol",
+                    "getRarity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"collection_tag\": \"portals\",\n  \"mint_address\": [\n    \"9quKRGQ73y25CfVCeZ5u9VpaXZ27JzYQM374QDzGAXK2\",\n    \"9quKRGQ73y25CfVCeZ5u9VpaXZ27JzYQM374QDzGAXK2\"\n  ],\n  \"weights\": {\n    \"Unit Type\": 1.2,\n    \"Unit Number\": 0.4,\n    \"Trait Count\": 0.5\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "99040641-fc23-4804-b2ae-bb16b3a849cc",
+          "name": "Summary Statistics by Token",
+          "request": {
+            "name": "Summary Statistics by Token",
+            "description": {
+              "content": "Returns summary analytics for a given token",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "analytics",
+                "sol",
+                "getTokenSummary"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mint_address\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"token_id\": \"<string>\",\n  \"start_date\": \"<string>\",\n  \"end_date\": \"<string>\",\n  \"rept_curr\": \"<string>\",\n  \"exclude_wash\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "58763904-3870-40dd-9d21-b4c157d8771b",
+              "name": "An object containing the token's analytical summary.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analytics",
+                    "sol",
+                    "getTokenSummary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"mint_address\": [\n    \"DcFTUfcU4WRr4ybkgqpy26Y4g5g4YaCz42dryV6AiHp8\",\n    \"DcFTUfcU4WRr4ybkgqpy26Y4g5g4YaCz42dryV6AiHp8\"\n  ],\n  \"token_id\": \"<string>\",\n  \"start_date\": \"2023-01-01T00:00:00.000Z\",\n  \"end_date\": \"2023-01-01T00:00:00.000Z\",\n  \"rept_curr\": \"sol\",\n  \"exclude_wash\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"response\": [\n    {\n      \"collection_percentile\": \"47\",\n      \"currency_symbol\": \"SOL\",\n      \"latest_gross_median_spread_price\": -0.0722,\n      \"latest_sale\": \"2022-01-25\",\n      \"max_date\": \"2022-01-15 04:07:28\",\n      \"max_price\": 0.95144768,\n      \"min_date\": \"2021-12-31 07:39:03\",\n      \"min_price\": 0.06144768,\n      \"mint_address\": \"5uarH96GLf4APmipQRrsD3SsW4K77zRPtWGwETcyz5GE\",\n      \"price\": 0.29427344,\n      \"rolling_coll_median_price\": 0.2853,\n      \"rolling_coll_median_returns\": 0.029,\n      \"rolling_collection_percentile_price\": 0.2563,\n      \"rolling_collection_percentile_returns\": 0,\n      \"times_traded\": 16\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1b2d8f7c-d98f-428a-9289-dde5acc20595",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analytics",
+                    "sol",
+                    "getTokenSummary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"mint_address\": [\n    \"DcFTUfcU4WRr4ybkgqpy26Y4g5g4YaCz42dryV6AiHp8\",\n    \"DcFTUfcU4WRr4ybkgqpy26Y4g5g4YaCz42dryV6AiHp8\"\n  ],\n  \"token_id\": \"<string>\",\n  \"start_date\": \"2023-01-01T00:00:00.000Z\",\n  \"end_date\": \"2023-01-01T00:00:00.000Z\",\n  \"rept_curr\": \"sol\",\n  \"exclude_wash\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4c780a28-39b8-4c7a-9863-328f51a121ab",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analytics",
+                    "sol",
+                    "getTokenSummary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"mint_address\": [\n    \"DcFTUfcU4WRr4ybkgqpy26Y4g5g4YaCz42dryV6AiHp8\",\n    \"DcFTUfcU4WRr4ybkgqpy26Y4g5g4YaCz42dryV6AiHp8\"\n  ],\n  \"token_id\": \"<string>\",\n  \"start_date\": \"2023-01-01T00:00:00.000Z\",\n  \"end_date\": \"2023-01-01T00:00:00.000Z\",\n  \"rept_curr\": \"sol\",\n  \"exclude_wash\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dc17cfaf-7454-43de-b9da-4055f2c3d326",
+          "name": "Wash Trades by Transaction",
+          "request": {
+            "name": "Wash Trades by Transaction",
+            "description": {
+              "content": "Returns suspected wash trades for a given transaction hash",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "analytics",
+                "sol",
+                "getWashTrade"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_signature\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f1576fdc-8a0a-456a-98d7-eddf46b2ee70",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analytics",
+                    "sol",
+                    "getWashTrade"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"first_signature\": \"jAV6y8eKCACX9bwNaiVgh6mqoxiCHrovWSYVXWmZfj5EhHDmXHeu23DwgnvnPQHjudKj9DK5ed73zq2yAkaJtqg\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"response\": [\n    {\n      \"mint_address\": \"FbmJY3X35YRfVceUmXre1et97f6rcPUWCnFmCCkta3Rk\",\n      \"token_name\": \"DeGod #196\",\n      \"susp_wash\": true,\n      \"update_authority\": \"AxFuniPo7RaDgPH6Gizf4GZmLQFc4M5ipckeeZfkrPNn\",\n      \"collection_name\": \"DeGods\",\n      \"collection_tag\": \"degods\",\n      \"first_signature\": \"4dPURkZDfatuCqbTugSXLMXirTCdzRpoZMFRDT2Mxfrm82oj8u8dvXc91jdJkoJ4cdkcDoeNKSqXaYW1ow9o2LSb\",\n      \"sol_value\": 9.9958,\n      \"usd_value\": 908.34,\n      \"exchange\": \"Alpha Art\",\n      \"block_number\": 118627973,\n      \"block_timestamp\": \"2022-01-31T02:56:18.000Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c6273b4b-0cde-4235-9f94-4739f7437dd0",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analytics",
+                    "sol",
+                    "getWashTrade"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"first_signature\": \"jAV6y8eKCACX9bwNaiVgh6mqoxiCHrovWSYVXWmZfj5EhHDmXHeu23DwgnvnPQHjudKj9DK5ed73zq2yAkaJtqg\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f96b124c-4bc3-43ca-9aca-c0d8cff4f011",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analytics",
+                    "sol",
+                    "getWashTrade"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"first_signature\": \"jAV6y8eKCACX9bwNaiVgh6mqoxiCHrovWSYVXWmZfj5EhHDmXHeu23DwgnvnPQHjudKj9DK5ed73zq2yAkaJtqg\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8fde549c-420e-41f8-8a01-aa86cff418d3",
+          "name": "Wash Trades by Collection",
+          "request": {
+            "name": "Wash Trades by Collection",
+            "description": {
+              "content": "Returns suspected wash trades by token for a given collection",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "analytics",
+                "sol",
+                "getWashTransactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"collection_tag\": \"<string>\",\n  \"mint_address\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"page\": \"<integer>\",\n  \"page_size\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "76e444d0-6bc4-43b3-b5d2-be2712762dce",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analytics",
+                    "sol",
+                    "getWashTransactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"collection_tag\": \"degods\",\n  \"mint_address\": [\n    \"G4Tbp5zWZRt1thiuv7ywkotcXZvf24DrUEMoM2j6Vj63\",\n    \"G4Tbp5zWZRt1thiuv7ywkotcXZvf24DrUEMoM2j6Vj63\"\n  ],\n  \"page\": 1,\n  \"page_size\": 100\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"response\": {\n    \"total_items\": 3,\n    \"total_pages\": 1,\n    \"page\": 1,\n    \"transactions\": [\n      {\n        \"mint_address\": \"7cjxfkXPTLMFiaMg4NCSrqRAUqovmyfqbt2HWVCZCAoq\",\n        \"token_name\": \"Stoned Ape #3419\",\n        \"susp_wash\": true,\n        \"update_authority\": \"PUFFgnKKhQ23vp8uSPwdzrUhEr7WpLmjM85NB1FQgpb\",\n        \"collection_name\": \"Stoned Ape Crew\",\n        \"collection_tag\": \"stonedapecrew\",\n        \"first_signature\": \"3jqC3sBxc3QZrkBUfbse1UTkFKf3zXxix1xwc46Gb8gFi7mnGD3SpvxjWKcH1hWW4jUa695TXkfEyTxYS1QvU8xh\",\n        \"sol_value\": 9.0014,\n        \"usd_value\": 1541.97,\n        \"exchange\": \"Magic Eden\",\n        \"block_number\": 113933092,\n        \"block_timestamp\": \"2021-12-30T01:47:37.000Z\"\n      },\n      {\n        \"mint_address\": \"2HZEeXqJN4CcdzGkcbHkWrGjQALaEKWg2rsU9XkoT7q1\",\n        \"token_name\": \"SolPunk_#6711\",\n        \"susp_wash\": true,\n        \"update_authority\": \"F5FKqzjucNDYymjHLxMR2uBT43QmaqBAMJwjwkvRRw4A\",\n        \"collection_name\": \"SolPunks\",\n        \"collection_tag\": \"solpunks\",\n        \"first_signature\": \"4Ahk4MF7kbfsaB5MxnXtuwdFxDJsdY8RFZeea6gBHgpRj52wLyL5AZzpModdk3QjfDCP8PNy8f6kME9suERLCq5\",\n        \"sol_value\": 6.5055,\n        \"usd_value\": 1308.93,\n        \"exchange\": \"Solanart\",\n        \"block_number\": 113563410,\n        \"block_timestamp\": \"2021-12-27T12:59:29.000Z\"\n      },\n      {\n        \"mint_address\": \"2BUaViC199FDyfhxdbSTKqrxvkCZ51n2hn2dfrBzTQuR\",\n        \"token_name\": \"Stoned Ape #4007\",\n        \"susp_wash\": true,\n        \"update_authority\": \"PUFFgnKKhQ23vp8uSPwdzrUhEr7WpLmjM85NB1FQgpb\",\n        \"collection_name\": \"Stoned Ape Crew\",\n        \"collection_tag\": \"stonedapecrew\",\n        \"first_signature\": \"2sm66ojNPN6sFCT4PBWDoDygAecmAsi5S3fxm1v15a8CcBRcZ1XFiRYLM35ahDvKArhehp6UGVrrjYSRp1X1SJ32\",\n        \"sol_value\": 20.0014,\n        \"usd_value\": 3958.1,\n        \"exchange\": \"Magic Eden\",\n        \"block_number\": 113488721,\n        \"block_timestamp\": \"2021-12-27T02:07:13.000Z\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "27144452-5fd1-474a-88f8-eecbc10a29a6",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analytics",
+                    "sol",
+                    "getWashTransactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"collection_tag\": \"degods\",\n  \"mint_address\": [\n    \"G4Tbp5zWZRt1thiuv7ywkotcXZvf24DrUEMoM2j6Vj63\",\n    \"G4Tbp5zWZRt1thiuv7ywkotcXZvf24DrUEMoM2j6Vj63\"\n  ],\n  \"page\": 1,\n  \"page_size\": 100\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f1128720-a2db-4642-bdb9-4361ab8c8dbb",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "analytics",
+                    "sol",
+                    "getWashTransactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"collection_tag\": \"degods\",\n  \"mint_address\": [\n    \"G4Tbp5zWZRt1thiuv7ywkotcXZvf24DrUEMoM2j6Vj63\",\n    \"G4Tbp5zWZRt1thiuv7ywkotcXZvf24DrUEMoM2j6Vj63\"\n  ],\n  \"page\": 1,\n  \"page_size\": 100\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "21df1c34-e438-4c80-9a29-90f9763b1082",
+          "name": "Tokens Owned by Wallet",
+          "request": {
+            "name": "Tokens Owned by Wallet",
+            "description": {
+              "content": "Returns all tokens owned for a given wallet",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "sol",
+                "getAccountNFTs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"account_address\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bac072a8-c64a-4695-8eec-073d645304bc",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "sol",
+                    "getAccountNFTs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_address\": \"6CDuoSsn4ZRVvcBMdh9NEKkJebF3AFMdYTnPV4YrfEy6\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"response\": [\n    {\n      \"key\": 4,\n      \"updateAuthority\": \"5Xsx3PU1APi7xwWXjvHhDymFPyLaYSGy1wjAQbMpJCHX\",\n      \"mint\": \"5gcjaKKFpcvBWoBMp9svQyz2X2SZAp1h5t8ie5wP7ZRs\",\n      \"data\": {\n        \"name\": \"Solander #3277\",\n        \"symbol\": \"\",\n        \"uri\": \"https://arweave.net/hMOBh245uVIOdf7i3Jqib3aTiYeQGAIRo2SFMHqF320\",\n        \"sellerFeeBasisPoints\": 1000,\n        \"creators\": [\n          {\n            \"address\": \"5Xsx3PU1APi7xwWXjvHhDymFPyLaYSGy1wjAQbMpJCHX\",\n            \"verified\": 1,\n            \"share\": 100\n          }\n        ]\n      },\n      \"primarySaleHappened\": 1,\n      \"isMutable\": 0\n    },\n    {\n      \"key\": 4,\n      \"updateAuthority\": \"78kenD1C8YLAVEvVhJzZ7kaLWyRcfEYgNzW7kFGTKqTp\",\n      \"mint\": \"6mxLxe6wpVYYixwcov8xHJASYjY4RgZHYMEzjRbhRh7K\",\n      \"data\": {\n        \"name\": \"HOG #1225\",\n        \"symbol\": \"HOG\",\n        \"uri\": \"https://arweave.net/m9KI415MJ2u5wD8KX5soQi73HVOrXyuZhuOUHQkDcXg\",\n        \"sellerFeeBasisPoints\": 500,\n        \"creators\": [\n          {\n            \"address\": \"HeQLHzLH3pKPCQyj2aJrYFLsWudeh1cy6pXn3WfGmS67\",\n            \"verified\": 1,\n            \"share\": 0\n          },\n          {\n            \"address\": \"9XPWP731BdKs5WzUpxPw7qWCTisZDZk7Pwd12t5dr1iv\",\n            \"verified\": 0,\n            \"share\": 100\n          }\n        ]\n      },\n      \"primarySaleHappened\": 1,\n      \"isMutable\": 1\n    },\n    {\n      \"key\": 4,\n      \"updateAuthority\": \"4Fd5mgBEF3kHG5ok246HFpKeJuEiXzgF2GWmeb3YG7Ek\",\n      \"mint\": \"2J5B492wiKJ9Mb7TmNALQ2UC6Cx4Ks7erMcFK2RzNuDS\",\n      \"data\": {\n        \"name\": \"WOOFers #4443\",\n        \"symbol\": \"WFR\",\n        \"uri\": \"https://arweave.net/UUFmfOammy20MSputaWqOtMttMryJTMMcJcLkop5tC4\",\n        \"sellerFeeBasisPoints\": 500,\n        \"creators\": [\n          {\n            \"address\": \"2RGgEVqYWMXCNs2VwXhLYeNr6S76fmDdTv7DcrFYBXVn\",\n            \"verified\": 1,\n            \"share\": 0\n          },\n          {\n            \"address\": \"B8EzoVbg9VbKvJYekgtkCLpJncv9hknZL2718uYrzBK3\",\n            \"verified\": 0,\n            \"share\": 100\n          }\n        ]\n      },\n      \"primarySaleHappened\": 1,\n      \"isMutable\": 1\n    },\n    {\n      \"key\": 4,\n      \"updateAuthority\": \"4Fd5mgBEF3kHG5ok246HFpKeJuEiXzgF2GWmeb3YG7Ek\",\n      \"mint\": \"BXM5ER7S8wfDW9JuiRpRVQuUQZfbH828qSmfuruQLA8w\",\n      \"data\": {\n        \"name\": \"WOOFers #2390\",\n        \"symbol\": \"WFR\",\n        \"uri\": \"https://arweave.net/hJ7-fQWsVQdlZT01kJTuRC2qU8jJtnrVJUYlWFfeaXk\",\n        \"sellerFeeBasisPoints\": 500,\n        \"creators\": [\n          {\n            \"address\": \"2RGgEVqYWMXCNs2VwXhLYeNr6S76fmDdTv7DcrFYBXVn\",\n            \"verified\": 1,\n            \"share\": 0\n          },\n          {\n            \"address\": \"B8EzoVbg9VbKvJYekgtkCLpJncv9hknZL2718uYrzBK3\",\n            \"verified\": 0,\n            \"share\": 100\n          }\n        ]\n      },\n      \"primarySaleHappened\": 1,\n      \"isMutable\": 1\n    },\n    {\n      \"key\": 4,\n      \"updateAuthority\": \"7f3HakYbNopgUkHHboqD9SKFdh8V9VXTFj93n67DKd8w\",\n      \"mint\": \"BtGkpV3xp2yguUtUd6vRR9QzHYxSJksv1zdhNsN33NCF\",\n      \"data\": {\n        \"name\": \"MetaEggs City #115\",\n        \"symbol\": \"METAEGGS\",\n        \"uri\": \"https://arweave.net/EYJm7MEBEDH1x2N2FEfDhjD7fehS1L9ZsQTCweYGyrI\",\n        \"sellerFeeBasisPoints\": 800,\n        \"creators\": [\n          {\n            \"address\": \"ATmGUonj53ZEXXoCXacBCSd4SE4UBf8AEno6GbWnMvUs\",\n            \"verified\": 1,\n            \"share\": 0\n          },\n          {\n            \"address\": \"7f3HakYbNopgUkHHboqD9SKFdh8V9VXTFj93n67DKd8w\",\n            \"verified\": 0,\n            \"share\": 100\n          }\n        ]\n      },\n      \"primarySaleHappened\": 1,\n      \"isMutable\": 1\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d3e1373-82d7-4c56-a689-bb3fc7ea6bb3",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "sol",
+                    "getAccountNFTs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_address\": \"6CDuoSsn4ZRVvcBMdh9NEKkJebF3AFMdYTnPV4YrfEy6\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "db7d6ff5-44f8-4370-916e-738ce0325d41",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "sol",
+                    "getAccountNFTs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_address\": \"6CDuoSsn4ZRVvcBMdh9NEKkJebF3AFMdYTnPV4YrfEy6\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "92bed4cc-deab-4103-93a2-2dae538db032",
+          "name": "Traits by Collection",
+          "request": {
+            "name": "Traits by Collection",
+            "description": {
+              "content": "Returns a list of traits for a given collection",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "sol",
+                "getCollectionTraits"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"collection_tag\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a5ec5dfd-aaf8-4474-b2c5-95cf3e634466",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "sol",
+                    "getCollectionTraits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"collection_tag\": \"solanamonkerejectsget\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"response\": [\n    \"Trait Count\",\n    \"Unit Number\",\n    \"Unit Type\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "41ddd217-4af4-46cf-bd8b-06ccf0185b3d",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "sol",
+                    "getCollectionTraits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"collection_tag\": \"solanamonkerejectsget\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "386f6283-e87a-409c-b1e1-c0f98bbc40bd",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "sol",
+                    "getCollectionTraits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"collection_tag\": \"solanamonkerejectsget\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3857fd76-8203-44de-8512-5cb4107ccc42",
+          "name": "Transactions by Collections",
+          "request": {
+            "name": "Transactions by Collections",
+            "description": {
+              "content": "Returns all transactions for a given collection",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "sol",
+                "getCollectionTransactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"collection_tag\": \"<string>\",\n  \"page\": \"<integer>\",\n  \"page_size\": \"<integer>\",\n  \"start_date\": \"<string>\",\n  \"end_date\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "286e3782-b3a9-4717-863c-aad0ef184068",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "sol",
+                    "getCollectionTransactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"collection_tag\": \"degenape\",\n  \"page\": 1,\n  \"page_size\": 100,\n  \"start_date\": \"2023-01-01T00:00:00.000Z\",\n  \"end_date\": \"2023-01-01T00:00:00.000Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"response\": {\n    \"total_items\": 341585,\n    \"total_pages\": 3416,\n    \"page\": 1,\n    \"transactions\": [\n      {\n        \"mint_address\": \"44bHsaNyZrCRjvLorpTs2xehjA7RfKHtdhrEfSNqES1u\",\n        \"token_name\": \"Degen Ape #8203\",\n        \"update_authority\": \"DC2mkgwhy56w3viNtHDjJQmc7SGu2QX785bS4aexojwX\",\n        \"collection_name\": \"Degenerate Ape Academy\",\n        \"collection_tag\": \"degenape\",\n        \"first_signature\": \"aiw9Z16CzdU1F44vXWqKQhLPL3xQguNHXNKdB9qGcc1SjUBRkFVms8LQUBwGjMbPcbZkDwPgAnNt5Bp2HB25yMk\",\n        \"currency_symbol\": \"SOL\",\n        \"sol_value\": 64.0063,\n        \"usd_value\": 5598.36,\n        \"exchange\": \"Magic Eden\",\n        \"block_number\": 132188123,\n        \"block_timestamp\": \"2022-05-02T16:08:51.000Z\"\n      },\n      {\n        \"mint_address\": \"DYL7wvjLVeWr6tWW5jTawM4oWLXUbJ949VhM4Q7PGg1V\",\n        \"token_name\": \"Degen Ape #4930\",\n        \"update_authority\": \"DC2mkgwhy56w3viNtHDjJQmc7SGu2QX785bS4aexojwX\",\n        \"collection_name\": \"Degenerate Ape Academy\",\n        \"collection_tag\": \"degenape\",\n        \"first_signature\": \"2SFBfFv98G6qjcyQBgDKiH6ZnYJz29zh9cDFk91feVymrGxUAqivm3A93wWJnPQ5umx5oeXuMCUCKM4szhNed9BJ\",\n        \"currency_symbol\": \"SOL\",\n        \"sol_value\": 62.0063,\n        \"usd_value\": 5435.31,\n        \"exchange\": \"Magic Eden\",\n        \"block_number\": 132178671,\n        \"block_timestamp\": \"2022-05-02T14:24:53.000Z\"\n      },\n      {\n        \"mint_address\": \"62UfTSThs4bqsiCb65NEeqZ1ZRfmY5rHYFHxzJjiYZdy\",\n        \"token_name\": \"Degen Ape #2050\",\n        \"update_authority\": \"DC2mkgwhy56w3viNtHDjJQmc7SGu2QX785bS4aexojwX\",\n        \"collection_name\": \"Degenerate Ape Academy\",\n        \"collection_tag\": \"degenape\",\n        \"first_signature\": \"QQeUHwH6iFe8aFpCf2kC6yPzakryHsC9Pmt1vwSuu1vJkCF6xcF4oMtaoZmXJQCTmtcRwooZK2o6Dkw8zLL3UvX\",\n        \"currency_symbol\": \"SOL\",\n        \"sol_value\": 65.0063,\n        \"usd_value\": 5755.39,\n        \"exchange\": \"Magic Eden\",\n        \"block_number\": 132153051,\n        \"block_timestamp\": \"2022-05-02T09:50:24.000Z\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "09d5f1ca-8d63-44c8-9bc7-e3b59b235e10",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "sol",
+                    "getCollectionTransactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"collection_tag\": \"degenape\",\n  \"page\": 1,\n  \"page_size\": 100,\n  \"start_date\": \"2023-01-01T00:00:00.000Z\",\n  \"end_date\": \"2023-01-01T00:00:00.000Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4ae1dcf5-66e2-4fc8-8e11-d0f04ecd855c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "sol",
+                    "getCollectionTransactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"collection_tag\": \"degenape\",\n  \"page\": 1,\n  \"page_size\": 100,\n  \"start_date\": \"2023-01-01T00:00:00.000Z\",\n  \"end_date\": \"2023-01-01T00:00:00.000Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "695acc5c-dfd2-4ef9-a021-4ec0ffb9e4e7",
+          "name": "Aggregated Collections Supported by Gallop",
+          "request": {
+            "name": "Aggregated Collections Supported by Gallop",
+            "description": {
+              "content": "Returns all Gallop aggregated collections",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "sol",
+                "getCollections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"page\": \"<integer>\",\n  \"page_size\": \"<integer>\",\n  \"collection_name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "154b043f-b4df-442a-b130-eaf96d20203d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "sol",
+                    "getCollections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"page\": 1,\n  \"page_size\": 100,\n  \"collection_name\": \"degen\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"response\": {\n    \"total_items\": 3,\n    \"total_pages\": 1,\n    \"page\": 1,\n    \"collections\": [\n      {\n        \"collection_name\": \"Aurory\",\n        \"collection_tag\": \"aurory\",\n        \"collection_address\": \"7BQdHnBKERaCYCnwLbbSoYHQZxcq7zLenYERDp94o18z\"\n      },\n      {\n        \"collection_name\": \"Degenerate Ape Academy\",\n        \"collection_tag\": \"degenape\",\n        \"collection_address\": \"DSwfRF1jhhu6HpSuzaig1G19kzP73PfLZBPLofkw6fLD\"\n      },\n      {\n        \"collection_name\": \"Degen Dojo\",\n        \"collection_tag\": \"degendojo\",\n        \"collection_address\": null\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4060d37f-0e21-4e6d-8f09-7100a4a2a27f",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "sol",
+                    "getCollections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"page\": 1,\n  \"page_size\": 100,\n  \"collection_name\": \"degen\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "059bd646-b39c-4acd-971c-e9a0e451ab4b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "sol",
+                    "getCollections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"page\": 1,\n  \"page_size\": 100,\n  \"collection_name\": \"degen\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7db347b3-cafe-456f-a01a-d9e17cd7a584",
+          "name": "Historical Transactions by Collection",
+          "request": {
+            "name": "Historical Transactions by Collection",
+            "description": {
+              "content": "Returns all transactions for a given collection in bulk",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "sol",
+                "getHistoricalTransactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"collection_tag\": \"<string>\",\n  \"page\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "124546f9-efac-4a21-8561-1cd48cba58a2",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "sol",
+                    "getHistoricalTransactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"collection_tag\": \"degenape\",\n  \"page\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"response\": {\n    \"total_items\": 10,\n    \"total_pages\": 1,\n    \"page\": 1,\n    \"mint_address\": [\n      \"9CcbDoenSF2xBi6pzWAzbK37GLaDa4CRBLXzDigGD82\",\n      \"2JKrCJMkNpL6EfEjCHuKcM55hqZgfCanmC8hpK4yWJqt\",\n      \"Eh3yRBvVecs1E91W4udPU6iaFY7xkxMFfQ7HVhR7vANi\",\n      \"CvjkQu1JdQAH6AZLriAHAi9oNHQL5ZcXnMcyPnhYEu5J\",\n      \"9kBEQ7acyPmS79zZ7Dt7RzaSqUa3L2Pbb3VsR133485y\",\n      \"3hjqyA1JivchTiPYcyhUpYDPhGQUvDa9VULjsDBGvooW\",\n      \"CQVx5mjr2odpnLFsVPNEZRvzmXuEXjmux7vFYCf3udKg\",\n      \"F7AV8iUC9FeYKu8uVBmZExwskJuGh8bu3p7KvJnKvJLj\",\n      \"DwCS9jwYEV2b95jnViuceRJcKhzjGP8pbhGhC9s3sF29\",\n      \"DAR8wC861Eea9F7ZeqtDWyAfJinMzjaqLQAzQLd8GTsN\"\n    ],\n    \"token_name\": [\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\"\n    ],\n    \"update_authority\": [\n      \"4T8p54CubXcqRpXNnL6Zb6kFf22y91WggrkyoZ9Vu9HU\",\n      \"4T8p54CubXcqRpXNnL6Zb6kFf22y91WggrkyoZ9Vu9HU\",\n      \"4T8p54CubXcqRpXNnL6Zb6kFf22y91WggrkyoZ9Vu9HU\",\n      \"4T8p54CubXcqRpXNnL6Zb6kFf22y91WggrkyoZ9Vu9HU\",\n      \"4T8p54CubXcqRpXNnL6Zb6kFf22y91WggrkyoZ9Vu9HU\",\n      \"4T8p54CubXcqRpXNnL6Zb6kFf22y91WggrkyoZ9Vu9HU\",\n      \"4T8p54CubXcqRpXNnL6Zb6kFf22y91WggrkyoZ9Vu9HU\",\n      \"4T8p54CubXcqRpXNnL6Zb6kFf22y91WggrkyoZ9Vu9HU\",\n      \"4T8p54CubXcqRpXNnL6Zb6kFf22y91WggrkyoZ9Vu9HU\",\n      \"4T8p54CubXcqRpXNnL6Zb6kFf22y91WggrkyoZ9Vu9HU\"\n    ],\n    \"collection_name\": \"Angelz Dao\",\n    \"collection_tag\": \"angelzdao\",\n    \"from_address\": [\n      \"2H8iejHAb1sTnQatHiYfvxKqxWuiqtMYMDkqHMD9hAAz\",\n      \"2H8iejHAb1sTnQatHiYfvxKqxWuiqtMYMDkqHMD9hAAz\",\n      \"2H8iejHAb1sTnQatHiYfvxKqxWuiqtMYMDkqHMD9hAAz\",\n      \"2H8iejHAb1sTnQatHiYfvxKqxWuiqtMYMDkqHMD9hAAz\",\n      \"2H8iejHAb1sTnQatHiYfvxKqxWuiqtMYMDkqHMD9hAAz\",\n      \"2H8iejHAb1sTnQatHiYfvxKqxWuiqtMYMDkqHMD9hAAz\",\n      \"2H8iejHAb1sTnQatHiYfvxKqxWuiqtMYMDkqHMD9hAAz\",\n      \"2H8iejHAb1sTnQatHiYfvxKqxWuiqtMYMDkqHMD9hAAz\",\n      \"2H8iejHAb1sTnQatHiYfvxKqxWuiqtMYMDkqHMD9hAAz\",\n      \"2H8iejHAb1sTnQatHiYfvxKqxWuiqtMYMDkqHMD9hAAz\"\n    ],\n    \"to_address\": [\n      \"FGw6WhiPLET9XkEcPD2quCyJa8m528QFPM9cswQYKJn8\",\n      \"FGw6WhiPLET9XkEcPD2quCyJa8m528QFPM9cswQYKJn8\",\n      \"FGw6WhiPLET9XkEcPD2quCyJa8m528QFPM9cswQYKJn8\",\n      \"FGw6WhiPLET9XkEcPD2quCyJa8m528QFPM9cswQYKJn8\",\n      \"FGw6WhiPLET9XkEcPD2quCyJa8m528QFPM9cswQYKJn8\",\n      \"FGw6WhiPLET9XkEcPD2quCyJa8m528QFPM9cswQYKJn8\",\n      \"FGw6WhiPLET9XkEcPD2quCyJa8m528QFPM9cswQYKJn8\",\n      \"FGw6WhiPLET9XkEcPD2quCyJa8m528QFPM9cswQYKJn8\",\n      \"FGw6WhiPLET9XkEcPD2quCyJa8m528QFPM9cswQYKJn8\",\n      \"FGw6WhiPLET9XkEcPD2quCyJa8m528QFPM9cswQYKJn8\"\n    ],\n    \"first_signature\": [\n      \"4sSW2JY14uAAJ86LbhcEzoydTafpF6BKbgY6X9vubqDo41ZpgcAk1KyHC3qoQHSMjBJRFRCdsBsBXgKiY2vsT8v2\",\n      \"4AnKJceEaqZXdwFpmWsRUXp1Cs3hqRQ5xmaVsPnbMW2WCN38mfNXbAMdzHHKV93avzsXBJMWHzGo6bmg9VU8Civv\",\n      \"4LARRKsYsAQ1bMg5nNt82o3SDceQDRCzc6TKRzWHKTVBnJapWmnEjATNj1gKHFhNg7T5wwpDQPhamvX4wa5wkrKs\",\n      \"4uqU5KxZazGrBExB8rvent5iynKXwBUx2BcBtEYRB6a1X3p4cvhDGcpCcD3UP9qdazhbT9QwyDTpoQ6Tj5uqSzMU\",\n      \"2wri7kC8KhMsXBEyPPscE6qNWTCCxoXzgcTBvLi1p3KFqRYTsPUy1rQKJMicHJkEtrFCxoRBSbhAMVoL8FdAvMDm\",\n      \"5LgvQrjFcfL2d25dLLVvvzgDNojgnaprVbr3fJCSbaJBtkoa2yhjAHZkdGo9fFp4yuwpVQWPGPtrqk5i6wSnLH78\",\n      \"314Veijyo11gMKUqvXxFgh1g3Y7NEZXTeRhDzUnkTzMUuhjHp9EchGgBW2hrmx9waitv7NUwPkpRVVVF4sdRJUaP\",\n      \"5nKMK6h26ZhNQRe5Yd1i4Gi75yFsMvPdu2j6f3VSEA9qYzfZX7tCwczRpyWKCgyrVPh9v8GoPgci3iWf6S2xZYbg\",\n      \"2hF4neLwYjfozkCVDm5tJCTbo1v7eh8qMcU19vPxu3v2V8Kmrpf1JjBQ1bo8WSx6jcqmnistZzNzRzmdbkrUiC5a\",\n      \"4tWbLdY8HeAVC1dzD4xjnqSw2M5MFpi5NrShY7xKoS94cW9AmvBV2UcgF6pdcKBATNydFH9sT78DgztzS2GpL5VH\"\n    ],\n    \"sol_value\": [\n      0.0073,\n      0.0073,\n      0.0073,\n      0.0073,\n      0.0073,\n      0.0073,\n      0.0073,\n      0.0073,\n      0.0073,\n      0.0073\n    ],\n    \"usd_value\": [\n      0.32,\n      0.32,\n      0.32,\n      0.32,\n      0.32,\n      0.32,\n      0.32,\n      0.32,\n      0.32,\n      0.31\n    ],\n    \"exchange\": [\n      \"Magic Eden\",\n      \"Magic Eden\",\n      \"Magic Eden\",\n      \"Magic Eden\",\n      \"Magic Eden\",\n      \"Magic Eden\",\n      \"Magic Eden\",\n      \"Magic Eden\",\n      \"Magic Eden\",\n      \"Magic Eden\"\n    ],\n    \"block_number\": [\n      142183700,\n      142183695,\n      142183695,\n      142183695,\n      142183695,\n      142183695,\n      142183695,\n      142183695,\n      142183695,\n      142095552\n    ],\n    \"block_timestamp\": [\n      \"2022-07-19T05:08:12.000Z\",\n      \"2022-07-19T05:08:09.000Z\",\n      \"2022-07-19T05:08:09.000Z\",\n      \"2022-07-19T05:08:09.000Z\",\n      \"2022-07-19T05:08:09.000Z\",\n      \"2022-07-19T05:08:09.000Z\",\n      \"2022-07-19T05:08:09.000Z\",\n      \"2022-07-19T05:08:09.000Z\",\n      \"2022-07-19T05:08:09.000Z\",\n      \"2022-07-18T13:02:20.000Z\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cd5a0f79-6bb8-45a5-ac2c-6dd865c1c35a",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "sol",
+                    "getHistoricalTransactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"collection_tag\": \"degenape\",\n  \"page\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2694a87d-e416-46be-9c9c-ae99b43bd3a7",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "sol",
+                    "getHistoricalTransactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"collection_tag\": \"degenape\",\n  \"page\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9cffbb79-e88e-4ed9-9e2c-9aa8b3c67882",
+          "name": "Collection Summary by Marketplace",
+          "request": {
+            "name": "Collection Summary by Marketplace",
+            "description": {
+              "content": "Returns summary statistics for collections by marketplace",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "sol",
+                "getMarketplaceData"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"collection_tag\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2f87a099-677d-468d-94e4-4c32069a56f9",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "sol",
+                    "getMarketplaceData"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"collection_tag\": [\n    \"downtowngirlz\",\n    \"downtowngirlz\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"response\": [\n    {\n      \"collection_tag\": \"critters-cult\",\n      \"marketplaces\": [\n        {\n          \"marketplace\": \"Solanart\",\n          \"updated_at\": \"2022-10-26T18:34:01.698Z\",\n          \"stats_summary\": {\n            \"items\": 5550,\n            \"total_volume\": 111470,\n            \"floor_price\": 9.2,\n            \"currency\": \"SOL\"\n          }\n        },\n        {\n          \"marketplace\": \"Magic_Eden\",\n          \"updated_at\": \"2022-10-26T18:34:01.698Z\",\n          \"stats_summary\": {\n            \"symbol\": \"critters_cult\",\n            \"floorPrice\": 9.55,\n            \"listedCount\": 649,\n            \"avgPrice24hr\": 11.227580645161291,\n            \"volumeAll\": 212830.250639258\n          }\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "be8901bf-c73d-45e4-bbd7-1d85d0d3353b",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "sol",
+                    "getMarketplaceData"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"collection_tag\": [\n    \"downtowngirlz\",\n    \"downtowngirlz\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "528087bd-6abd-45b6-9422-5666a849d347",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "sol",
+                    "getMarketplaceData"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"collection_tag\": [\n    \"downtowngirlz\",\n    \"downtowngirlz\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "93bacabf-801b-4f5a-a4d4-b983e94b3bf6",
+          "name": "Marketplace Floor Price by Collection",
+          "request": {
+            "name": "Marketplace Floor Price by Collection",
+            "description": {
+              "content": "Returns current floor price for all collections by marketplace",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "sol",
+                "getMarketplaceFloorPrice"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"page\": \"<integer>\",\n  \"page_size\": \"<integer>\",\n  \"collection_tag\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fdee2178-5004-47ca-a153-c7ef039203ac",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "sol",
+                    "getMarketplaceFloorPrice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"page\": 1,\n  \"page_size\": 100,\n  \"collection_tag\": [\n    \"downtowngirlz\",\n    \"downtowngirlz\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"response\": {\n    \"total_items\": 3,\n    \"total_pages\": 1,\n    \"page\": 1,\n    \"collections\": [\n      {\n        \"collection_tag\": \"3d-anon\",\n        \"marketplaces\": [\n          {\n            \"updated_at\": \"2022-12-23T04:30:10.407\",\n            \"floor_price\": 15,\n            \"marketplace\": \"Solanart\",\n            \"collection_id\": \"3d-anon\"\n          }\n        ]\n      },\n      {\n        \"collection_tag\": \"4x4\",\n        \"marketplaces\": [\n          {\n            \"updated_at\": \"2022-11-05T20:48:56.831\",\n            \"floor_price\": 35,\n            \"marketplace\": \"Magic_Eden\",\n            \"collection_id\": \"4x4\"\n          },\n          {\n            \"updated_at\": \"2023-01-16T13:43:12.938\",\n            \"floor_price\": 80.69,\n            \"marketplace\": \"Solanart\",\n            \"collection_id\": \"4x4\"\n          }\n        ]\n      },\n      {\n        \"collection_tag\": \"6rings\",\n        \"marketplaces\": [\n          {\n            \"updated_at\": \"2023-01-16T13:16:54.568\",\n            \"floor_price\": 20,\n            \"marketplace\": \"Solanart\",\n            \"collection_id\": \"6rings\"\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7a875807-c665-42a8-af24-c8a2d2996450",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "sol",
+                    "getMarketplaceFloorPrice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"page\": 1,\n  \"page_size\": 100,\n  \"collection_tag\": [\n    \"downtowngirlz\",\n    \"downtowngirlz\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1622b95d-1ba7-4d05-b66c-626c1735fe70",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "sol",
+                    "getMarketplaceFloorPrice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"page\": 1,\n  \"page_size\": 100,\n  \"collection_tag\": [\n    \"downtowngirlz\",\n    \"downtowngirlz\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8d5efdc4-6d10-4f5c-82c2-a2367a9b1f57",
+          "name": "Wallet Owners by Token",
+          "request": {
+            "name": "Wallet Owners by Token",
+            "description": {
+              "content": "Returns all wallet owners for a given collection",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "sol",
+                "getNFTAccount"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mint_address\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "85af0332-829e-4200-8984-0a690a2165ad",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "sol",
+                    "getNFTAccount"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"mint_address\": \"G6oNTZRyrU2tN1YnWREmFaLwEcMA7QDoCscxon4Xrkbp\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"response\": {\n    \"token_name\": \"skelr\",\n    \"symbol\": \"POWR\",\n    \"collection_name\": \"Fractals\",\n    \"collection_tag\": \"fractals\",\n    \"owner_address\": \"6CDuoSsn4ZRVvcBMdh9NEKkJebF3AFMdYTnPV4YrfEy6\",\n    \"token_account_address\": \"2qD4VsXEzE3cz8QvHzPeeHGaMAJBHsR4oGCb6XiLEYgi\",\n    \"fin_transactions\": [\n      {\n        \"block_timestamp\": \"2021-12-31T19:07:21.000Z\",\n        \"currency_symbol\": \"SOL\",\n        \"sol_value\": 0.0714,\n        \"usd_value\": 12.22,\n        \"exchange\": \"Magic Eden\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b5cd8087-7506-4c0f-8447-f3453f0772d9",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "sol",
+                    "getNFTAccount"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"mint_address\": \"G6oNTZRyrU2tN1YnWREmFaLwEcMA7QDoCscxon4Xrkbp\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3ad94c2e-c1bd-4a3a-86dc-6f42fbd8a6db",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "sol",
+                    "getNFTAccount"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"mint_address\": \"G6oNTZRyrU2tN1YnWREmFaLwEcMA7QDoCscxon4Xrkbp\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5b54c605-9e0a-47d2-b193-45c703bafffb",
+          "name": "Transactions by Token",
+          "request": {
+            "name": "Transactions by Token",
+            "description": {
+              "content": "Returns all transactions for a given token",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "sol",
+                "getTokenTransactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mint_address\": \"<string>\",\n  \"page\": \"<integer>\",\n  \"page_size\": \"<integer>\",\n  \"start_date\": \"<string>\",\n  \"end_date\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "edf42d64-2f8a-45e1-ac18-4ee93c158919",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "sol",
+                    "getTokenTransactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"mint_address\": \"5uarH96GLf4APmipQRrsD3SsW4K77zRPtWGwETcyz5GE\",\n  \"page\": 1,\n  \"page_size\": 100,\n  \"start_date\": \"2023-01-01T00:00:00.000Z\",\n  \"end_date\": \"2023-01-01T00:00:00.000Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"response\": {\n    \"total_items\": 5,\n    \"total_pages\": 1,\n    \"page\": 1,\n    \"transactions\": [\n      {\n        \"mint_address\": \"B2V9GkXGEwmzZTHSMhLEC3NjjGHURrNNUgKioSDmTDQA\",\n        \"token_name\": \"DeGod #5644\",\n        \"update_authority\": \"AxFuniPo7RaDgPH6Gizf4GZmLQFc4M5ipckeeZfkrPNn\",\n        \"collection_name\": \"DeGods\",\n        \"collection_tag\": \"degods\",\n        \"first_signature\": \"4PQ8ygNHqaKc7e5TMaYRPZw9LQmARZzXHoktC6M424bT8FoQ8YVwK7V2vkvFsMPA4WKp7u4jMn2vCshyUh9c3hBk\",\n        \"sol_value\": 0,\n        \"usd_value\": 18328.43,\n        \"exchange\": \"Magic Eden v2\",\n        \"block_number\": 129015804,\n        \"block_timestamp\": \"2022-04-10T01:09:22.000Z\"\n      },\n      {\n        \"mint_address\": \"B2V9GkXGEwmzZTHSMhLEC3NjjGHURrNNUgKioSDmTDQA\",\n        \"token_name\": \"DeGod #5644\",\n        \"update_authority\": \"AxFuniPo7RaDgPH6Gizf4GZmLQFc4M5ipckeeZfkrPNn\",\n        \"collection_name\": \"DeGods\",\n        \"collection_tag\": \"degods\",\n        \"first_signature\": \"58VUbprocvJc7fxq53mbcuLmzSToquZBaSMMJ8rWDVUrtqqJgQpFyN7pxXMgnv4N5yQSzamoTgBE9V4yCUTNzbxJ\",\n        \"sol_value\": 0,\n        \"usd_value\": 7737.95,\n        \"exchange\": \"Magic Eden v2\",\n        \"block_number\": 126256820,\n        \"block_timestamp\": \"2022-03-23T06:48:10.000Z\"\n      },\n      {\n        \"mint_address\": \"B2V9GkXGEwmzZTHSMhLEC3NjjGHURrNNUgKioSDmTDQA\",\n        \"token_name\": \"DeGod #5644\",\n        \"update_authority\": \"AxFuniPo7RaDgPH6Gizf4GZmLQFc4M5ipckeeZfkrPNn\",\n        \"collection_name\": \"DeGods\",\n        \"collection_tag\": \"degods\",\n        \"first_signature\": \"3LVaQ4UfgJRPCSfQSVkzrSnp7pZfRGApTM1ybEFGNvsUBJYCJBKxgbWL88xj4QncyzKStYiBFSyrQZeAMK2GACEQ\",\n        \"sol_value\": 0,\n        \"usd_value\": 3865.45,\n        \"exchange\": \"Magic Eden v2\",\n        \"block_number\": 125534287,\n        \"block_timestamp\": \"2022-03-18T14:59:11.000Z\"\n      },\n      {\n        \"mint_address\": \"B2V9GkXGEwmzZTHSMhLEC3NjjGHURrNNUgKioSDmTDQA\",\n        \"token_name\": \"DeGod #5644\",\n        \"update_authority\": \"AxFuniPo7RaDgPH6Gizf4GZmLQFc4M5ipckeeZfkrPNn\",\n        \"collection_name\": \"DeGods\",\n        \"collection_tag\": \"degods\",\n        \"first_signature\": \"B1GREGDkLJeLNczsN9ueP4K475nHjz3gpu1bj8FxYcKqjUETAB3Q3zEW7Kcd14mtNfxMQ9D3GQcD8xYPfrbEnsM\",\n        \"sol_value\": 0,\n        \"usd_value\": 817.98,\n        \"exchange\": \"Magic Eden v1\",\n        \"block_number\": 118628281,\n        \"block_timestamp\": \"2022-01-31T02:59:13.000Z\"\n      },\n      {\n        \"mint_address\": \"B2V9GkXGEwmzZTHSMhLEC3NjjGHURrNNUgKioSDmTDQA\",\n        \"token_name\": \"DeGod #5644\",\n        \"update_authority\": \"AxFuniPo7RaDgPH6Gizf4GZmLQFc4M5ipckeeZfkrPNn\",\n        \"collection_name\": \"DeGods\",\n        \"collection_tag\": \"degods\",\n        \"first_signature\": \"4wuJPrqqJhgXcxyyXEWwBUjhc9fLHwe6jwogzJCUrgeV7gAfu17mhSY62ai6WAA95WnduVMiWeTUEijmo4YYhDmB\",\n        \"sol_value\": 0,\n        \"usd_value\": 1964.94,\n        \"exchange\": \"Alpha Art\",\n        \"block_number\": 101110594,\n        \"block_timestamp\": \"2021-10-12T16:32:43.000Z\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "043bfa2c-c01d-461f-8b6a-2bc93abd9ed5",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "sol",
+                    "getTokenTransactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"mint_address\": \"5uarH96GLf4APmipQRrsD3SsW4K77zRPtWGwETcyz5GE\",\n  \"page\": 1,\n  \"page_size\": 100,\n  \"start_date\": \"2023-01-01T00:00:00.000Z\",\n  \"end_date\": \"2023-01-01T00:00:00.000Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b6abac7f-3db8-4976-a3cb-947ce09dbd04",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "sol",
+                    "getTokenTransactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"mint_address\": \"5uarH96GLf4APmipQRrsD3SsW4K77zRPtWGwETcyz5GE\",\n  \"page\": 1,\n  \"page_size\": 100,\n  \"start_date\": \"2023-01-01T00:00:00.000Z\",\n  \"end_date\": \"2023-01-01T00:00:00.000Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "637fa324-7362-45c6-acd6-1856080b5b11",
+          "name": "Tokens by Collection",
+          "request": {
+            "name": "Tokens by Collection",
+            "description": {
+              "content": "Returns all tokens for a given collection",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "sol",
+                "getTokens"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"collection_tag\": \"<string>\",\n  \"mint_address\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"page\": \"<integer>\",\n  \"page_size\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4e7b5e05-d0dd-42fd-85c3-5968681161dc",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "sol",
+                    "getTokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"collection_tag\": \"degenape\",\n  \"mint_address\": [\n    \"G4Tbp5zWZRt1thiuv7ywkotcXZvf24DrUEMoM2j6Vj63\",\n    \"G4Tbp5zWZRt1thiuv7ywkotcXZvf24DrUEMoM2j6Vj63\"\n  ],\n  \"page\": 1,\n  \"page_size\": 100\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"response\": {\n    \"total_items\": 1,\n    \"total_pages\": 1,\n    \"page\": 1,\n    \"tokens\": [\n      {\n        \"mint_address\": \"BaMVLQJzs5wiq7Q9pKFBtD7unfWD4EEcAp52aVFV3Bhw\",\n        \"token_name\": \"Degen Ape #1\",\n        \"collection_name\": \"Degenerate Ape Academy\",\n        \"collection_tag\": \"degenape\",\n        \"symbol\": \"DAPE\",\n        \"token_uri\": \"https://arweave.net/KpKbswk6xSV2vOmAoWJxtoNPzOICKoCmUfH09rMNMsg\",\n        \"owner_address\": \"1BWutmTvYPwDtmw9abTkS4Ssr8no61spGAvW1X6NDix\",\n        \"token_account_address\": \"HRyHzToZ34CC1iuTncE3XB9BN4GDxNxCdky32W2NPCRT\",\n        \"update_authority\": \"DC2mkgwhy56w3viNtHDjJQmc7SGu2QX785bS4aexojwX\",\n        \"on_chain_metadata\": {\n          \"key\": 4,\n          \"data\": {\n            \"uri\": \"https://arweave.net/KpKbswk6xSV2vOmAoWJxtoNPzOICKoCmUfH09rMNMsg\",\n            \"name\": \"Degen Ape #1\",\n            \"symbol\": \"DAPE\",\n            \"creators\": [\n              {\n                \"share\": 39,\n                \"address\": \"9BKWqDHfHZh9j39xakYVMdr6hXmCLHH5VfCpeq2idU9L\",\n                \"verified\": 0\n              },\n              {\n                \"share\": 25,\n                \"address\": \"9FYsKrNuEweb55Wa2jaj8wTKYDBvuCG3huhakEj96iN9\",\n                \"verified\": 0\n              },\n              {\n                \"share\": 25,\n                \"address\": \"HNGVuL5kqjDehw7KR63w9gxow32sX6xzRNgLb8GkbwCM\",\n                \"verified\": 0\n              },\n              {\n                \"share\": 10,\n                \"address\": \"7FzXBBPjzrNJbm9MrZKZcyvP3ojVeYPUG2XkBPVZvuBu\",\n                \"verified\": 0\n              },\n              {\n                \"share\": 1,\n                \"address\": \"DC2mkgwhy56w3viNtHDjJQmc7SGu2QX785bS4aexojwX\",\n                \"verified\": 1\n              }\n            ],\n            \"sellerFeeBasisPoints\": 420\n          },\n          \"mint\": \"BaMVLQJzs5wiq7Q9pKFBtD7unfWD4EEcAp52aVFV3Bhw\",\n          \"isMutable\": 0,\n          \"collection\": {\n            \"key\": \"DSwfRF1jhhu6HpSuzaig1G19kzP73PfLZBPLofkw6fLD\",\n            \"verified\": 1\n          },\n          \"editionNonce\": 253,\n          \"updateAuthority\": \"DC2mkgwhy56w3viNtHDjJQmc7SGu2QX785bS4aexojwX\",\n          \"primarySaleHappened\": 1\n        },\n        \"off_chain_metadata\": {\n          \"name\": \"Degen Ape #1\",\n          \"image\": \"https://arweave.net/v3jwhUUPJtqt30e-8WmNNcukKJNfrszYeVlFZ-m4kDc\",\n          \"symbol\": \"DAPE\",\n          \"edition\": \"Class of 2021\",\n          \"attributes\": [\n            {\n              \"value\": \"Yellow\",\n              \"trait_type\": \"Background\"\n            },\n            {\n              \"value\": \"Brown / Yellow\",\n              \"trait_type\": \"Fur / Skin\"\n            },\n            {\n              \"value\": \"Fishing Hat\",\n              \"trait_type\": \"Head\"\n            },\n            {\n              \"value\": \"Ape Force 1's\",\n              \"trait_type\": \"Mouth\"\n            },\n            {\n              \"value\": \"No Traits\",\n              \"trait_type\": \"Teeth\"\n            },\n            {\n              \"value\": \"Japanese Uniform\",\n              \"trait_type\": \"Clothing\"\n            },\n            {\n              \"value\": \"No Traits\",\n              \"trait_type\": \"Eyewear\"\n            },\n            {\n              \"value\": 1,\n              \"trait_type\": \"generation\",\n              \"display_type\": \"number\"\n            },\n            {\n              \"value\": 1,\n              \"trait_type\": \"sequence\",\n              \"display_type\": \"number\"\n            }\n          ],\n          \"properties\": {\n            \"files\": [\n              {\n                \"uri\": \"https://arweave.net/v3jwhUUPJtqt30e-8WmNNcukKJNfrszYeVlFZ-m4kDc?ext=png\",\n                \"type\": \"image/png\"\n              }\n            ],\n            \"category\": \"image\",\n            \"creators\": [\n              {\n                \"share\": 39,\n                \"address\": \"9BKWqDHfHZh9j39xakYVMdr6hXmCLHH5VfCpeq2idU9L\"\n              },\n              {\n                \"share\": 25,\n                \"address\": \"9FYsKrNuEweb55Wa2jaj8wTKYDBvuCG3huhakEj96iN9\"\n              },\n              {\n                \"share\": 25,\n                \"address\": \"HNGVuL5kqjDehw7KR63w9gxow32sX6xzRNgLb8GkbwCM\"\n              },\n              {\n                \"share\": 10,\n                \"address\": \"7FzXBBPjzrNJbm9MrZKZcyvP3ojVeYPUG2XkBPVZvuBu\"\n              },\n              {\n                \"share\": 1,\n                \"address\": \"DC2mkgwhy56w3viNtHDjJQmc7SGu2QX785bS4aexojwX\"\n              }\n            ]\n          },\n          \"description\": \"Deep in the heart of Dingus Forest echoes the sleepless cries of a troop of 10,000 apes. These aren’t just regular apes, however. These are degenerate apes.\",\n          \"external_url\": \"\",\n          \"background_color\": \"000000\",\n          \"seller_fee_basis_points\": 420\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "81617d80-8bc3-436d-bdcd-67c4b0755ee6",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "sol",
+                    "getTokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"collection_tag\": \"degenape\",\n  \"mint_address\": [\n    \"G4Tbp5zWZRt1thiuv7ywkotcXZvf24DrUEMoM2j6Vj63\",\n    \"G4Tbp5zWZRt1thiuv7ywkotcXZvf24DrUEMoM2j6Vj63\"\n  ],\n  \"page\": 1,\n  \"page_size\": 100\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2b5989a2-8322-43a0-85a3-1e38fff0257c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "sol",
+                    "getTokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"collection_tag\": \"degenape\",\n  \"mint_address\": [\n    \"G4Tbp5zWZRt1thiuv7ywkotcXZvf24DrUEMoM2j6Vj63\",\n    \"G4Tbp5zWZRt1thiuv7ywkotcXZvf24DrUEMoM2j6Vj63\"\n  ],\n  \"page\": 1,\n  \"page_size\": 100\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c9f9eb26-5838-4d9f-9e70-8c78179d8f9b",
+          "name": "Liquidation & Appraisal Estimate by Token",
+          "request": {
+            "name": "Liquidation & Appraisal Estimate by Token",
+            "description": {
+              "content": "Get estimates of appraisal and liquidation values for a set of tokens. The app returns nowcasts by default, but if provided a `horizon` and `frequency`, it will return forcasts for `horizon` periods out at interval `frequency`. The app is does not deliver individualized financial advice, but merely provides analytical estimates of token appraisal and liquidation values",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "insights",
+                "sol",
+                "getTokenAppraisal"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mint_address\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"rept_curr\": \"<string>\",\n  \"frequency\": \"<string>\",\n  \"horizon\": \"<integer>\",\n  \"alpha\": \"<number>\",\n  \"exclude_wash\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a411f250-f54f-47ea-83df-6f9480e0926c",
+              "name": "An object containing appraisal and liquidation value estimates for a (set of) given mint address(es).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "insights",
+                    "sol",
+                    "getTokenAppraisal"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"mint_address\": [\n    \"8hBJ4TfzgozfNxqaWLT9hwgMzrbWRKCoeJysjPQnNea5\",\n    \"8hBJ4TfzgozfNxqaWLT9hwgMzrbWRKCoeJysjPQnNea5\"\n  ],\n  \"rept_curr\": \"sol\",\n  \"frequency\": \"1W\",\n  \"horizon\": 5,\n  \"alpha\": 0.1,\n  \"exclude_wash\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 200,\n  \"response\": [\n    {\n      \"token_id\": \"8w9MstFEWkzPy8MMDKrZQysvgJEKjmpLiu5AUpgPiNAq\",\n      \"appraisal\": 78.03807216506911,\n      \"liquidation\": 65.57171592775042,\n      \"forecasts\": null\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f5e8d911-31f0-42d6-8f53-ea04b960282c",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "insights",
+                    "sol",
+                    "getTokenAppraisal"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"mint_address\": [\n    \"8hBJ4TfzgozfNxqaWLT9hwgMzrbWRKCoeJysjPQnNea5\",\n    \"8hBJ4TfzgozfNxqaWLT9hwgMzrbWRKCoeJysjPQnNea5\"\n  ],\n  \"rept_curr\": \"sol\",\n  \"frequency\": \"1W\",\n  \"horizon\": 5,\n  \"alpha\": 0.1,\n  \"exclude_wash\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dff22b79-a6c2-4bdd-8c5b-7935cc2ccb07",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "insights",
+                    "sol",
+                    "getTokenAppraisal"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"mint_address\": [\n    \"8hBJ4TfzgozfNxqaWLT9hwgMzrbWRKCoeJysjPQnNea5\",\n    \"8hBJ4TfzgozfNxqaWLT9hwgMzrbWRKCoeJysjPQnNea5\"\n  ],\n  \"rept_curr\": \"sol\",\n  \"frequency\": \"1W\",\n  \"horizon\": 5,\n  \"alpha\": 0.1,\n  \"exclude_wash\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.prod.gallop.run/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "bbdfd73b-9214-42da-add4-480a5652e1ca",
+    "name": "Analytics Ethereum Solana API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Sales, pricing, performance, and marketplace data, all in one place with low latency.\n\nContact Support:\n Email: support@higallop.com",
+      "type": "text/plain"
+    }
+  }
+}
