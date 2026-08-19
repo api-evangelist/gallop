@@ -22,7 +22,7 @@ x-backed-by:
 x-tier: profiled
 x-tier-reason: enriched-from-published-docs
 x-provider-status: defunct-or-dormant (higallop.com in redemption; api.prod.gallop.run unreachable; docs live on ReadMe)
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 created: '2026-07-17'
 modified: '2026-07-19'
 tags:
