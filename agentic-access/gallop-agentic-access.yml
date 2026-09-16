@@ -1,15 +1,16 @@
-generated: '2026-07-19'
+generated: '2026-09-16'
 method: generated
-source: openapi/gallop-analytics-openapi.json, openapi/gallop-insights-openapi.json
+source: openapi/gallop-ethereum-api-openapi.yml, openapi/gallop-polygon-api-openapi.yml, openapi/gallop-solana-api-openapi.yml,
+  openapi/gallop-starknet-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
-  operations: 32
+  operations: 69
   by_action_class:
-    acting: 32
+    acting: 69
   by_consequence:
-    write: 26
+    write: 63
     physical: 6
   human_in_the_loop_required: 0
 operations:
@@ -193,6 +194,278 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /data/eth/getCollectionOwners
+  method: post
+  operationId: getEthCollectionOwners
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /data/eth/getCollectionTransactions
+  method: post
+  operationId: getEthCollectionTransactions
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /data/eth/getCollections
+  method: post
+  operationId: getEthCollections
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /data/eth/getEnsLookup
+  method: post
+  operationId: getEthEnsLookup
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /data/eth/getFloorPriceByTrait
+  method: post
+  operationId: getEthFloorPriceByTrait
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /data/eth/getHistoricalEvents
+  method: post
+  operationId: getEthHistoricalEvents
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /data/eth/getHistoricalTransactions
+  method: post
+  operationId: getEthHistoricalTransactions
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /data/eth/getLiveListings
+  method: post
+  operationId: getEthLiveListings
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /data/eth/getMarketplaceData
+  method: post
+  operationId: getEthMarketplaceData
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /data/eth/getMarketplaceFloorPrice
+  method: post
+  operationId: getEthMarketplaceFloorPrice
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /data/eth/getTokenTransactions
+  method: post
+  operationId: getEthTokenTransactions
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /data/eth/getTokens
+  method: post
+  operationId: getEthTokens
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /data/eth/getWalletNFTs
+  method: post
+  operationId: getEthWalletNFTs
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /data/eth/getWalletTransactions
+  method: post
+  operationId: getEthWalletTransactions
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /insights/eth/getTokenAppraisal
+  method: post
+  operationId: getEthTokenAppraisal
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /insights/eth/getWalletLabels
+  method: post
+  operationId: getEthWalletLabels
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /insights/eth/getWalletValuation
+  method: post
+  operationId: getEthWalletValuation
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
 - path: /analytics/pol/getCollectionPriceDiff
   method: post
   operationId: getPolCollectionPriceDiff
@@ -325,6 +598,214 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /data/pol/getCollectionOwners
+  method: post
+  operationId: getPolCollectionOwners
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /data/pol/getCollectionTraits
+  method: post
+  operationId: getPolCollectionTraits
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /data/pol/getCollectionTransactions
+  method: post
+  operationId: getPolCollectionTransactions
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /data/pol/getCollections
+  method: post
+  operationId: getPolCollections
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /data/pol/getHistoricalTransactions
+  method: post
+  operationId: getPolHistoricalTransactions
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /data/pol/getMarketplaceData
+  method: post
+  operationId: getPolMarketplaceData
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /data/pol/getMarketplaceFloorPrice
+  method: post
+  operationId: getPolMarketplaceFloorPrice
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /data/pol/getTokenTransactions
+  method: post
+  operationId: getPolTokenTransactions
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /data/pol/getTokens
+  method: post
+  operationId: getPolTokens
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /data/pol/getWalletNFTs
+  method: post
+  operationId: getPolWalletNFTs
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /data/pol/getWalletTransactions
+  method: post
+  operationId: getPolWalletTransactions
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /insights/pol/getTokenAppraisal
+  method: post
+  operationId: getPolTokenAppraisal
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /insights/pol/getWalletLabels
+  method: post
+  operationId: getPolWalletLabels
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
 - path: /analytics/sol/getCollectionPriceDiff
   method: post
   operationId: getSolCollectionPriceDiff
@@ -441,9 +922,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /insights/eth/getTokenAppraisal
+- path: /data/sol/getAccountNFTs
   method: post
-  operationId: getEthTokenAppraisal
+  operationId: getSolAccountNFTs
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -457,9 +938,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /insights/eth/getWalletLabels
+- path: /data/sol/getCollectionTraits
   method: post
-  operationId: getEthWalletLabels
+  operationId: getSolCollectionTraits
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -473,9 +954,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /insights/eth/getWalletValuation
+- path: /data/sol/getCollectionTransactions
   method: post
-  operationId: getEthWalletValuation
+  operationId: getSolCollectionTransactions
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -489,9 +970,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /insights/pol/getTokenAppraisal
+- path: /data/sol/getCollections
   method: post
-  operationId: getPolTokenAppraisal
+  operationId: getSolCollections
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -505,9 +986,89 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /insights/pol/getWalletLabels
+- path: /data/sol/getHistoricalTransactions
   method: post
-  operationId: getPolWalletLabels
+  operationId: getSolHistoricalTransactions
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /data/sol/getMarketplaceData
+  method: post
+  operationId: getSolMarketplaceData
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /data/sol/getMarketplaceFloorPrice
+  method: post
+  operationId: getSolMarketplaceFloorPrice
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /data/sol/getNFTAccount
+  method: post
+  operationId: getSolNFTAccount
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /data/sol/getTokenTransactions
+  method: post
+  operationId: getSolTokenTransactions
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /data/sol/getTokens
+  method: post
+  operationId: getSolTokens
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -524,6 +1085,38 @@ operations:
 - path: /insights/sol/getTokenAppraisal
   method: post
   operationId: getSolTokenAppraisal
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /data/skn/getMarketplaceData
+  method: post
+  operationId: getSknMarketplaceData
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /data/skn/getMarketplaceFloorPrice
+  method: post
+  operationId: getSknMarketplaceFloorPrice
   x-agentic-access:
     action-class: acting
     consequence: write
