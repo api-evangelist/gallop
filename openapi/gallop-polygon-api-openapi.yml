@@ -1,13 +1,13 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Analytics Ethereum Polygon API
-  description: Sales, pricing, performance, and marketplace data, all in one place with low latency.
-  termsOfService: https://higallop.com/terms/
+  title: Gallop Polygon API
+  version: 1.0.0
   contact:
     email: support@higallop.com
   license:
     name: UNLICENSED
-  version: 1.0.0
+  termsOfService: https://higallop.com/terms/
+  description: 'Operations tagged Polygon across 3 of this provider''s published API definitions: gallop-analytics-openapi.json, gallop-data-openapi.json, gallop-insights-openapi.json. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.prod.gallop.run/v1
 tags:
@@ -85,6 +85,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /analytics/pol/getCollectionSalesOHLC:
     post:
       security:
@@ -178,6 +180,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /analytics/pol/getCollectionSummary:
     post:
       security:
@@ -249,6 +253,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /analytics/pol/getLeaderBoard:
     post:
       security:
@@ -615,6 +621,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /analytics/pol/getRarity:
     post:
       security:
@@ -690,6 +698,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /analytics/pol/getTokenSummary:
     post:
       security:
@@ -766,6 +776,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /analytics/pol/getWashTrade:
     post:
       security:
@@ -813,6 +825,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /analytics/pol/getWashTransactions:
     post:
       security:
@@ -1019,6 +1033,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /data/pol/getCollectionOwners:
     post:
       security:
@@ -1129,6 +1145,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /data/pol/getCollectionTraits:
     post:
       security:
@@ -1179,6 +1197,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /data/pol/getCollectionTransactions:
     post:
       security:
@@ -1350,6 +1370,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /data/pol/getCollections:
     post:
       security:
@@ -1470,6 +1492,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /data/pol/getHistoricalTransactions:
     post:
       security:
@@ -1661,6 +1685,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /data/pol/getMarketplaceData:
     post:
       security:
@@ -1766,6 +1792,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /data/pol/getMarketplaceFloorPrice:
     post:
       security:
@@ -1878,6 +1906,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /data/pol/getTokenTransactions:
     post:
       security:
@@ -2015,6 +2045,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /data/pol/getTokens:
     post:
       security:
@@ -2160,6 +2192,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /data/pol/getWalletNFTs:
     post:
       security:
@@ -2274,6 +2308,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /data/pol/getWalletTransactions:
     post:
       security:
@@ -2392,6 +2428,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /insights/pol/getTokenAppraisal:
     post:
       security:
@@ -2468,6 +2506,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /insights/pol/getWalletLabels:
     post:
       security:
@@ -2508,12 +2548,18 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
 components:
   securitySchemes:
     api_key:
       type: apiKey
       in: header
       name: x-api-key
+x-refined-from:
+- gallop-analytics-openapi.json
+- gallop-data-openapi.json
+- gallop-insights-openapi.json
 x-readme:
   explorer-enabled: true
   proxy-enabled: false

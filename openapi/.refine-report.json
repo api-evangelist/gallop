@@ -1,10 +1,9 @@
 {
   "provider": "gallop",
   "sources": [
-    "gallop-ethereum-api-openapi.yml",
-    "gallop-polygon-api-openapi.yml",
-    "gallop-solana-api-openapi.yml",
-    "gallop-starknet-api-openapi.yml"
+    "_original/gallop-analytics-openapi.json",
+    "_original/gallop-data-openapi.json",
+    "_original/gallop-insights-openapi.json"
   ],
   "outputs": [
     "gallop-ethereum-api-openapi.yml",
@@ -15,6 +14,30 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (3 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "gallop-analytics-openapi.json: upgraded openapi 3.0.2 -> OpenAPI 3.2.0",
+    "gallop-analytics-openapi.json: declared missing tag: Ethereum",
+    "gallop-analytics-openapi.json: declared missing tag: Polygon",
+    "gallop-analytics-openapi.json: declared missing tag: Solana",
+    "gallop-data-openapi.json: upgraded openapi 3.0.2 -> OpenAPI 3.2.0",
+    "gallop-data-openapi.json: declared missing tag: Ethereum",
+    "gallop-data-openapi.json: declared missing tag: Polygon",
+    "gallop-data-openapi.json: declared missing tag: Solana",
+    "gallop-data-openapi.json: declared missing tag: Starknet",
+    "gallop-insights-openapi.json: upgraded openapi 3.0.2 -> OpenAPI 3.2.0",
+    "gallop-insights-openapi.json: declared missing tag: Ethereum",
+    "gallop-insights-openapi.json: declared missing tag: Polygon",
+    "gallop-insights-openapi.json: declared missing tag: Solana",
+    "tag 'Ethereum' spans 3 source specs (gallop-analytics-openapi.json, gallop-data-openapi.json, gallop-insights-openapi.json): per-path servers applied",
+    "tag 'Polygon' spans 3 source specs (gallop-analytics-openapi.json, gallop-data-openapi.json, gallop-insights-openapi.json): per-path servers applied",
+    "tag 'Solana' spans 3 source specs (gallop-analytics-openapi.json, gallop-data-openapi.json, gallop-insights-openapi.json): per-path servers applied",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "gallop-ethereum-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "gallop-polygon-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "gallop-solana-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "gallop-starknet-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

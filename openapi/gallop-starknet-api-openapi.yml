@@ -1,7 +1,7 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Analytics Ethereum Starknet API
-  description: Sales, pricing, performance, and marketplace data, all in one place with low latency.
+  title: Data Starknet API
+  description: Power your NFT products with Gallop’s queryable collection, token, trait and wallet APIs.
   termsOfService: https://higallop.com/terms/
   contact:
     email: support@higallop.com

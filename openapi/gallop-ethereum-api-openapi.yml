@@ -1,13 +1,13 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Analytics Ethereum API
-  description: Sales, pricing, performance, and marketplace data, all in one place with low latency.
-  termsOfService: https://higallop.com/terms/
+  title: Gallop Ethereum API
+  version: 1.0.0
   contact:
     email: support@higallop.com
   license:
     name: UNLICENSED
-  version: 1.0.0
+  termsOfService: https://higallop.com/terms/
+  description: 'Operations tagged Ethereum across 3 of this provider''s published API definitions: gallop-analytics-openapi.json, gallop-data-openapi.json, gallop-insights-openapi.json. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.prod.gallop.run/v1
 tags:
@@ -101,6 +101,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /analytics/eth/getCollectionPriceDiff:
     post:
       security:
@@ -158,6 +160,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /analytics/eth/getCollectionSalesOHLC:
     post:
       security:
@@ -254,6 +258,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /analytics/eth/getCollectionSummary:
     post:
       security:
@@ -324,6 +330,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /analytics/eth/getDailyCollectionFloor:
     post:
       security:
@@ -363,6 +371,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /analytics/eth/getLeaderBoard:
     post:
       security:
@@ -729,6 +739,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /analytics/eth/getRarity:
     post:
       security:
@@ -804,6 +816,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /analytics/eth/getTokenSummary:
     post:
       security:
@@ -878,6 +892,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /analytics/eth/getWalletPnL:
     post:
       security:
@@ -930,6 +946,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /analytics/eth/getWashTrade:
     post:
       security:
@@ -978,6 +996,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /analytics/eth/getWashTransactions:
     post:
       security:
@@ -1174,6 +1194,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /data/eth/getCollectionOwners:
     post:
       security:
@@ -1282,6 +1304,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /data/eth/getCollectionTransactions:
     post:
       security:
@@ -1500,6 +1524,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /data/eth/getCollections:
     post:
       security:
@@ -1566,7 +1592,7 @@ paths:
                     symbol: 3L
                     collection_address: '0xb4d06d46a8285f4ec79fd294f78a881799d8ced9'
                   - collection_name: Acclimated​MoonCats
-                    symbol: "\uD83D\uDE3A"
+                    symbol: 😺
                     collection_address: '0xc3f733ca98e0dad0386979eb96fb1722a1a05e69'
                   - collection_name: Adam Bomb Squad
                     symbol: ABS
@@ -1638,6 +1664,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /data/eth/getEnsLookup:
     post:
       security:
@@ -1745,6 +1773,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /data/eth/getFloorPriceByTrait:
     post:
       security:
@@ -1838,6 +1868,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /data/eth/getHistoricalEvents:
     post:
       security:
@@ -2099,6 +2131,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /data/eth/getHistoricalTransactions:
     post:
       security:
@@ -2319,6 +2353,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /data/eth/getLiveListings:
     post:
       security:
@@ -2406,6 +2442,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /data/eth/getMarketplaceData:
     post:
       security:
@@ -2526,6 +2564,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /data/eth/getMarketplaceFloorPrice:
     post:
       security:
@@ -2639,6 +2679,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /data/eth/getTokenTransactions:
     post:
       security:
@@ -2822,6 +2864,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /data/eth/getTokens:
     post:
       security:
@@ -3069,6 +3113,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /data/eth/getWalletNFTs:
     post:
       security:
@@ -3183,6 +3229,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /data/eth/getWalletTransactions:
     post:
       security:
@@ -3323,6 +3371,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /insights/eth/getTokenAppraisal:
     post:
       security:
@@ -3390,12 +3440,22 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /insights/eth/getWalletLabels:
     post:
       security:
       - api_key: []
       summary: Wallet Activity Labels
-      description: "Classifies a wallet's behaviour according to its on-chain activity.          Each wallet has labels for volume (ETH value transacted), activity (number of unique transactions), and wash (proportion of trades suspected to be washes). \n         Labels for volume_status include: zero (no transactions), light (less than ~0.75 ETH transacted), neutral (less than ~100 ETH transacted), high (over ~100 ETH transacted) \n         Labels for activity_status include: zero (no transactions), dormant (fewer than ~12 transactions), neutral (fewer than ~200 transactions), active (over ~200 transactions) \n         Labels for wash_status include: none (no suspected washes), low (fewer 5% of transactions are suspected washes), moderate (fewer 50% of transactions are suspected washes), high (over 50% of transactions are suspected washes) \n         Note: label weights are based on constant quantiles so exact thresholds are subject to change."
+      description: 'Classifies a wallet''s behaviour according to its on-chain activity. Each wallet has labels for volume (ETH value transacted), activity (number of unique transactions), and wash (proportion of trades suspected to be washes).
+
+        Labels for volume_status include: zero (no transactions), light (less than ~0.75 ETH transacted), neutral (less than ~100 ETH transacted), high (over ~100 ETH transacted)
+
+        Labels for activity_status include: zero (no transactions), dormant (fewer than ~12 transactions), neutral (fewer than ~200 transactions), active (over ~200 transactions)
+
+        Labels for wash_status include: none (no suspected washes), low (fewer 5% of transactions are suspected washes), moderate (fewer 50% of transactions are suspected washes), high (over 50% of transactions are suspected washes)
+
+        Note: label weights are based on constant quantiles so exact thresholds are subject to change.'
       operationId: getEthWalletLabels
       tags:
       - Ethereum
@@ -3430,6 +3490,8 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
   /insights/eth/getWalletValuation:
     post:
       security:
@@ -3512,12 +3574,18 @@ paths:
           description: Bad request
         '403':
           description: Unauthorized
+    servers:
+    - url: https://api.prod.gallop.run/v1
 components:
   securitySchemes:
     api_key:
       type: apiKey
       in: header
       name: x-api-key
+x-refined-from:
+- gallop-analytics-openapi.json
+- gallop-data-openapi.json
+- gallop-insights-openapi.json
 x-readme:
   explorer-enabled: true
   proxy-enabled: false
